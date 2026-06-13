@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecteur Vidéo - AnimeFlix26</title>
+    <link rel="stylesheet" href="player-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-play-circle"></i>
+                <span>AnimeFlix26</span>
+            </a>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Retour
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="player-container">
+            <!-- Vidéo Player -->
+            <div class="video-player">
+                <video id="videoPlayer" controls>
+                    <source src="" type="video/mp4">
+                    Votre navigateur ne supporte pas la lecture vidéo HTML5
+                </video>
+            </div>
+
+            <!-- Episode Info -->
+            <div class="episode-info">
+                <div class="info-header">
+                    <h1 id="animeTitle">Chargement...</h1>
+                    <p id="episodeTitle" class="episode-title">Episode 1</p>
+                </div>
+                <p id="episodeDescription" class="episode-description">Description en cours de chargement...</p>
+            </div>
+
+            <!-- Seasons Selection -->
+            <div class="seasons-container">
+                <h2>Saisons</h2>
+                <div id="seasonsList" class="seasons-list">
+                    <!-- Les saisons seront injectées ici par JavaScript -->
+                </div>
+            </div>
+
+            <!-- Episodes List -->
+            <div class="episodes-container">
+                <h2>Episodes</h2>
+                <div id="episodesList" class="episodes-list">
+                    <!-- Les episodes seront injectés ici par JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Animes Sidebar -->
+        <aside class="sidebar">
+            <h2>Plus d'animes</h2>
+            <div id="relatedAnimes" class="related-animes">
+                <!-- Les animes recommandés seront injectés ici -->
+            </div>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 AnimeFlix26. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="player-script.js"></script>
+</body>
+</html>
