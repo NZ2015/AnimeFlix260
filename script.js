@@ -3,12 +3,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.querySelector('.search-container input');
     const searchBtn = document.querySelector('.search-btn');
 
-    searchBtn.addEventListener('click', performSearch);
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            performSearch();
-        }
-    });
+    if (searchBtn) {
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    }
 });
 
 function performSearch() {
@@ -17,10 +19,20 @@ function performSearch() {
 
     if (query.length > 0) {
         console.log('Recherche pour:', query);
-        // Ici vous pouvez ajouter la logique de recherche réelle
         alert(`Recherche en cours pour: ${query}`);
     }
 }
+
+// === Charger les animes depuis JSON ===
+let allAnimes = [];
+
+fetch('animes.json')
+    .then(response => response.json())
+    .then(data => {
+        allAnimes = data.animes;
+        setupPlayButtons();
+    })
+    .catch(error => console.error('Erreur:', error));
 
 // === Animations au scroll === 
 const observerOptions = {
@@ -45,16 +57,26 @@ document.querySelectorAll('.anime-card').forEach(card => {
     observer.observe(card);
 });
 
-// === Gestion des boutons de lecture === 
-document.querySelectorAll('.play-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const animeName = this.closest('.anime-card').querySelector('h3').textContent;
-        console.log('Lecture de:', animeName);
-        // Ici vous pouvez ajouter la redirection vers la page de lecture
-        alert(`Lecture de ${animeName} - Redirection vers le lecteur...`);
+// === Setup des boutons de lecture ===
+function setupPlayButtons() {
+    document.querySelectorAll('.play-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const animeCard = this.closest('.anime-card');
+            const animeName = animeCard.querySelector('h3').textContent;
+            
+            // Trouver l'anime dans nos données
+            const anime = allAnimes.find(a => a.title === animeName);
+            
+            if (anime) {
+                // Rediriger vers le lecteur
+                window.location.href = `player.html?anime=${anime.id}&episode=1`;
+            } else {
+                console.log('Anime non trouvé:', animeName);
+            }
+        });
     });
-});
+}
 
 // === Navigation active === 
 const navLinks = document.querySelectorAll('.nav-link');
@@ -102,38 +124,18 @@ window.addEventListener('scroll', function() {
 
 // === Gestion des cartes anime au clic === 
 document.querySelectorAll('.anime-card').forEach(card => {
-    card.addEventListener('click', function() {
+    card.addEventListener('click', function(e) {
+        // Ne pas activer si on clique sur le bouton play
+        if (e.target.closest('.play-btn')) return;
+        
         const animeName = this.querySelector('h3').textContent;
-        const animeRating = this.querySelector('.rating span').textContent;
+        const anime = allAnimes.find(a => a.title === animeName);
         
-        console.log('Carte cliquée:', {
-            nom: animeName,
-            note: animeRating
-        });
-        
-        // Ici vous pouvez ajouter la navigation vers la page de détails
-        // window.location.href = `/anime/${animeName.toLowerCase()}`;
+        if (anime) {
+            // Rediriger vers le lecteur
+            window.location.href = `player.html?anime=${anime.id}&episode=1`;
+        }
     });
-});
-
-// === Gestion du responsive menu (si ajouté plus tard) === 
-function handleMenuToggle() {
-    const nav = document.querySelector('.nav');
-    nav.classList.toggle('active');
-}
-
-// === Gestion du mode sombre/clair (optionnel) === 
-function toggleTheme() {
-    document.body.classList.toggle('light-mode');
-    localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-}
-
-// Charger le thème sauvegardé
-window.addEventListener('load', function() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-        document.body.classList.add('light-mode');
-    }
 });
 
 // === Animation des étoiles de notation === 
@@ -187,6 +189,8 @@ function removeFromFavorites(animeName) {
 function initAdvancedSearch() {
     const searchInput = document.querySelector('.search-container input');
     
+    if (!searchInput) return;
+    
     searchInput.addEventListener('input', function(e) {
         const value = e.target.value.toLowerCase();
         
@@ -213,7 +217,6 @@ function trackUserAction(action, data) {
     };
     
     console.log('Action trackée:', trackingData);
-    // Ici vous pouvez envoyer les données à un serveur d'analytics
 }
 
 // === Initialisation === 
@@ -221,3 +224,4 @@ window.addEventListener('load', function() {
     console.log('AnimeFlix26 - Page chargée avec succès');
     initAdvancedSearch();
 });
+
