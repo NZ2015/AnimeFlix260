@@ -1,0 +1,26 @@
+{
+  "animes": [
+    {
+      "id": 1,
+      "title": "Attack on Titan",
+      "slug": "attack-on-titan",
+      "description": "Une histoire épique de guerre et de survie contre des titans géants qui menacent l'humanité",
+      "genre": "Action • Fantaisie • Drame",
+      "rating": 4.9,
+      "poster": "https://via.placeholder.com/200x300?text=Attack+on+Titan",
+      "banner": "https://via.placeholder.com/1200x400?text=Attack+on+Titan",
+      "totalEpisodes": 139,
+      "seasons": [
+        {
+          "number": 1,
+          "title": "Saison 1",
+          "episodes": [
+            {"number": 1, "title": "Colossus", "duration": "24:32", "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-library/sample/BigBuckBunny.mp4"},
+            {"number": 2, "title": "That Day", "duration": "24:15", "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-library/sample/BigBuckBunny.mp4"},
+            {"number": 3, "title": "Coup de Tonnerre", "duration": "24:28", "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-library/sample/BigBuckBunny.mp4"}
+          ]
+        }
+      ]
+    }
+  ]
+}
