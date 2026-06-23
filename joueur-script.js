@@ -71,11 +71,15 @@ function playEpisode(episode) {
     // Mettre à jour l'episode actif dans la liste
     document.querySelectorAll('.episode-item').forEach(item => {
         item.classList.remove('active');
+        videoPlayer.load();
+
+videoPlayer.play()
+.catch(error => console.log(error));
     });
     document.querySelector(`[data-episode="${episode.number}"]`)?.classList.add('active');
 
     // Mettre à jour l'URL
-    window.history.replaceState({}, '', `player.html?anime=${currentAnime.id}&season=${currentSeason.number}&episode=${episode.number}`);
+    window.history.replaceState({}, '', `joueur.html?anime=${currentAnime.id}&season=${currentSeason.number}&episode=${episode.number}`);
 
     // Scroller vers le lecteur
     document.querySelector('.video-player').scrollIntoView({ behavior: 'smooth' });
@@ -159,7 +163,7 @@ function displayRelatedAnimes() {
 
         animeCard.addEventListener('click', () => {
             // Rediriger vers cet anime (première saison, premier episode)
-            window.location.href = `player.html?anime=${anime.id}&season=1&episode=1`;
+            window.location.href = `joueur.html?anime=${anime.id}&season=1&episode=1`;
         });
 
         relatedContainer.appendChild(animeCard);
