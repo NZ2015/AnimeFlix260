@@ -55,36 +55,50 @@ function initializePlayer() {
     displayRelatedAnimes();
 }
 
-// === Afficher les informations et lire l'episode ===
 function playEpisode(episode) {
+
     currentEpisode = episode;
 
-    // Mettre à jour la vidéo
     const videoPlayer = document.getElementById('videoPlayer');
+
+    // Charger la vidéo
     videoPlayer.src = episode.videoUrl;
 
-    // Mettre à jour les informations
-    document.getElementById('animeTitle').textContent = currentAnime.title;
-    document.getElementById('episodeTitle').textContent = `${currentSeason.title} - Episode ${episode.number} - ${episode.title}`;
-    document.getElementById('episodeDescription').textContent = episode.description;
+    videoPlayer.load();
 
-    // Mettre à jour l'episode actif dans la liste
+    videoPlayer.play()
+    .catch(error => console.log(error));
+
+    // Afficher les informations
+    document.getElementById('animeTitle').textContent =
+        currentAnime.title;
+
+    document.getElementById('episodeTitle').textContent =
+        `${currentSeason.title} - Episode ${episode.number} - ${episode.title}`;
+
+    document.getElementById('episodeDescription').textContent =
+        episode.description || '';
+
+    // Retirer la sélection précédente
     document.querySelectorAll('.episode-item').forEach(item => {
         item.classList.remove('active');
-        videoPlayer.load();
-
-videoPlayer.play()
-.catch(error => console.log(error));
     });
-    document.querySelector(`[data-episode="${episode.number}"]`)?.classList.add('active');
+
+    // Activer l'épisode actuel
+    document.querySelector(`[data-episode="${episode.number}"]`)
+      ?.classList.add('active');
 
     // Mettre à jour l'URL
-    window.history.replaceState({}, '', `joueur.html?anime=${currentAnime.id}&season=${currentSeason.number}&episode=${episode.number}`);
+    window.history.replaceState(
+        {},
+        '',
+        `joueur.html?anime=${currentAnime.id}&season=${currentSeason.number}&episode=${episode.number}`
+    );
 
-    // Scroller vers le lecteur
-    document.querySelector('.video-player').scrollIntoView({ behavior: 'smooth' });
+    // Remonter vers le lecteur vidéo
+    document.querySelector('.video-player')
+      .scrollIntoView({ behavior: 'smooth' });
 }
-
 // === Afficher les saisons ===
 function displaySeasons() {
     const seasonsList = document.getElementById('seasonsList');
