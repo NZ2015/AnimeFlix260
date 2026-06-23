@@ -1,3 +1,9 @@
+console.log("Le script fonctionne");
+fetch('animes.json')
+.then(response => response.json())
+.then(data => {
+    console.log(data);
+});
 // === Charger les données des animes ===
 let allAnimes = [];
 let currentAnime = null;
