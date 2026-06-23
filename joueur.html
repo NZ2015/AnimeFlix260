@@ -76,7 +76,16 @@
             <p>&copy; 2026 AnimeFlix26. Tous droits réservés.</p>
         </div>
     </footer>
+   <script>
+const params = new URLSearchParams(window.location.search);
 
+const video = params.get("video");
+
+if (video) {
+  document.getElementById("videoSource").src = video;
+  document.getElementById("videoPlayer").load();
+}
+</script>
     <script src="joueur-script.js"></script>
 </body>
 </html>
