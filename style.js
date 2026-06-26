@@ -26,7 +26,7 @@ function performSearch() {
 // === Charger les animes depuis JSON ===
 let allAnimes = [];
 
-fetch('animes.json')
+fetch('anime.json')
     .then(response => response.json())
     .then(data => {
         allAnimes = data.animes;
