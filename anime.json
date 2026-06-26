@@ -46,7 +46,7 @@
          "id": 3,
          "title": "My Hero Academiya",
          "rating": 4.5,
-         "poster": "image/myherosacademiya",
+         "poster": "image/myherosacademiya.jpg",
          "seasons": [
            {
              "number": 1,
@@ -229,7 +229,7 @@
                              "id": 11,
                              "title": "",
                              "rating": 4.5,
-                             "poster": "image/attackoontitan .jpg",
+                             "poster": "image/attackoontitan.jpg",
                              "seasons": [
                               {
                                 "number": 1,
@@ -252,7 +252,7 @@
                                 "id": 12,
                                 "title": "",
                                 "rating": 4.5,
-                                "poster": "image/deathnote .jpg",
+                                "poster": "image/deathnote.jpg",
                                 "seasons": [
                                  {
                                    "number": 1,
