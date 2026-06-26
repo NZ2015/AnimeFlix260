@@ -133,7 +133,7 @@ document.querySelectorAll('.anime-card').forEach(card => {
         
         if (anime) {
             // Rediriger vers le lecteur
-            window.location.href = `player.html?anime=${anime.id}&episode=1`;
+            window.location.href = `joueur.html?anime=${anime.id}&episode=1`;
         }
     });
 });
