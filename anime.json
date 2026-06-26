@@ -1,204 +1,201 @@
+
+  "id": 2,
+  "title": "One Piece",
+  "rating": 4.9,
+  "poster": "images/onepiece.jpg",
+  "description": "L'aventure de Monkey D. Luffy à la recherche du One Piece.",
+  "genres": ["Action", "Aventure"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "East Blue",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Je suis Luffy !",
+          "duration": "24:00",
+          "videoUrl": ""
+        }
+      ]
+    }
+  ]
+},
 {
-  "animes": [
+  "id": 3,
+  "title": "Bleach",
+  "rating": 4.8,
+  "poster": "images/bleach.jpg",
+  "description": "Ichigo Kurosaki devient Shinigami.",
+  "genres": ["Action", "Fantastique"],
+  "seasons": [
     {
-      "id": 1,
-      "title": "Naruto",
-      "rating": 4.7,
-      "poster": "image/naruto.jpg",
-      "seasons": [
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
         {
           "number": 1,
-          "title": "Saison 1",
-          "episodes": [
-            {
-              "number": 1,
-              "title": "Episode 1",
-              "duration": "24:00",
-              "videoUrl": "video/naruto-saison1-episode1.mp4"
-            }
-          ]
+          "title": "Le jour où je suis devenu Shinigami",
+          "duration": "24:00",
+          "videoUrl": ""
         }
       ]
-    },
+    }
+  ]
+},
+{
+  "id": 4,
+  "title": "Demon Slayer",
+  "rating": 4.9,
+  "poster": "images/demonslayer.jpg",
+  "description": "Tanjiro combat les démons pour sauver sa sœur.",
+  "genres": ["Action", "Aventure"],
+  "seasons": [
     {
-      "id": 2,
-      "title": "Demon Slayer",
-      "rating": 4.8,
-      "poster": "image/demonslayer.jpg",
-      "seasons": [
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
         {
           "number": 1,
-          "title": "Saison 1",
-          "episodes": [
-            {
-              "number": 1,
-              "title": "Episode 1",
-              "duration": "24:00",
-              "videoUrl": "video/demonslayer-saison1-episode1.mp4"
-            }
-          ]
+          "title": "Cruauté",
+          "duration": "24:00",
+          "videoUrl": ""
         }
       ]
-    },
+    }
+  ]
+},
+{
+  "id": 5,
+  "title": "Jujutsu Kaisen",
+  "rating": 4.8,
+  "poster": "images/jujutsukaisen.jpg",
+  "description": "Yuji Itadori rejoint l'école d'exorcisme.",
+  "genres": ["Action", "Surnaturel"],
+  "seasons": [
     {
-      "id": 3,
-      "title": "My Hero Academia",
-      "rating": 4.7,
-      "poster": "image/myheroacademia.jpg",
-      "seasons": [
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
         {
           "number": 1,
-          "title": "Saison 1",
-          "episodes": [
-            {
-              "number": 1,
-              "title": "Episode 1",
-              "duration": "24:00",
-              "videoUrl": "video/myheroacademia-saison1-episode1.mp4"
-            }
-          ]
+          "title": "Ryomen Sukuna",
+          "duration": "24:00",
+          "videoUrl": ""
         }
       ]
-    },
+    }
+  ]
+},
+{
+  "id": 6,
+  "title": "Attack on Titan",
+  "rating": 4.9,
+  "poster": "images/aot.jpg",
+  "description": "L'humanité lutte contre les Titans.",
+  "genres": ["Action", "Drame"],
+  "seasons": [
     {
-      "id": 4,
-      "title": "One Piece",
-      "rating": 4.9,
-      "poster": "image/onepiece.jpg",
-      "seasons": [
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
         {
           "number": 1,
-          "title": "Saison 1",
-          "episodes": [
-            {
-              "number": 1,
-              "title": "Episode 1",
-              "duration": "24:00",
-              "videoUrl": "video/onepiece-saison1-episode1.mp4"
-            }
-          ]
+          "title": "À toi, dans 2000 ans",
+          "duration": "24:00",
+          "videoUrl": ""
         }
       ]
-    },
+    }
+  ]
+},
+{
+  "id": 7,
+  "title": "Death Note",
+  "rating": 4.9,
+  "poster": "images/deathnote.jpg",
+  "description": "Light Yagami découvre un carnet mortel.",
+  "genres": ["Thriller", "Mystère"],
+  "seasons": [
     {
-      "id": 5,
-      "title": "Bleach",
-      "rating": 4.6,
-      "poster": "image/bleach.jpg",
-      "seasons": [
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
         {
           "number": 1,
-          "title": "Saison 1",
-          "episodes": [
-            {
-              "number": 1,
-              "title": "Episode 1",
-              "duration": "24:00",
-              "videoUrl": "video/bleach-saison1-episode1.mp4"
-            }
-          ]
+          "title": "Renaissance",
+          "duration": "24:00",
+          "videoUrl": ""
         }
       ]
-    },
+    }
+  ]
+},
+{
+  "id": 8,
+  "title": "My Hero Academia",
+  "rating": 4.7,
+  "poster": "images/mha.jpg",
+  "description": "Izuku Midoriya rêve de devenir un héros.",
+  "genres": ["Action", "Super-héros"],
+  "seasons": [
     {
-      "id": 6,
-      "title": "Jujutsu Kaisen",
-      "rating": 4.8,
-      "poster": "image/jujutsukaisen.jpg",
-      "seasons": [
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
         {
           "number": 1,
-          "title": "Saison 1",
-          "episodes": [
-            {
-              "number": 1,
-              "title": "Episode 1",
-              "duration": "24:00",
-              "videoUrl": "video/jujutsukaisen-saison1-episode1.mp4"
-            }
-          ]
+          "title": "Izuku Midoriya : Origines",
+          "duration": "24:00",
+          "videoUrl": ""
         }
       ]
-    },
+    }
+  ]
+},
+{
+  "id": 9,
+  "title": "Tokyo Ghoul",
+  "rating": 4.6,
+  "poster": "images/tokyoghoul.jpg",
+  "description": "Kaneki devient mi-humain, mi-goule.",
+  "genres": ["Action", "Horreur"],
+  "seasons": [
     {
-      "id": 7,
-      "title": "Attack on Titan",
-      "rating": 4.9,
-      "poster": "image/attackontitan.jpg",
-      "seasons": [
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
         {
           "number": 1,
-          "title": "Saison 1",
-          "episodes": [
-            {
-              "number": 1,
-              "title": "Episode 1",
-              "duration": "24:00",
-              "videoUrl": "video/attackontitan-saison1-episode1.mp4"
-            }
-          ]
+          "title": "Tragédie",
+          "duration": "24:00",
+          "videoUrl": ""
         }
       ]
-    },
+    }
+  ]
+},
+{
+  "id": 10,
+  "title": "Vinland Saga",
+  "rating": 4.8,
+  "poster": "images/vinlandsaga.jpg",
+  "description": "L'histoire de Thorfinn à l'époque des Vikings.",
+  "genres": ["Action", "Historique"],
+  "seasons": [
     {
-      "id": 8,
-      "title": "Death Note",
-      "rating": 4.9,
-      "poster": "image/deathnote.jpg",
-      "seasons": [
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
         {
           "number": 1,
-          "title": "Saison 1",
-          "episodes": [
-            {
-              "number": 1,
-              "title": "Episode 1",
-              "duration": "24:00",
-              "videoUrl": "video/deathnote-saison1-episode1.mp4"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "title": "Cyberpunk Edgerunners",
-      "rating": 4.7,
-      "poster": "image/cyberpunk.jpg",
-      "seasons": [
-        {
-          "number": 1,
-          "title": "Saison 1",
-          "episodes": [
-            {
-              "number": 1,
-              "title": "Episode 1",
-              "duration": "24:00",
-              "videoUrl": "video/cyberpunk-saison1-episode1.mp4"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "title": "Vinland Saga",
-      "rating": 4.8,
-      "poster": "image/vinlandsaga.jpg",
-      "seasons": [
-        {
-          "number": 1,
-          "title": "Saison 1",
-          "episodes": [
-            {
-              "number": 1,
-              "title": "Episode 1",
-              "duration": "24:00",
-              "videoUrl": "video/vinlansaga-saison1-episode1.mp4"
-            }
-          ]
+          "title": "Quelque part ailleurs",
+          "duration": "24:00",
+          "videoUrl": ""
         }
       ]
     }
   ]
 }
+[
+ {"id":11,"title":"Solo Leveling","rating":4.9,"poster":"images/sololeveling.jpg","description":"Sung Jin-Woo devient le chasseur le plus puissant.","genres":["Action","Fantastique"],"seasons":[{"number":1,"title":"Saison 1","episodes":[{"number":1,"title":"Je suis habitué","duration":"24:00","videoUrl":""}]}]}
+  {"id":11,"title":"","rating":4.9,"poster":"images/.jpg","description":"Sung Jin-Woo devient le chasseur le plus puissant.","genres":["Action","Fantastique"],"seasons":[{"number":1,"title":"Saison 1","episodes":[{"number":1,"title":"Je suis habitué","duration":"24:00","videoUrl":""}]}]}
