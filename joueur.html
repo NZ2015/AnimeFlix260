@@ -25,15 +25,23 @@
     <!-- Main Content -->
     <main class="main-content">
         <div class="player-container">
-            <!-- Vidéo Player -->
-            <div class="video-player">
-               <div class="video-player">
-                   <video id="videoPlayer" controls width="100%">
-                     <source id="videoSource" src="" type="video/mp4">
-                     Votre navigateur ne supporte pas la vidéo HTML5.
-                    </video>
-            </div>
-            </div>
+           <!-- Vidéo Player -->
+<div class="video-player">
+
+    <video id="videoPlayer" controls width="100%">
+        <source id="videoSource" src="" type="video/mp4">
+        Votre navigateur ne supporte pas la vidéo HTML5.
+    </video>
+
+          <!-- CONTROLES NETFLIX -->
+          <div class="controls">
+              <button onclick="prevEpisode()">⏮</button>
+              <button onclick="togglePlay()">⏯</button>
+              <button onclick="nextEpisode()">⏭</button>
+              <button onclick="fullscreen()">⛶</button>
+        </div>
+
+    </div>
 
             <!-- Episode Info -->
             <div class="episode-info">
@@ -76,15 +84,78 @@
             <p>&copy; 2026 AnimeFlix26. Tous droits réservés.</p>
         </div>
     </footer>
-   <script>
+<script>
 const params = new URLSearchParams(window.location.search);
 
-const video = params.get("video");
+const animeId = parseInt(params.get("animeId"));
+const seasonIndex = parseInt(params.get("season")) || 0;
+const episodeIndex = parseInt(params.get("episode")) || 0;
 
-if (video) {
-  document.getElementById("videoSource").src = video;
-  document.getElementById("videoPlayer").load();
+const videoPlayer = document.getElementById("videoPlayer");
+
+let animeData = null;
+
+// 🔥 Charger anime.json
+fetch("anime.json")
+  .then(res => res.json())
+  .then(data => {
+    animeData = data.animes.find(a => a.id === animeId);
+
+    if (animeData) {
+      loadEpisode(seasonIndex, episodeIndex);
+      renderInfo();
+    }
+  });
+
+// ▶ Charger épisode
+function loadEpisode(season, episode) {
+  const ep = animeData.seasons[season].episodes[episode];
+
+  videoPlayer.src = ep.videoUrl;
+  videoPlayer.load();
+  videoPlayer.play();
+
+  currentSeason = season;
+  currentEpisode = episode;
+
+  document.getElementById("episodeTitle").innerText = ep.title;
+  document.getElementById("animeTitle").innerText = animeData.title;
 }
+
+// ▶ Info anime
+function renderInfo() {
+  document.getElementById("animeTitle").innerText = animeData.title;
+}
+
+// ▶ Next episode
+function nextEpisode() {
+  const episodes = animeData.seasons[currentSeason].episodes;
+
+  if (currentEpisode < episodes.length - 1) {
+    loadEpisode(currentSeason, currentEpisode + 1);
+  }
+}
+
+// ▶ Previous episode
+function prevEpisode() {
+  if (currentEpisode > 0) {
+    loadEpisode(currentSeason, currentEpisode - 1);
+  }
+}
+
+// ▶ Play/Pause
+function togglePlay() {
+  if (videoPlayer.paused) videoPlayer.play();
+  else videoPlayer.pause();
+}
+
+// ⛶ Fullscreen
+function fullscreen() {
+  videoPlayer.requestFullscreen();
+}
+
+// ▶ Auto next
+videoPlayer.addEventListener("ended", nextEpisode);
 </script>
     <script src="joueur-script.js"></script>
 </body>
