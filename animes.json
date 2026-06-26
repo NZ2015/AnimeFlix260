@@ -4,7 +4,7 @@
       "id": 1,
       "title": "Naruto",
       "rating": 4.7,
-      "poster": "",
+      "poster": "image/naruto.jpg",
       "seasons": [
         {
           "number": 1,
@@ -23,9 +23,9 @@
 
     {
       "id": 2,
-      "title": "Bleach",
+      "title": "Demon Slayer",
       "rating": 4.5,
-      "poster": "",
+      "poster": "image/demonslayer.jpg",
       "seasons": [
         {
           "number": 1,
@@ -35,11 +35,238 @@
               "number": 1,
               "title": "Episode 1",
               "duration": "24:00",
-              "videoUrl": "video/bleach-saison1-episode1.mp4"
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
+              "videoUrl": "video/demonslayer-saison1-episode1.mp4"
+               }
+             ]
+           }
+         ]
+       },
+
+       {
+         "id": 3,
+         "title": "My Hero Academiya",
+         "rating": 4.5,
+         "poster": "image/myherosacademiya",
+         "seasons": [
+           {
+             "number": 1,
+             "title": "Saison 1",
+             "episodes": [
+               {
+                 "number": 3,
+                 "title": "Episode 1",
+                 "duration": "24:00",
+                  "videoUrl": "video/myheroacademiya-saison1-episode1.mp4"
+                   }
+                 ]
+               }
+             ]
+           },
+
+           {
+             
+              "id": 4,
+              "title": "One piece",
+              "rating": 4.5,
+              "poster": "image/onepiece.jpg",
+              "seasons": [
+               {
+                 "number": 1,
+                 "title": "Saison 1",
+                 "episodes": [
+                  {
+                    "number": 3,
+                    "title": "Episode 1",
+                    "duration": "24:00",
+                    "videoUrl": "video/onepiece-saison1-episode1.mp4"
+                     }
+                    ]
+                   }
+                  ]
+                 }
+                ]
+              }
+
+              {
+                "id": 5,
+                "title": "Steints Gate",
+                "rating": 4.5,
+                "poster": "image/steintsgate.jpg",
+                "seasons": [
+                 {
+                   "number": 1,
+                   "title": "Saison 1",
+                   "episodes": [
+                     {
+                      "number": 3,
+                      "title": "Episode 1",
+                      "duration": "24:00",
+                      "videoUrl": "video/steintsgate-saison1-episode1.mp4"
+                      }
+                     ]
+                    }
+                   ]
+                  }
+                 ]
+                },
+
+                {
+                  "id": 6,
+                  "title": "Bleach",
+                  "rating": 4.5,
+                  "poster": "image/bleach.jpg",
+                  "seasons": [
+                   {
+                     "number": 1,
+                     "title": "Saison 1",
+                     "episodes": [
+                      {
+                        "number": 3,
+                        "title": "Episode 1",
+                        "duration": "24:00",
+                       "videoUrl": "video/bleach-saison1-episode1.mp4"
+                        }
+                       ]
+                      }
+                     ]
+                    }
+                   ]
+                  },
+
+                  {
+                   "id": 7,
+                   "title": "Tokyo Ghould",
+                   "rating": 4.5,
+                   "poster": "image/tokyoghould.jpg",
+                   "seasons": [
+                    {
+                      "number": 1,
+                      "title": "Saison 1",
+                      "episodes": [
+                        {
+                          "number": 3,
+                          "title": "Episode 1",
+                          "duration": "24:00",
+                          "videoUrl": "video/tokyoghould-saison1-episode1.mp4"
+                          }
+                         ]
+                        }
+                       ]
+                      }
+                     ]
+                    },
+
+                    {
+                      "id": 8,
+                      "title": "Jujutsu Kaisen",
+                      "rating": 4.5,
+                      "poster": "image/jujustukaisen.jpg",
+                      "seasons": [
+                       {
+                       "number": 1,
+                       "title": "Saison 1",
+                       "episodes": [
+                         {
+                           "number": 3,
+                           "title": "Episode 1",
+                           "duration": "24:00",
+                           "videoUrl": "video/jujutsukaisen-saison1-episode1.mp4"
+                           }
+                          ]
+                         }
+                        ]
+                       }
+                      ]
+                     },  
+
+                     {
+                       "id": 9,
+                       "title": "Cyberpunk",
+                       "rating": 4.5,
+                       "poster": "image/cyberpunk.jpg",
+                       "seasons": [
+                        {
+                          "number": 1,
+                          "title": "Saison 1",
+                          "episodes": [
+                            {
+                              "number": 3,
+                              "title": "Episode 1",
+                              "duration": "24:00",
+                              "videoUrl": "video/cyberpunk-saison1-episode1.mp4"
+                              }
+                             ]
+                            }
+                           ]
+                          }
+                         ]
+                        },
+
+                        {
+                          "id": 10,
+                          "title": " Vinland Saga",
+                          "rating": 4.5,
+                          "poster": "image/vinland.jpg",
+                          "seasons": [
+                           {
+                             "number": 1,
+                             "title": "Saison 1",
+                             "episodes": [
+                               {
+                                 "number": 3,
+                                 "title": "Episode 1",
+                                 "duration": "24:00",
+                                 "videoUrl": "video/vinlandsaga-saison1-episode1.mp4"
+                                 }
+                                ]
+                               }
+                              ]
+                             }
+                            ]
+                           },
+
+                           {
+                             "id": 11,
+                             "title": "",
+                             "rating": 4.5,
+                             "poster": "image/attackoontitan .jpg",
+                             "seasons": [
+                              {
+                                "number": 1,
+                                "title": "Saison 1",
+                                "episodes": [
+                                  {
+                                    "number": 3,
+                                    "title": "Episode 1",
+                                    "duration": "24:00",
+                                    "videoUrl": "video/attackontitan-saison1-episode1.mp4"
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                }
+                               ]
+                              },
+   
+                              {
+                                "id": 12,
+                                "title": "",
+                                "rating": 4.5,
+                                "poster": "image/deathnote .jpg",
+                                "seasons": [
+                                 {
+                                   "number": 1,
+                                   "title": "Saison 1",
+                                   "episodes": [
+                                     {
+                                       "number": 3,
+                                       "title": "Episode 1",
+                                       "duration": "24:00",
+                                       "videoUrl": "video/deathnote-saison1-episode1.mp4"
+                                       }
+                                      ]
+                                     }
+                                    ]
+                                  }
+                                 ]
+                                },
