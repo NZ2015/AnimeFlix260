@@ -227,7 +227,7 @@
 
                            {
                              "id": 11,
-                             "title": "",
+                             "title": "Attack on titan",
                              "rating": 4.5,
                              "poster": "image/attackoontitan.jpg",
                              "seasons": [
@@ -250,7 +250,7 @@
    
                               {
                                 "id": 12,
-                                "title": "",
+                                "title": "Death Note",
                                 "rating": 4.5,
                                 "poster": "image/deathnote.jpg",
                                 "seasons": [
