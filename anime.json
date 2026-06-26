@@ -1,4 +1,5 @@
-
+ "animes": [
+ {
   "id": 2,
   "title": "One Piece",
   "rating": 4.9,
@@ -14,7 +15,7 @@
           "number": 1,
           "title": "Je suis Luffy !",
           "duration": "24:00",
-          "videoUrl": ""
+          "videoUrl": "onepiece-saison1-episode1.mp4"
         }
       ]
     }
@@ -36,7 +37,7 @@
           "number": 1,
           "title": "Le jour où je suis devenu Shinigami",
           "duration": "24:00",
-          "videoUrl": ""
+          "videoUrl": "bleach-saison1-episode1.mp4"
         }
       ]
     }
@@ -58,7 +59,7 @@
           "number": 1,
           "title": "Cruauté",
           "duration": "24:00",
-          "videoUrl": ""
+          "videoUrl": "demonslayer-saison1-episode1.mp4"
         }
       ]
     }
@@ -80,7 +81,7 @@
           "number": 1,
           "title": "Ryomen Sukuna",
           "duration": "24:00",
-          "videoUrl": ""
+          "videoUrl": "video/jujustukaisen-saison1-episode1.mp4"
         }
       ]
     }
@@ -90,7 +91,7 @@
   "id": 6,
   "title": "Attack on Titan",
   "rating": 4.9,
-  "poster": "images/aot.jpg",
+  "poster": "images/attackontitan.jpg",
   "description": "L'humanité lutte contre les Titans.",
   "genres": ["Action", "Drame"],
   "seasons": [
@@ -102,7 +103,7 @@
           "number": 1,
           "title": "À toi, dans 2000 ans",
           "duration": "24:00",
-          "videoUrl": ""
+          "videoUrl": "attackontitan-saison1-episode1.mp4"
         }
       ]
     }
@@ -124,7 +125,7 @@
           "number": 1,
           "title": "Renaissance",
           "duration": "24:00",
-          "videoUrl": ""
+          "videoUrl": "video/deathnote-saison1-episode1.mp4"
         }
       ]
     }
@@ -146,7 +147,7 @@
           "number": 1,
           "title": "Izuku Midoriya : Origines",
           "duration": "24:00",
-          "videoUrl": ""
+          "videoUrl": "video/mha-saison1-episode1.mp4"
         }
       ]
     }
@@ -168,7 +169,7 @@
           "number": 1,
           "title": "Tragédie",
           "duration": "24:00",
-          "videoUrl": ""
+          "videoUrl": "ideo/tokyoghould-saison1-episode1.mp4"
         }
       ]
     }
@@ -190,12 +191,454 @@
           "number": 1,
           "title": "Quelque part ailleurs",
           "duration": "24:00",
-          "videoUrl": ""
+          "videoUrl": "video/vinlandsaga-saison1-episode1.mp4"
         }
       ]
     }
   ]
 }
 [
- {"id":11,"title":"Solo Leveling","rating":4.9,"poster":"images/sololeveling.jpg","description":"Sung Jin-Woo devient le chasseur le plus puissant.","genres":["Action","Fantastique"],"seasons":[{"number":1,"title":"Saison 1","episodes":[{"number":1,"title":"Je suis habitué","duration":"24:00","videoUrl":""}]}]}
-  {"id":11,"title":"","rating":4.9,"poster":"images/.jpg","description":"Sung Jin-Woo devient le chasseur le plus puissant.","genres":["Action","Fantastique"],"seasons":[{"number":1,"title":"Saison 1","episodes":[{"number":1,"title":"Je suis habitué","duration":"24:00","videoUrl":""}]}]}
+{
+{
+  "id": 11,
+  "title": "Solo Leveling",
+  "rating": 4.9,
+  "poster": "images/sololeveling.jpg",
+  "description": "Sung Jin-Woo, le plus faible des chasseurs, obtient un pouvoir mystérieux qui lui permet de monter de niveau et de devenir le plus puissant.",
+  "genres": ["Action", "Fantastique"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Je suis habitué",
+          "duration": "24:00",
+          "videoUrl": "video/sololeveling-saison1-episode1.mp4"
+        }
+      ]
+    }
+  ]
+},
+{
+  "id": 12,
+  "title": "Chainsaw Man",
+  "rating": 4.8,
+  "poster": "images/chainsawman.jpg",
+  "description": "Denji fusionne avec son démon Pochita et rejoint une organisation chargée de combattre les démons.",
+  "genres": ["Action", "Horreur"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Dog & Chainsaw",
+          "duration": "24:00",
+          "videoUrl": "video/chainsawman-sason1-episode1.mp4"
+        }
+      ]
+    }
+  ]
+},
+{
+  "id": 13,
+  "title": "Spy x Family",
+  "rating": 4.8,
+  "poster": "images/spyxfamily.jpg",
+  "description": "Un espion, une tueuse à gages et une petite fille télépathe forment une famille sans connaître les secrets des autres.",
+  "genres": ["Action", "Comédie"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Mission 1 : Opération Strix",
+          "duration": "24:00",
+          "videoUrl": "video/spyxfamily-saison1-episode1.mp4"
+        }
+      ]
+    }
+  ]
+},
+{
+  "id": 14,
+  "title": "Black Clover",
+  "rating": 4.7,
+  "poster": "images/blackclover.jpg",
+  "description": "Asta, un garçon sans magie, rêve de devenir l'Empereur-Mage grâce à son incroyable détermination.",
+  "genres": ["Action", "Fantastique"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Asta et Yuno",
+          "duration": "24:00",
+          "videoUrl": "video/blackclover-saison1-episode1.mp4"
+        }
+      ]
+    }
+  ]
+},
+{
+  "id": 15,
+  "title": "Blue Lock",
+  "rating": 4.8,
+  "poster": "images/bluelock.jpg",
+  "description": "Les meilleurs jeunes attaquants japonais participent au projet Blue Lock pour créer le meilleur buteur du monde.",
+  "genres": ["Sport", "Drame"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Le rêve",
+          "duration": "24:00",
+          "videoUrl": "video/bluelock-saison1-episode1.mp4"
+        }
+      ]
+    }
+  ]
+},
+{
+  "id": 16,
+  "title": "Dragon Ball",
+  "rating": 4.8,
+  "poster": "images/dragonball.jpg",
+  "description": "Son Goku part à la recherche des Dragon Balls et découvre le monde à travers de nombreuses aventures.",
+  "genres": ["Action", "Aventure"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Le secret des Dragon Balls",
+          "duration": "24:00",
+          "videoUrl": "video/dragonball-saison1-episode1.mp4"
+        }
+      ]
+    }
+  ]
+}
+,
+{
+  "id": 17,
+  "title": "Dragon Ball Z",
+  "rating": 4.9,
+  "poster": "images/dbz.jpg",
+  "description": "Goku protège la Terre contre de puissants ennemis comme Vegeta, Freezer, Cell et Majin Buu.",
+  "genres": ["Action", "Arts martiaux"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Saga Saiyan",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Le retour de Son Goku",
+          "duration": "24:00",
+          "videoUrl": "video/dragonballz-saison1-episode1mp4"
+        }
+      ]
+    }
+  ]
+},
+{
+  "id": 18,
+  "title": "Dragon Ball Super",
+  "rating": 4.8,
+  "poster": "images/dbsuper.jpg",
+  "description": "Après la défaite de Majin Buu, Goku affronte les Dieux de la Destruction et participe au Tournoi du Pouvoir.",
+  "genres": ["Action", "Aventure"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Battle of Gods",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Le rêve prémonitoire",
+          "duration": "24:00",
+          "videoUrl": "video7dragonballsuper-saison1-episode1.mp4"
+        }
+      ]
+    }
+  ]
+},
+{
+  "id": 19,
+  "title": "Hunter x Hunter",
+  "rating": 4.9,
+  "poster": "images/hunterxhunter.jpg",
+  "description": "Gon Freecss veut devenir Hunter afin de retrouver son père disparu.",
+  "genres": ["Action", "Aventure"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Examen Hunter",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Départ × et × Amis",
+          "duration": "24:00",
+          "videoUrl": "hunterxhunter-saison1-episode1.mp4"
+        }
+      ]
+    }
+  ]
+},
+{
+  "id": 20,
+  "title": "Fairy Tail",
+  "rating": 4.7,
+  "poster": "images/fairytail.jpg",
+  "description": "Lucy rejoint la célèbre guilde Fairy Tail et vit d'incroyables aventures avec Natsu et Happy.",
+  "genres": ["Action", "Fantastique"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Fairy Tail",
+          "duration": "24:00",
+          "videoUrl": "video/fairytail-saison1-episode1.mp4"
+        }
+      ]
+    }
+  ]
+},
+{
+  "id": 21,
+  "title": "Fire Force",
+  "rating": 4.7,
+  "poster": "images/fireforce.jpg",
+  "description": "Shinra Kusakabe rejoint la Fire Force pour combattre les Infernaux et découvrir la vérité sur son passé.",
+  "genres": ["Action", "Science-fiction"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Le garçon démoniaque",
+          "duration": "24:00",
+          "videoUrl": "vdeo/fireforce-saison1-episode1mp4"
+        }
+      ]
+    }
+  ]
+},
+{
+  "id": 22,
+  "title": "JoJo's Bizarre Adventure",
+  "rating": 4.8,
+  "poster": "images/jojo.jpg",
+  "description": "La famille Joestar affronte des ennemis surnaturels à travers plusieurs générations grâce au pouvoir des Stands.",
+  "genres": ["Action", "Aventure"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Phantom Blood",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Dio l'envahisseur",
+          "duration": "24:00",
+          "videoUrl": "video/jojo-saison1-episode1.mp4"
+        }
+      ]
+    }
+  ]
+}
+,
+{
+  "id": 23,
+  "title": "Mob Psycho 100",
+  "rating": 4.8,
+  "poster": "images/mobpsycho100.jpg",
+  "description": "Shigeo 'Mob' Kageyama tente de vivre une vie normale malgré ses immenses pouvoirs psychiques.",
+  "genres": ["Action", "Comédie"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Le médium autoproclamé Reigen Arataka",
+          "duration": "24:00",
+          "videoUrl": "video/mobpsycho100-saison1-episode1.mp4"
+        }
+      ]
+    }
+  ]
+},
+{
+  "id": 24,
+  "title": "The Rising of the Shield Hero",
+  "rating": 4.7,
+  "poster": "images/shieldhero.jpg",
+  "description": "Naofumi Iwatani est invoqué dans un autre monde comme Héros au Bouclier et doit sauver le royaume malgré les trahisons.",
+  "genres": ["Action", "Isekai"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Le héros au bouclier",
+          "duration": "24:00",
+          "videoUrl": "video/shieldhero-saison1-episode1.mp4"
+        }
+      ]
+    }
+  ]
+},
+{
+  "id": 25,
+  "title": "That Time I Got Reincarnated as a Slime",
+  "rating": 4.8,
+  "poster": "images/slime.jpg",
+  "description": "Un homme renaît dans un monde fantastique sous la forme d'un slime doté de pouvoirs extraordinaires.",
+  "genres": ["Isekai", "Fantastique"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "La Tempête du Dragon",
+          "duration": "24:00",
+          "videoUrl": "video/slime-saison1-episode1.mp4"
+        }
+      ]
+    }
+  ]
+},
+{
+  "id": 26,
+  "title": "Dr. Stone",
+  "rating": 4.8,
+  "poster": "images/drstone.jpg",
+  "description": "Après la pétrification de l'humanité, Senku utilise la science pour reconstruire la civilisation.",
+  "genres": ["Science-fiction", "Aventure"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Stone World",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Stone World",
+          "duration": "24:00",
+          "videoUrl": "video/drstone-saison1-episode1.mp4"
+        }
+      ]
+    }
+  ]
+},
+{
+  "id": 27,
+  "title": "The Promised Neverland",
+  "rating": 4.8,
+  "poster": "images/promisedneverland.jpg",
+  "description": "Emma, Norman et Ray découvrent le terrible secret de leur orphelinat et organisent leur évasion.",
+  "genres": ["Thriller", "Mystère"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "121045",
+          "duration": "24:00",
+          "videoUrl": "promisedneverland-saison1-episode1.mp4"
+        }
+      ]
+    }
+  ]
+},
+{
+  "id": 28,
+  "title": "Code Geass",
+  "rating": 4.9,
+  "poster": "images/codegeass.jpg",
+  "description": "Lelouch obtient le pouvoir du Geass et mène une rébellion contre l'Empire de Britannia.",
+  "genres": ["Action", "Mecha"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Lelouch of the Rebellion",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Le jour où naquit un démon",
+          "duration": "24:00",
+          "videoUrl": ""
+        }
+      ]
+    }
+  ]
+}
+,
+{
+  "id": 29,
+  "title": "Steins;Gate",
+  "rating": 4.9,
+  "poster": "images/steinsgate.jpg",
+  "description": "Un groupe d'amis découvre un moyen d'envoyer des messages dans le passé, provoquant des conséquences dangereuses sur la ligne du temps.",
+  "genres": ["Science-fiction", "Thriller"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Prologue de l'apocalypse",
+          "duration": "24:00",
+          "videoUrl": "steintsgate-saison1-episode1.mp4"
+        }
+      ]
+    }
+  ]
+},
+{
+  "id": 30,
+  "title": "Haikyuu!!",
+  "rating": 4.9,
+  "poster": "images/haikyuu.jpg",
+  "description": "Shoyo Hinata rejoint son équipe de volley-ball pour devenir un grand joueur malgré sa petite taille.",
+  "genres": ["Sport", "Comédie"],
+  "seasons": [
+    {
+      "number": 1,
+      "title": "Saison 1",
+      "episodes": [
+        {
+          "number": 1,
+          "title": "Le petit géant",
+          "duration": "24:00",
+          "videoUrl": "haikyuu-saison1-episode1"
+        }
+      ]
+    }
+  ]
+}
