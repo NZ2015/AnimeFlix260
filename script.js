@@ -1,227 +1,330 @@
-// === Gestion de la recherche === 
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.querySelector('.search-container input');
-    const searchBtn = document.querySelector('.search-btn');
+// ===============================
+// AnimeFlix26 Script
+// ===============================
 
-    if (searchBtn) {
-        searchBtn.addEventListener('click', performSearch);
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
-        });
-    }
-});
+let animes = [];
+let filteredAnimes = [];
+let currentPage = 0;
+const perPage = 6;
 
-function performSearch() {
-    const searchInput = document.querySelector('.search-container input');
-    const query = searchInput.value.trim();
-
-    if (query.length > 0) {
-        console.log('Recherche pour:', query);
-        alert(`Recherche en cours pour: ${query}`);
-    }
-}
-
-// === Charger les animes depuis JSON ===
-let allAnimes = [];
-
-fetch('animes.json')
+// Chargement du fichier anime.json
+fetch("anime.json")
     .then(response => response.json())
     .then(data => {
-        allAnimes = data.animes;
-        setupPlayButtons();
-    })
-    .catch(error => console.error('Erreur:', error));
 
-// === Animations au scroll === 
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+        animes = data.animes;
+        filteredAnimes = [...animes];
+
+        renderPage();
+
+    })
+    .catch(error => {
+
+        console.error("Erreur anime.json :", error);
+
+    });
+
+// ===============================
+// Affichage
+// ===============================
+
+function renderPage() {
+
+    const container = document.getElementById("animeList");
+
+    container.innerHTML = "";
+
+    const start = currentPage * perPage;
+    const end = start + perPage;
+
+    const page = filteredAnimes.slice(start, end);
+
+    page.forEach(anime => {
+
+        container.innerHTML += `
+
+<div class="anime-card">
+
+    <img src="${anime.poster}" alt="${anime.title}">
+
+    <div class="anime-info">
+
+        <h3>${anime.title}</h3>
+
+        <p>${anime.description}</p>
+
+        <p class="rating">⭐ ${anime.rating}/5</p>
+
+        <a
+            class="play-btn"
+            href="joueur.html?animeId=${anime.id}&season=0&episode=0">
+
+            ▶ Regarder
+
+        </a>
+
+    </div>
+
+</div>
+
+`;
+
+    });
+
+}
+// ===============================
+// Pagination
+// ===============================
+
+function nextPage() {
+
+    if ((currentPage + 1) * perPage < filteredAnimes.length) {
+
+        currentPage++;
+
+        renderPage();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+}
+
+function prevPage() {
+
+    if (currentPage > 0) {
+
+        currentPage--;
+
+        renderPage();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+}
+
+// ===============================
+// Recherche
+// ===============================
+
+const searchInput = document.getElementById("searchInput");
+
+if (searchInput) {
+
+    searchInput.addEventListener("input", function () {
+
+        const texte = this.value.toLowerCase();
+
+        filteredAnimes = animes.filter(anime => {
+
+            return (
+
+                anime.title.toLowerCase().includes(texte) ||
+
+                anime.description.toLowerCase().includes(texte) ||
+
+                anime.genres.join(" ").toLowerCase().includes(texte)
+
+            );
+
+        });
+
+        currentPage = 0;
+
+        renderPage();
+
+    });
+
+}
+// ===============================
+// FAVORIS
+// ===============================
+
+// Charger les favoris
+let favoris = JSON.parse(localStorage.getItem("favoris")) || [];
+
+// Vérifie si un anime est en favori
+function estFavori(id) {
+    return favoris.includes(id);
+}
+
+// Ajouter / retirer un favori
+function toggleFavori(id) {
+
+    if (estFavori(id)) {
+        favoris = favoris.filter(f => f !== id);
+    } else {
+        favoris.push(id);
+    }
+
+    localStorage.setItem("favoris", JSON.stringify(favoris));
+
+    renderPage();
+}
+
+// ===============================
+// MODIFIER L'AFFICHAGE DES CARTES
+// ===============================
+
+// Remplace la partie container.innerHTML += `...`
+// de renderPage() par celle-ci :
+
+function creerCarte(anime) {
+
+    return `
+    <div class="anime-card">
+
+        <img src="${anime.poster}" alt="${anime.title}">
+
+        <div class="anime-info">
+
+            <h3>${anime.title}</h3>
+
+            <p>${anime.description}</p>
+
+            <p class="rating">⭐ ${anime.rating}/5</p>
+
+            <p class="genre">${anime.genres.join(" • ")}</p>
+
+            <div class="card-buttons">
+
+                <a href="joueur.html?animeId=${anime.id}&season=0&episode=0"
+                   class="play-btn">
+                    ▶ Regarder
+                </a>
+
+                <button
+                    class="favorite-btn"
+                    onclick="toggleFavori(${anime.id})">
+
+                    ${estFavori(anime.id) ? "❤️" : "🤍"}
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+    `;
+}
+// ===============================
+// ANIMATION DES CARTES
+// ===============================
+
+document.addEventListener("mouseover", function (e) {
+
+    const card = e.target.closest(".anime-card");
+
+    if (card) {
+        card.style.transform = "scale(1.05)";
+        card.style.transition = "0.3s";
+        card.style.zIndex = "100";
+    }
+
+});
+
+document.addEventListener("mouseout", function (e) {
+
+    const card = e.target.closest(".anime-card");
+
+    if (card) {
+        card.style.transform = "scale(1)";
+        card.style.zIndex = "1";
+    }
+
+});
+
+// ===============================
+// BADGE HD
+// ===============================
+
+function ajouterBadges() {
+
+    document.querySelectorAll(".anime-card").forEach(card => {
+
+        if (!card.querySelector(".badge-hd")) {
+
+            const badge = document.createElement("div");
+
+            badge.className = "badge-hd";
+
+            badge.innerHTML = "HD";
+
+            card.appendChild(badge);
+
+        }
+
+    });
+
+}
+
+setInterval(ajouterBadges, 1000);
+
+// ===============================
+// SCROLL EN HAUT
+// ===============================
+
+const topBtn = document.createElement("button");
+
+topBtn.innerHTML = "⬆";
+
+topBtn.id = "topBtn";
+
+document.body.appendChild(topBtn);
+
+topBtn.onclick = () => {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
 };
 
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
+window.addEventListener("scroll", () => {
 
-// Observer les cartes d'animes
-document.querySelectorAll('.anime-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'all 0.6s ease';
-    observer.observe(card);
-});
+    if (window.scrollY > 300) {
 
-// === Setup des boutons de lecture ===
-function setupPlayButtons() {
-    document.querySelectorAll('.play-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const animeCard = this.closest('.anime-card');
-            const animeName = animeCard.querySelector('h3').textContent;
-            
-            // Trouver l'anime dans nos données
-            const anime = allAnimes.find(a => a.title === animeName);
-            
-            if (anime) {
-                // Rediriger vers le lecteur
-                window.location.href = `joueur.html?anime=${anime.id}&episode=1`;
-            } else {
-                console.log('Anime non trouvé:', animeName);
-            }
-        });
-    });
-}
+        topBtn.style.display = "block";
 
-// === Navigation active === 
-const navLinks = document.querySelectorAll('.nav-link');
-navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-    });
-});
-
-// === Gestion du défilement du header === 
-let lastScrollTop = 0;
-const header = document.querySelector('.header');
-
-window.addEventListener('scroll', function() {
-    let scrollTop = window.scrollY;
-
-    if (scrollTop > 100) {
-        header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.5)';
     } else {
-        header.style.boxShadow = 'none';
+
+        topBtn.style.display = "none";
+
     }
 
-    lastScrollTop = scrollTop;
 });
 
-// === Gestion des boutons d'authentification === 
-document.querySelectorAll('.auth-buttons .btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const buttonText = this.textContent;
-        console.log('Clic sur:', buttonText);
-        alert(`Redirection vers ${buttonText.toLowerCase()}...`);
-    });
-});
+// ===============================
+// CHARGEMENT
+// ===============================
 
-// === Effet parallaxe sur le hero === 
-window.addEventListener('scroll', function() {
-    const hero = document.querySelector('.hero');
-    const scrollPosition = window.scrollY;
-    
-    if (hero) {
-        hero.style.backgroundPosition = `0 ${scrollPosition * 0.5}px`;
+window.onload = () => {
+
+    document.body.classList.add("loaded");
+
+};
+
+// ===============================
+// RACCOURCI CLAVIER
+// ===============================
+
+document.addEventListener("keydown", function(e){
+
+    if(e.key==="ArrowRight"){
+        nextPage();
     }
-});
 
-// === Gestion des cartes anime au clic === 
-document.querySelectorAll('.anime-card').forEach(card => {
-    card.addEventListener('click', function(e) {
-        // Ne pas activer si on clique sur le bouton play
-        if (e.target.closest('.play-btn')) return;
-        
-        const animeName = this.querySelector('h3').textContent;
-        const anime = allAnimes.find(a => a.title === animeName);
-        
-        if (anime) {
-            // Rediriger vers le lecteur
-            window.location.href = `joueur.html?anime=${anime.id}&episode=1`;
-        }
-    });
-});
-
-// === Animation des étoiles de notation === 
-document.querySelectorAll('.rating i').forEach(star => {
-    star.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.2) rotate(10deg)';
-    });
-
-    star.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1) rotate(0deg)';
-    });
-
-    this.style.transition = 'transform 0.3s ease';
-});
-
-// === Lazy loading des images === 
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src || img.src;
-                img.classList.add('loaded');
-                observer.unobserve(img);
-            }
-        });
-    });
-
-    document.querySelectorAll('img').forEach(img => imageObserver.observe(img));
-}
-
-// === Gestion des favoris === 
-function addToFavorites(animeName) {
-    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    
-    if (!favorites.includes(animeName)) {
-        favorites.push(animeName);
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-        console.log(`${animeName} ajouté aux favoris`);
+    if(e.key==="ArrowLeft"){
+        prevPage();
     }
-}
 
-function removeFromFavorites(animeName) {
-    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    favorites = favorites.filter(fav => fav !== animeName);
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-    console.log(`${animeName} retiré des favoris`);
-}
-
-// === Gestion du formulaire de recherche avancée === 
-function initAdvancedSearch() {
-    const searchInput = document.querySelector('.search-container input');
-    
-    if (!searchInput) return;
-    
-    searchInput.addEventListener('input', function(e) {
-        const value = e.target.value.toLowerCase();
-        
-        document.querySelectorAll('.anime-card').forEach(card => {
-            const animeTitle = card.querySelector('h3').textContent.toLowerCase();
-            const animeGenre = card.querySelector('.genre').textContent.toLowerCase();
-            
-            if (animeTitle.includes(value) || animeGenre.includes(value)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    });
-}
-
-// === Statistiques d'utilisation === 
-function trackUserAction(action, data) {
-    const trackingData = {
-        timestamp: new Date().toISOString(),
-        action: action,
-        data: data,
-        userAgent: navigator.userAgent
-    };
-    
-    console.log('Action trackée:', trackingData);
-}
-
-// === Initialisation === 
-window.addEventListener('load', function() {
-    console.log('AnimeFlix26 - Page chargée avec succès');
-    initAdvancedSearch();
 });
-
