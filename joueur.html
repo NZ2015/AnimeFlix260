@@ -86,7 +86,8 @@
     </footer>
 <script>
 const params = new URLSearchParams(window.location.search);
-
+let currentSeason = 0;
+let currentEpisode = 0;
 const animeId = parseInt(params.get("animeId"));
 const seasonIndex = parseInt(params.get("season")) || 0;
 const episodeIndex = parseInt(params.get("episode")) || 0;
@@ -109,11 +110,17 @@ fetch("anime.json")
 
 // ▶ Charger épisode
 function loadEpisode(season, episode) {
+
+  if (!animeData) return;
+
   const ep = animeData.seasons[season].episodes[episode];
 
   videoPlayer.src = ep.videoUrl;
   videoPlayer.load();
-  videoPlayer.play();
+
+  videoPlayer.oncanplay = () => {
+    videoPlayer.play();
+  };
 
   currentSeason = season;
   currentEpisode = episode;
@@ -121,7 +128,6 @@ function loadEpisode(season, episode) {
   document.getElementById("episodeTitle").innerText = ep.title;
   document.getElementById("animeTitle").innerText = animeData.title;
 }
-
 // ▶ Info anime
 function renderInfo() {
   document.getElementById("animeTitle").innerText = animeData.title;
@@ -156,7 +162,6 @@ function fullscreen() {
 
 // ▶ Auto next
 videoPlayer.addEventListener("ended", nextEpisode);
-</script>
     <script src="joueur-script.js"></script>
 </body>
 </html>
