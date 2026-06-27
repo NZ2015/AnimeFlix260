@@ -1,365 +1,1257 @@
-/* === Réinitialisation === */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ===========================
+   AnimeFlix26 Premium
+   Partie 1/4
+=========================== */
+
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-:root {
-    --primary-color: #ff006e;
-    --secondary-color: #8338ec;
-    --accent-color: #3a86ff;
-    --dark-bg: #0a0e27;
-    --light-bg: #1a1f3a;
-    --card-bg: #16213e;
-    --text-primary: #ffffff;
-    --text-secondary: #b0b0b0;
-    --border-color: #2d3561;
-    --transition: 0.3s ease;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--dark-bg);
-    color: var(--text-primary);
-    line-height: 1.6;
-    overflow-x: hidden;
+body{
+    background:#0b1020;
+    color:#ffffff;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
 }
 
-/* === Header === */
-.header {
-    background: linear-gradient(135deg, var(--dark-bg) 0%, var(--light-bg) 100%);
-    border-bottom: 2px solid var(--border-color);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    backdrop-filter: blur(10px);
-    background-color: rgba(10, 14, 39, 0.95);
+/* HEADER */
+
+.header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:80px;
+    background:rgba(10,10,20,.95);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    z-index:999;
 }
 
-.header-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header-container{
+    width:95%;
+    height:100%;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 1.8rem;
-    font-weight: bold;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    cursor: pointer;
-    text-decoration: none;
+/* LOGO */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#ff0066;
+    font-size:42px;
+    font-weight:bold;
 }
 
-.logo i {
-    font-size: 2rem;
-    -webkit-text-fill-color: var(--primary-color);
+.logo i{
+    font-size:40px;
 }
 
-.back-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-weight: 600;
-    transition: all var(--transition);
-    padding: 0.6rem 1.5rem;
-    border: 2px solid var(--border-color);
-    border-radius: 5px;
+.logo span{
+    font-size:30px;
 }
 
-.back-btn:hover {
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-    background: var(--light-bg);
+/* MENU */
+
+.nav{
+    display:flex;
+    gap:35px;
 }
 
-/* === Main Content === */
-.main-content {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 2rem;
+.nav a{
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    transition:.3s;
 }
 
-/* === Video Player === */
-.video-player {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #000;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(255, 0, 110, 0.2);
+.nav a:hover{
+
+    color:#ff0066;
+
 }
 
-#videoPlayer {
-    width: 100%;
-    height: 100%;
-    outline: none;
+/* BOUTONS */
+
+.auth-buttons{
+
+    display:flex;
+    gap:15px;
+
 }
 
-/* === Episode Info === */
-.episode-info {
-    background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 15px;
-    border: 1px solid var(--border-color);
-    margin-bottom: 2rem;
+.btn{
+
+    padding:12px 26px;
+
+    border:none;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:16px;
+
 }
 
-.info-header {
-    margin-bottom: 1rem;
+.btn-primary{
+
+    background:#ff0066;
+
+    color:white;
+
 }
 
-#animeTitle {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.btn-primary:hover{
+
+    background:#ff3385;
+
 }
 
-.episode-title {
-    color: var(--text-secondary);
-    font-size: 1.1rem;
+.btn-secondary{
+
+    background:transparent;
+
+    border:2px solid #ff0066;
+
+    color:white;
+
 }
 
-.episode-description {
-    color: var(--text-secondary);
-    line-height: 1.8;
-    margin-top: 1rem;
+.btn-secondary:hover{
+
+    background:#ff0066;
+
 }
 
-/* === Episodes Container === */
-.episodes-container {
-    background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 15px;
-    border: 1px solid var(--border-color);
+/* HERO */
+
+.hero{
+
+    height:90vh;
+
+    display:flex;
+
+    align-items:center;
+
+    padding-left:80px;
+
+    background:
+    linear-gradient(to right,
+    rgba(0,0,0,.9),
+    rgba(0,0,0,.45)),
+    url("images/banner.jpg") center/cover;
+
 }
 
-.episodes-container h2 {
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
+.hero-content{
+
+    max-width:700px;
+
 }
 
-.episodes-list {
-    display: grid;
-    gap: 1rem;
+.hero h1{
+
+    font-size:65px;
+
+    margin-bottom:20px;
+
 }
 
-/* === Episode Item === */
-.episode-item {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 1rem;
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: all var(--transition);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.hero p{
+
+    font-size:24px;
+
+    color:#dddddd;
+
+    margin-bottom:40px;
+
 }
 
-.episode-item:hover {
-    background: rgba(255, 0, 110, 0.1);
-    border-color: var(--primary-color);
-    transform: translateX(5px);
+/* RECHERCHE */
+
+.search-container{
+
+    width:650px;
+
+    display:flex;
+
+    background:white;
+
+    border-radius:40px;
+
+    overflow:hidden;
+
 }
 
-.episode-item.active {
-    background: rgba(255, 0, 110, 0.2);
-    border-color: var(--primary-color);
+.search-container i{
+
+    color:#777;
+
+    padding:18px;
+
+    font-size:22px;
+
 }
 
-.episode-item-content {
-    flex: 1;
+.search-container input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    font-size:18px;
+
 }
 
-.episode-item-number {
-    color: var(--primary-color);
-    font-weight: 700;
-    margin-bottom: 0.3rem;
+.search-btn{
+
+    width:170px;
+
+    border:none;
+
+    background:#ff0066;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:18px;
+
 }
 
-.episode-item-title {
-    font-size: 0.95rem;
-    color: var(--text-primary);
-    margin-bottom: 0.2rem;
+.search-btn:hover{
+
+    background:#ff3385;
+
 }
 
-.episode-item-description {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
+/* MAIN */
+
+main{
+
+    width:95%;
+
+    margin:auto;
+
+    padding:80px 0;
+
 }
 
-.episode-item-duration {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    margin-left: 1rem;
-    min-width: 60px;
-    text-align: right;
+.section-title{
+
+    font-size:42px;
+
+    margin-bottom:35px;
+
+}
+/* ===========================
+   AnimeFlix26 Premium
+   Partie 2/4
+=========================== */
+
+/* GRILLE DES ANIMES */
+
+.anime-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+
+    gap:30px;
+
 }
 
-/* === Sidebar === */
-.sidebar {
-    background: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 15px;
-    border: 1px solid var(--border-color);
-    height: fit-content;
-    position: sticky;
-    top: 100px;
+/* CARTE */
+
+.anime-card{
+
+    position:relative;
+
+    background:#161b2f;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    transition:.35s;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+
 }
 
-.sidebar h2 {
-    margin-bottom: 1.5rem;
-    font-size: 1.2rem;
+.anime-card:hover{
+
+    transform:translateY(-10px) scale(1.05);
+
+    box-shadow:0 20px 40px rgba(255,0,102,.35);
+
 }
 
-.related-animes {
-    display: grid;
-    gap: 1rem;
+/* IMAGE */
+
+.anime-card img{
+
+    width:100%;
+
+    height:360px;
+
+    object-fit:cover;
+
+    display:block;
+
 }
 
-/* === Related Anime Card === */
-.related-anime-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all var(--transition);
-    border: 1px solid var(--border-color);
+/* INFOS */
+
+.anime-info{
+
+    padding:18px;
+
 }
 
-.related-anime-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary-color);
-    box-shadow: 0 10px 25px rgba(255, 0, 110, 0.15);
+.anime-info h3{
+
+    font-size:22px;
+
+    margin-bottom:10px;
+
 }
 
-.related-anime-poster {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
+.anime-info p{
+
+    color:#cfcfcf;
+
+    line-height:1.5;
+
+    margin-bottom:10px;
+
 }
 
-.related-anime-info {
-    padding: 1rem;
+.rating{
+
+    color:#FFD700;
+
+    font-weight:bold;
+
 }
 
-.related-anime-title {
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
+.genre{
+
+    color:#8ec5ff;
+
+    font-size:15px;
+
 }
 
-.related-anime-rating {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    color: #ffc107;
-    font-size: 0.85rem;
+/* BOUTONS */
+
+.card-buttons{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:15px;
+
 }
 
-/* === Footer === */
-.footer {
-    background: var(--light-bg);
-    border-top: 2px solid var(--border-color);
-    padding: 2rem;
-    text-align: center;
-    color: var(--text-secondary);
-    margin-top: 4rem;
+.play-btn{
+
+    background:#ff0066;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:10px 18px;
+
+    border-radius:25px;
+
+    transition:.3s;
+
+    font-weight:bold;
+
 }
 
-/* === Responsive === */
-@media (max-width: 1024px) {
-    .main-content {
-        grid-template-columns: 1fr;
+.play-btn:hover{
+
+    background:#ff3385;
+
+}
+
+.favorite-btn{
+
+    width:45px;
+
+    height:45px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#242942;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.favorite-btn:hover{
+
+    background:#ff0066;
+
+}
+
+/* BADGES */
+
+.badge-hd{
+
+    position:absolute;
+
+    top:12px;
+
+    left:12px;
+
+    background:#00b894;
+
+    color:white;
+
+    padding:5px 10px;
+
+    border-radius:8px;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+}
+
+.badge-new{
+
+    position:absolute;
+
+    top:12px;
+
+    right:12px;
+
+    background:#ff0066;
+
+    color:white;
+
+    padding:5px 10px;
+
+    border-radius:8px;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+}
+
+/* PAGINATION */
+
+.pagination{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    margin-top:50px;
+
+}
+
+.pagination button{
+
+    width:60px;
+
+    height:60px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ff0066;
+
+    color:white;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.pagination button:hover{
+
+    transform:scale(1.1);
+
+    background:#ff3385;
+
+}
+
+/* TITRES */
+
+.section-title{
+
+    margin-bottom:40px;
+
+    font-size:42px;
+
+    border-left:6px solid #ff0066;
+
+    padding-left:15px;
+
+}
+/* ===========================
+   AnimeFlix26 Premium
+   Partie 3/4
+=========================== */
+
+/* ===== LECTEUR VIDEO ===== */
+
+.video-player{
+
+    position:relative;
+
+    width:100%;
+
+    background:#000;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.6);
+
+}
+
+.video-player video{
+
+    width:100%;
+
+    display:block;
+
+    border-radius:20px;
+
+}
+
+/* ===== CONTROLES ===== */
+
+.controls{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-top:20px;
+
+}
+
+.controls button{
+
+    width:60px;
+
+    height:60px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ff0066;
+
+    color:white;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.controls button:hover{
+
+    transform:scale(1.15);
+
+    background:#ff3385;
+
+}
+
+/* ===== INFORMATIONS ===== */
+
+.episode-info{
+
+    margin-top:30px;
+
+    padding:25px;
+
+    background:#15192d;
+
+    border-radius:20px;
+
+}
+
+.info-header h1{
+
+    font-size:40px;
+
+    margin-bottom:10px;
+
+}
+
+.episode-title{
+
+    color:#ff0066;
+
+    font-size:22px;
+
+    margin-bottom:15px;
+
+}
+
+.episode-description{
+
+    color:#cccccc;
+
+    line-height:1.8;
+
+}
+
+/* ===== SAISONS ===== */
+
+.seasons-container{
+
+    margin-top:40px;
+
+}
+
+.seasons-list{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+}
+
+.seasons-list button{
+
+    padding:12px 25px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:#232944;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.seasons-list button:hover{
+
+    background:#ff0066;
+
+}
+
+/* ===== EPISODES ===== */
+
+.episodes-container{
+
+    margin-top:40px;
+
+}
+
+.episodes-list{
+
+    display:grid;
+
+    gap:15px;
+
+}
+
+.episode-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#161b2f;
+
+    padding:18px 20px;
+
+    border-radius:15px;
+
+    transition:.3s;
+
+}
+
+.episode-card:hover{
+
+    background:#232944;
+
+}
+
+.episode-card h4{
+
+    font-size:18px;
+
+}
+
+.episode-card span{
+
+    color:#bbbbbb;
+
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar{
+
+    margin-top:60px;
+
+}
+
+.sidebar h2{
+
+    margin-bottom:25px;
+
+}
+
+.related-animes{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+
+    gap:20px;
+
+}
+
+.related-card{
+
+    background:#161b2f;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+}
+
+.related-card:hover{
+
+    transform:scale(1.05);
+
+}
+
+.related-card img{
+
+    width:100%;
+
+    height:250px;
+
+    object-fit:cover;
+
+}
+
+.related-card h4{
+
+    padding:15px;
+
+}
+
+/* ===== FOOTER ===== */
+
+.footer{
+
+    margin-top:80px;
+
+    background:#111629;
+
+    padding:60px 0 20px;
+
+}
+
+.footer-content{
+
+    width:90%;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:40px;
+
+}
+
+.footer-section h4{
+
+    margin-bottom:20px;
+
+    color:#ffffff;
+
+}
+
+.footer-section ul{
+
+    list-style:none;
+
+}
+
+.footer-section ul li{
+
+    margin-bottom:12px;
+
+}
+
+.footer-section a{
+
+    color:#bbbbbb;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.footer-section a:hover{
+
+    color:#ff0066;
+
+}
+
+.social-links{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.social-links a{
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    background:#232944;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    transition:.3s;
+
+}
+
+.social-links a:hover{
+
+    background:#ff0066;
+
+}
+
+.footer-bottom{
+
+    margin-top:50px;
+
+    text-align:center;
+
+    color:#999999;
+
+}
+/* ====================================
+   AnimeFlix26 Premium
+   Partie 4/4
+==================================== */
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#0b1020;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#ff0066;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#ff3385;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+        transform:translateY(30px);
+
     }
 
-    .sidebar {
-        position: static;
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
     }
+
 }
 
-@media (max-width: 768px) {
-    .header-container {
-        gap: 1rem;
-    }
+.hero,
+.anime-card,
+.video-player,
+.footer{
 
-    .logo {
-        font-size: 1.3rem;
-    }
+    animation:fadeIn .8s ease;
 
-    .logo i {
-        font-size: 1.5rem;
-    }
-
-    #animeTitle {
-        font-size: 1.5rem;
-    }
-
-    .main-content {
-        padding: 1rem;
-        gap: 1rem;
-    }
-
-    .episode-info,
-    .episodes-container,
-    .sidebar {
-        padding: 1rem;
-    }
-
-    .episodes-list {
-        max-height: 300px;
-        overflow-y: auto;
-    }
-
-    .related-animes {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
-@media (max-width: 480px) {
-    .header-container {
-        flex-direction: column;
-    }
+/* HOVER PREMIUM */
 
-    .back-btn {
-        width: 100%;
-        justify-content: center;
-    }
+.anime-card::after{
 
-    #animeTitle {
-        font-size: 1.2rem;
-    }
+    content:"";
 
-    .episode-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+    position:absolute;
 
-    .episode-item-duration {
-        margin-left: 0;
-        margin-top: 0.5rem;
-    }
+    inset:0;
 
-    .related-animes {
-        grid-template-columns: 1fr;
-    }
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.85),
+        rgba(0,0,0,0)
+    );
+
+    opacity:0;
+
+    transition:.35s;
+
+}
+
+.anime-card:hover::after{
+
+    opacity:1;
+
+}
+
+.anime-card:hover img{
+
+    filter:brightness(1.1);
+
+}
+
+/* BOUTON RETOUR EN HAUT */
+
+#topBtn{
+
+    position:fixed;
+
+    bottom:30px;
+
+    right:30px;
+
+    width:55px;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ff0066;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    display:none;
+
+    z-index:999;
+
+    transition:.3s;
+
+}
+
+#topBtn:hover{
+
+    transform:scale(1.15);
+
+    background:#ff3385;
+
+}
+
+/* LOADER */
+
+.loaded{
+
+    animation:fadeIn .6s;
+
+}
+
+/* RESPONSIVE TABLETTE */
+
+@media(max-width:992px){
+
+.header-container{
+
+    flex-direction:column;
+
+    height:auto;
+
+    padding:20px;
+
+}
+
+.nav{
+
+    margin:20px 0;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+}
+
+.hero{
+
+    height:auto;
+
+    padding:160px 30px 80px;
+
+}
+
+.hero h1{
+
+    font-size:48px;
+
+}
+
+.hero p{
+
+    font-size:20px;
+
+}
+
+.search-container{
+
+    width:100%;
+
+}
+
+.anime-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+/* RESPONSIVE MOBILE */
+
+@media(max-width:768px){
+
+.logo span{
+
+    font-size:24px;
+
+}
+
+.nav{
+
+    gap:15px;
+
+}
+
+.nav a{
+
+    font-size:15px;
+
+}
+
+.hero{
+
+    padding:140px 20px 60px;
+
+}
+
+.hero h1{
+
+    font-size:34px;
+
+}
+
+.hero p{
+
+    font-size:17px;
+
+}
+
+.search-container{
+
+    flex-direction:column;
+
+    border-radius:15px;
+
+}
+
+.search-container input{
+
+    padding:15px;
+
+}
+
+.search-btn{
+
+    width:100%;
+
+    height:55px;
+
+}
+
+.anime-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.controls{
+
+    flex-wrap:wrap;
+
+}
+
+.footer-content{
+
+    grid-template-columns:1fr;
+
+    text-align:center;
+
+}
+
+.social-links{
+
+    justify-content:center;
+
+}
+
+}
+
+/* GRAND ECRAN */
+
+@media(min-width:1500px){
+
+.hero h1{
+
+    font-size:80px;
+
+}
+
+.hero p{
+
+    font-size:28px;
+
+}
+
+.section-title{
+
+    font-size:50px;
+
+}
+
+.anime-grid{
+
+    grid-template-columns:repeat(5,1fr);
+
+}
+
+}
+
+/* EFFETS */
+
+.play-btn,
+.favorite-btn,
+.btn,
+.pagination button{
+
+    transition:.3s ease;
+
+}
+
+.play-btn:hover,
+.favorite-btn:hover,
+.btn:hover{
+
+    box-shadow:0 0 20px rgba(255,0,102,.5);
+
+}
+
+img{
+
+    user-select:none;
+
+}
+
+button{
+
+    outline:none;
+
 }
