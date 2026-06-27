@@ -57,11 +57,9 @@ function renderPage() {
 
         <a
             class="play-btn"
-            href="joueur.html?animeId=${anime.id}&season=0&episode=0">
-
-            ▶ Regarder
-
-        </a>
+         <a href="joueur.html?animeId=${anime.id}&season=1&episode=1" class="play-btn">
+              ▶ Regarder
+         </a>
 
     </div>
 
