@@ -3,341 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AnimeFlix26 - Votre plateforme d'anime préférée</title>
+    <title>AnimeFlix26</title>
+
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-container">
-            <!-- Logo -->
-            <div class="logo">
-                <i class="fas fa-play-circle"></i>
-                <span>AnimeFlix26</span>
-            </div>
 
-            <!-- Barre de navigation -->
-            <nav class="nav">
-                <a href="#" class="nav-link active">Accueil</a>
-                <a href="#" class="nav-link">Catalogue</a>
-                <a href="#" class="nav-link">Top Rated</a>
-                <a href="#" class="nav-link">Favoris</a>
-            </nav>
+<header class="header">
 
-            <!-- Bouton connexion -->
-            <div class="auth-buttons">
-                <button class="btn btn-secondary">Connexion</button>
-                <button class="btn btn-primary">S'inscrire</button>
-            </div>
+    <div class="header-container">
+
+        <div class="logo">
+            <i class="fas fa-play-circle"></i>
+            <span>AnimeFlix26</span>
         </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Bienvenue sur AnimeFlix26</h1>
-            <p>Découvrez des milliers d'animes en streaming HD</p>
-            
-            <!-- Barre de recherche -->
-            <div class="search-bar">
-                <div class="search-container">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Recherchez un anime...">
-                    <button class="search-btn">Rechercher</button>
-                </div>
-            </div>
+        <nav class="nav">
+            <a href="#" class="nav-link active">Accueil</a>
+            <a href="#" class="nav-link">Catalogue</a>
+            <a href="#" class="nav-link">Top Rated</a>
+            <a href="#" class="nav-link">Favoris</a>
+        </nav>
+
+        <div class="auth-buttons">
+            <button class="btn btn-secondary">Connexion</button>
+            <button class="btn btn-primary">S'inscrire</button>
         </div>
-    </section>
 
-    <!-- Section Featured -->
-    <section class="featured">
-        <h2 class="section-title">En Tendance</h2>
-        <div class="anime-grid">
-            <!-- Carte Anime 1 -->
-            <div class="anime-card">
-                <div class="anime-poster">
-                    <img src="https://via.placeholder.com/180x250?text=Attaque on Titan" alt="Eren Jeager">
-                    <div class="overlay">
-                        <a href="joueur.html?anime=1&season=1&episode=1" class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="anime-info">
-                    <h3>Attack on Titan</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <span>4.9/5</span>
-                    </div>
-                    <p class="genre">Action • Fantaisie</p>
-                    <p class="description">Une histoire épique de guerre et de survie...</p>
-                </div>
+    </div>
+
+</header>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>Bienvenue sur AnimeFlix26</h1>
+
+        <p>Découvrez des milliers d'animes en streaming HD.</p>
+
+        <div class="search-bar">
+
+            <div class="search-container">
+
+                <i class="fas fa-search"></i>
+
+                <input
+                    id="searchInput"
+                    type="text"
+                    placeholder="Rechercher un anime..."
+                >
+
+                <button class="search-btn">
+                    Rechercher
+                </button>
+
             </div>
 
-            <!-- Carte Anime 2 -->
-            <div class="anime-card">
-                <div class="anime-poster">
-                    <img src="https://via.placeholder.com/200x300?text=Death+Note" alt="Death Note">
-                    <div class="overlay">
-                        <a href="joueur.html?anime=1&season=1&episode=1"class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="anime-info">
-                    <h3>Death Note</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <span>4.8/5</span>
-                    </div>
-                    <p class="genre">Thriller • Psychologique</p>
-                    <p class="description">Un cahier magique qui change le destin...</p>
-                </div>
-            </div>
-
-            <!-- Carte Anime 3 -->
-            <div class="anime-card">
-                <div class="anime-poster">
-                    <img src="https://via.placeholder.com/200x300?text=Demon+Slayer" alt="Demon Slayer">
-                    <div class="overlay">
-                       <a href="joueur.html?anime=1&season=1&episode=1" class="play-btn">
-                            <i class="fas fa-play"></i>
-                       </a>
-                    </div>
-                </div>
-                <div class="anime-info">
-                    <h3>Demon Slayer</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <span>4.7/5</span>
-                    </div>
-                    <p class="genre">Action • Aventure</p>
-                    <p class="description">La quête d'un jeune chasseur de démons...</p>
-                </div>
-            </div>
-
-            <!-- Carte Anime 4 -->
-            <div class="anime-card">
-                <div class="anime-poster">
-                    <img src="https://via.placeholder.com/200x300?text=My+Hero+Academia" alt="My Hero Academia">
-                    <div class="overlay">
-                        <a href="joueur.html?anime=1&season=1&episode=1" class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="anime-info">
-                    <h3>My Hero Academia</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <span>4.6/5</span>
-                    </div>
-                    <p class="genre">Action • Superpuissance</p>
-                    <p class="description">Un lycéen rêve de devenir un super-héros...</p>
-                </div>
-            </div>
-
-            <!-- Carte Anime 5 -->
-            <div class="anime-card">
-                <div class="anime-poster">
-                    <img src="https://via.placeholder.com/200x300?text=One+Piece" alt="One Piece">
-                    <div class="overlay">
-                        <a href="joueur.html?anime=1&season=1&episode=1" class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="anime-info">
-                    <h3>One Piece</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <span>4.9/5</span>
-                    </div>
-                    <p class="genre">Action • Aventure</p>
-                    <p class="description">Les aventures d'un pirate à la recherche du trésor...</p>
-                </div>
-            </div>
-
-            <!-- Carte Anime 6 -->
-            <div class="anime-card">
-                <div class="anime-poster">
-                    <img src="https://via.placeholder.com/200x300?text=Steinsgate" alt="Steins;Gate">
-                    <div class="overlay">
-                        <a href="joueur.html?anime=1&season=1&episode=1" class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="anime-info">
-                    <h3>Steins;Gate</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <span>4.9/5</span>
-                    </div>
-                    <p class="genre">Sci-Fi • Thriller</p>
-                    <p class="description">Un voyage à travers le temps qui change tout...</p>
-                </div>
-            </div>
         </div>
-    </section>
 
-    <!-- Section Populaires -->
-    <section class="popular">
-        <h2 class="section-title">Les Plus Populaires</h2>
-        <div class="anime-grid">
-            <div class="anime-card compact">
-                <div class="anime-poster">
-                    <img src="https://via.placeholder.com/180x250?text=Naruto" alt="Naruto">
-                    <div class="overlay">
-                        <a href="joueur.html?anime=1&season=1&episode=1" class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="anime-info">
-                    <h3>Naruto</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <span>4.7/5</span>
-                    </div>
-                </div>
-            </div>
+    </div>
 
-            <div class="anime-card compact">
-                <div class="anime-poster">
-                    <img src="https://via.placeholder.com/180x250?text=Bleach" alt="Bleach">
-                    <div class="overlay">
-                        <a href="joueur.html?anime=1&season=1&episode=1" class="play-btn">
-                            <i class="fas fa-play"></i>                        
-                        </a>
-                    </div>
-                </div>
-                <div class="anime-info">
-                    <h3>Bleach</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <span>4.5/5</span>
-                    </div>
-                </div>
-            </div>
+</section>
 
-            <div class="anime-card compact">
-                <div class="anime-poster">
-                    <img src="https://via.placeholder.com/180x250?text=Tokyo+Ghoul" alt="Tokyo Ghoul">
-                    <div class="overlay">
-                        <a href="joueur.html?anime=1&season=1&episode=1" class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="anime-info">
-                    <h3>Tokyo Ghoul</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <span>4.6/5</span>
-                    </div>
-                </div>
-            </div>
+<main>
 
-            <div class="anime-card compact">
-                <div class="anime-poster">
-                    <img src="https://via.placeholder.com/180x250?text=Jujutsu+Kaisen" alt="Jujutsu Kaisen">
-                    <div class="overlay">
-                        <a href="joueur.html?anime=1&season=1&episode=1" class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="anime-info">
-                    <h3>Jujutsu Kaisen</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <span>4.8/5</span>
-                    </div>
-                </div>
-            </div>
+    <h2 class="section-title">
+        Nos Animes
+    </h2>
 
-            <div class="anime-card compact">
-                <div class="anime-poster">
-                    <img src="https://via.placeholder.com/180x250?text=Cyberpunk" alt="Cyberpunk: Edgerunners">
-                    <div class="overlay">
-                        <a href="joueur.html?anime=1&season=1&episode=1" class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="anime-info">
-                    <h3>Cyberpunk</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <span>4.7/5</span>
-                    </div>
-                </div>
-            </div>
+    <div id="animeList" class="anime-grid">
 
-            <div class="anime-card compact">
-                <div class="anime-poster">
-                    <img src="https://via.placeholder.com/180x250?text=Vinland+Saga" alt="Vinland Saga">
-                    <div class="overlay">
-                        <a href="joueur.html?anime=1&season=1&episode=1" class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="anime-info">
-                    <h3>Vinland Saga</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <span>4.8/5</span>
-                    </div>
-                </div>
-            </div>
+    </div>
+
+    <div class="pagination">
+
+        <button onclick="prevPage()">
+            ⏮
+        </button>
+
+        <button onclick="nextPage()">
+            ⏭
+        </button>
+
+    </div>
+
+</main>
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <div class="footer-section">
+
+            <h4>À propos</h4>
+
+            <ul>
+
+                <li><a href="#">Qui sommes-nous ?</a></li>
+
+                <li><a href="#">Carrières</a></li>
+
+                <li><a href="#">Blog</a></li>
+
+            </ul>
+
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>À propos</h4>
-                <ul>
-                    <li><a href="#">Qui sommes-nous?</a></li>
-                    <li><a href="#">Carrières</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="#">Centre d'aide</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">FAQ</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Légal</h4>
-                <ul>
-                    <li><a href="#">Conditions</a></li>
-                    <li><a href="#">Confidentialité</a></li>
-                    <li><a href="#">Cookies</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Réseaux</h4>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 AnimeFlix26. Tous droits réservés.</p>
-        </div>
-    </footer>
+        <div class="footer-section">
 
-    <script src="script.js"></script>
+            <h4>Support</h4>
+
+            <ul>
+
+                <li><a href="#">Centre d'aide</a></li>
+
+                <li><a href="#">Contact</a></li>
+
+                <li><a href="#">FAQ</a></li>
+
+            </ul>
+
+        </div>
+
+        <div class="footer-section">
+
+            <h4>Légal</h4>
+
+            <ul>
+
+                <li><a href="#">Conditions</a></li>
+
+                <li><a href="#">Confidentialité</a></li>
+
+                <li><a href="#">Cookies</a></li>
+
+            </ul>
+
+        </div>
+
+        <div class="footer-section">
+
+            <h4>Réseaux</h4>
+
+            <div class="social-links">
+
+                <a href="#"><i class="fab fa-facebook"></i></a>
+
+                <a href="#"><i class="fab fa-twitter"></i></a>
+
+                <a href="#"><i class="fab fa-instagram"></i></a>
+
+                <a href="#"><i class="fab fa-youtube"></i></a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 AnimeFlix26. Tous droits réservés.
+        </p>
+
+    </div>
+
+</footer>
+
+<script src="script.js"></script>
+
 </body>
 </html>
