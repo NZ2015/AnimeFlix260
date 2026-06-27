@@ -328,3 +328,16 @@ document.addEventListener("keydown", function(e){
     }
 
 });
+function playEpisode(animeId, seasonNumber, episodeNumber) {
+  fetch("anime.json")
+    .then(res => res.json())
+    .then(data => {
+      const anime = data.animes.find(a => a.id === animeId);
+      const season = anime.seasons.find(s => s.number === seasonNumber);
+      const episode = season.episodes.find(e => e.number === episodeNumber);
+
+      const video = document.getElementById("videoPlayer");
+      video.src = episode.videoUrl;
+      video.play();
+    });
+}
