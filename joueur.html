@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -115,7 +116,7 @@ function loadEpisode(season, episode) {
 
   const ep = animeData.seasons[season].episodes[episode];
 
-  videoPlayer.src = ep.videoUrl;
+  videoSource.src = ep.videoUrl;
   videoPlayer.load();
 
   videoPlayer.oncanplay = () => {
