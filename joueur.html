@@ -6,6 +6,8 @@
   <title>Lecteur Vidéo - AnimeFlix26</title>
   <link rel="stylesheet" href="joueur-style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- hls.js pour lecture HLS (.m3u8) sur navigateurs non-Safari -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
     /* Styles de base si vous n'avez pas joueur-style.css sous la main */
     body { font-family: Arial, Helvetica, sans-serif; margin:0; background:#111; color:#eee; }
@@ -105,6 +107,7 @@ const messageEl = document.getElementById("message");
 
 let animeData = null;
 let allData = null;
+let hlsInstance = null; // instance hls.js si utilisée
 
 /* --- Utils pour récupérer l'URL vidéo (compatible avec diverses structures) --- */
 function getVideoUrl(ep) {
@@ -133,6 +136,39 @@ function showMessage(text, type = "info") {
   messageEl.style.display = text ? "block" : "none";
   messageEl.textContent = text || "";
   // could style by type if needed
+}
+
+function isHls(url) {
+  return url && url.split('?')[0].toLowerCase().endsWith('.m3u8');
+}
+
+function attachSourceToPlayer(url) {
+  // destroy previous hls if any
+  if (hlsInstance) {
+    try { hlsInstance.destroy(); } catch(e) { console.warn('Erreur en détruisant hls', e); }
+    hlsInstance = null;
+  }
+
+  // set crossOrigin in case server requires CORS
+  try { videoPlayer.crossOrigin = 'anonymous'; } catch(e) { /* ignore */ }
+
+  // If HLS and browser doesn't support it natively, use hls.js
+  if (isHls(url) && window.Hls && !videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
+    hlsInstance = new Hls();
+    hlsInstance.attachMedia(videoPlayer);
+    hlsInstance.on(Hls.Events.MEDIA_ATTACHED, () => {
+      hlsInstance.loadSource(url);
+    });
+    hlsInstance.on(Hls.Events.ERROR, (event, data) => {
+      console.error('HLS error', data);
+      showMessage('Erreur de lecture HLS : ' + (data.type || data.details || 'inconnue'));
+    });
+    // remove source element for hls usage
+    try { videoSource.src = ''; } catch(e){}
+  } else {
+    // native support or not HLS: set source element
+    videoSource.src = url;
+  }
 }
 
 /* --- Chargement du fichier anime.json --- */
@@ -271,8 +307,9 @@ function loadEpisode(season, episode, opts = {}) {
   const poster = getPoster(ep, animeData);
   if (poster) videoPlayer.poster = poster;
 
-  // set source
-  videoSource.src = videoUrl;
+  // attach source (HLS-aware)
+  attachSourceToPlayer(videoUrl);
+
   // met à jour infos texte
   episodeTitleEl.innerText = ep.title || `Épisode ${episode+1}`;
   episodeDescEl.innerText = ep.description || ep.summary || animeData.description || "";
@@ -399,4 +436,3 @@ window.addEventListener("popstate", () => {
 </script>
 </body>
 </html>
-
