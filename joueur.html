@@ -1,168 +1,402 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecteur Vidéo - AnimeFlix26</title>
-    <link rel="stylesheet" href="joueur-style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lecteur Vidéo - AnimeFlix26</title>
+  <link rel="stylesheet" href="joueur-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Styles de base si vous n'avez pas joueur-style.css sous la main */
+    body { font-family: Arial, Helvetica, sans-serif; margin:0; background:#111; color:#eee; }
+    .header { background:#0b0b0b; padding:0.75rem 1rem; border-bottom:1px solid #222; }
+    .header-container { display:flex; align-items:center; gap:1rem; }
+    .logo { color:#fff; text-decoration:none; font-weight:700; display:flex; align-items:center; gap:0.5rem; }
+    .back-btn { color:#ddd; text-decoration:none; margin-left:auto; }
+    .main-content { display:flex; gap:1rem; padding:1rem; }
+    .player-container { flex:1; max-width:1000px; }
+    .video-player { background:#000; border-radius:6px; overflow:hidden; }
+    video { display:block; width:100%; height:auto; background:#000; }
+    .controls { display:flex; gap:.5rem; padding:.5rem; justify-content:center; background:#0d0d0d; }
+    .controls button { background:#222; color:#fff; border:none; padding:.5rem .75rem; border-radius:4px; cursor:pointer; }
+    .episode-info { margin-top:.75rem; }
+    .seasons-container, .episodes-container { margin-top:1rem; background:#0d0d0d; padding:.75rem; border-radius:6px; }
+    .seasons-list, .episodes-list { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.5rem; }
+    .season-item, .episode-item { padding:.4rem .6rem; background:#161616; border-radius:4px; cursor:pointer; color:#ddd; }
+    .season-item.active, .episode-item.active { background:#1e90ff; color:#fff; }
+    aside.sidebar { width:260px; }
+    .related-animes { display:flex; flex-direction:column; gap:.5rem; margin-top:.5rem; }
+    .related-item { background:#161616; padding:.5rem; border-radius:4px; }
+    .footer { padding:1rem; text-align:center; color:#888; margin-top:1rem; }
+    .msg { padding:.6rem; margin-top:.6rem; background:#2a2a2a; border-radius:4px; color:#f5f5f5;}
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-container">
-            <a href="index.html" class="logo">
-                <i class="fas fa-play-circle"></i>
-                <span>AnimeFlix26</span>
-            </a>
-            <a href="index.html" class="back-btn">
-                <i class="fas fa-arrow-left"></i>
-                Retour
-            </a>
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo"><i class="fas fa-play-circle"></i><span>AnimeFlix26</span></a>
+      <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour</a>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="player-container">
+      <div class="video-player">
+        <video id="videoPlayer" controls preload="metadata" poster="">
+          <source id="videoSource" src="" type="video/mp4" />
+          Votre navigateur ne supporte pas la vidéo HTML5.
+        </video>
+
+        <div class="controls">
+          <button id="prevBtn" title="Épisode précédent">⏮</button>
+          <button id="playBtn" title="Lecture/Pause">⏯</button>
+          <button id="nextBtn" title="Épisode suivant">⏭</button>
+          <button id="fsBtn" title="Plein écran">⛶</button>
         </div>
-    </header>
+      </div>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="player-container">
-           <!-- Vidéo Player -->
-<div class="video-player">
-
-    <video id="videoPlayer" controls width="100%">
-        <source id="videoSource" src="" type="video/mp4">
-        Votre navigateur ne supporte pas la vidéo HTML5.
-    </video>
-
-          <!-- CONTROLES NETFLIX -->
-          <div class="controls">
-              <button onclick="prevEpisode()">⏮</button>
-              <button onclick="togglePlay()">⏯</button>
-              <button onclick="nextEpisode()">⏭</button>
-              <button onclick="fullscreen()">⛶</button>
+      <div class="episode-info">
+        <div class="info-header">
+          <h1 id="animeTitle">Chargement...</h1>
+          <p id="episodeTitle" class="episode-title">Episode</p>
         </div>
+        <p id="episodeDescription" class="episode-description">Description en cours de chargement...</p>
+        <div id="message" class="msg" style="display:none;"></div>
+      </div>
 
+      <div class="seasons-container">
+        <h2>Saisons</h2>
+        <div id="seasonsList" class="seasons-list"></div>
+      </div>
+
+      <div class="episodes-container">
+        <h2>Episodes</h2>
+        <div id="episodesList" class="episodes-list"></div>
+      </div>
     </div>
 
-            <!-- Episode Info -->
-            <div class="episode-info">
-                <div class="info-header">
-                    <h1 id="animeTitle">Chargement...</h1>
-                    <p id="episodeTitle" class="episode-title">Episode 1</p>
-                </div>
-                <p id="episodeDescription" class="episode-description">Description en cours de chargement...</p>
-            </div>
+    <aside class="sidebar">
+      <h2>Plus d'animes</h2>
+      <div id="relatedAnimes" class="related-animes"></div>
+    </aside>
+  </main>
 
-            <!-- Seasons Selection -->
-            <div class="seasons-container">
-                <h2>Saisons</h2>
-                <div id="seasonsList" class="seasons-list">
-                    <!-- Les saisons seront injectées ici par JavaScript -->
-                </div>
-            </div>
+  <footer class="footer">
+    <div class="footer-content"><p>&copy; 2026 AnimeFlix26. Tous droits réservés.</p></div>
+  </footer>
 
-            <!-- Episodes List -->
-            <div class="episodes-container">
-                <h2>Episodes</h2>
-                <div id="episodesList" class="episodes-list">
-                    <!-- Les episodes seront injectés ici par JavaScript -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Related Animes Sidebar -->
-        <aside class="sidebar">
-            <h2>Plus d'animes</h2>
-            <div id="relatedAnimes" class="related-animes">
-                <!-- Les animes recommandés seront injectés ici -->
-            </div>
-        </aside>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2026 AnimeFlix26. Tous droits réservés.</p>
-        </div>
-    </footer>
 <script>
+/* --- Paramètres URL --- */
 const params = new URLSearchParams(window.location.search);
-let currentSeason = 0;
-let currentEpisode = 0;
-const animeId = parseInt(params.get("animeId"));
-const seasonIndex = parseInt(params.get("season")) || 0;
-const episodeIndex = parseInt(params.get("episode")) || 0;
+const animeIdParam = params.get("animeId");
+const animeId = animeIdParam !== null ? (isNaN(animeIdParam) ? animeIdParam : parseInt(animeIdParam)) : null;
+let currentSeason = parseInt(params.get("season")) || 0;
+let currentEpisode = parseInt(params.get("episode")) || 0;
 
 const videoPlayer = document.getElementById("videoPlayer");
+const videoSource = document.getElementById("videoSource");
+const animeTitleEl = document.getElementById("animeTitle");
+const episodeTitleEl = document.getElementById("episodeTitle");
+const episodeDescEl = document.getElementById("episodeDescription");
+const seasonsListEl = document.getElementById("seasonsList");
+const episodesListEl = document.getElementById("episodesList");
+const relatedAnimesEl = document.getElementById("relatedAnimes");
+const messageEl = document.getElementById("message");
 
 let animeData = null;
+let allData = null;
 
-// 🔥 Charger anime.json
+/* --- Utils pour récupérer l'URL vidéo (compatible avec diverses structures) --- */
+function getVideoUrl(ep) {
+  if (!ep) return null;
+  // Priorité aux champs usuels
+  if (ep.videoUrl) return ep.videoUrl;
+  if (ep.video) return ep.video;
+  if (ep.url) return ep.url;
+  if (ep.src) return ep.src;
+  // support pour sources: [{src, type}, ...]
+  if (Array.isArray(ep.sources) && ep.sources.length) {
+    const first = ep.sources.find(s => s.src) || ep.sources[0];
+    return first.src || null;
+  }
+  // support pour files: { mp4: "...", hls: "..." }
+  if (ep.files && typeof ep.files === 'object') {
+    // prefer mp4 then hls
+    return ep.files.mp4 || ep.files.hls || Object.values(ep.files)[0] || null;
+  }
+  return null;
+}
+function getPoster(ep, anime) {
+  return (ep && (ep.poster || ep.thumbnail || ep.image)) || (anime && (anime.poster || anime.thumbnail || anime.image)) || "";
+}
+function showMessage(text, type = "info") {
+  messageEl.style.display = text ? "block" : "none";
+  messageEl.textContent = text || "";
+  // could style by type if needed
+}
+
+/* --- Chargement du fichier anime.json --- */
 fetch("anime.json")
   .then(res => res.json())
   .then(data => {
-    animeData = data.animes.find(a => a.id === animeId);
-
-    if (animeData) {
-      loadEpisode(seasonIndex, episodeIndex);
-      renderInfo();
+    allData = data;
+    // data.animes ou data (selon format)
+    const list = data.animes || data;
+    if (!list) {
+      showMessage("anime.json : format inattendu.", "error");
+      return;
     }
+    // trouver l'anime par id (nombre) ou par slug/title si animeId est string
+    animeData = list.find(a => {
+      if (animeId === null) return false;
+      if (typeof a.id !== "undefined" && a.id == animeId) return true; // == to allow string numeric
+      if (typeof a.slug !== "undefined" && String(a.slug) === String(animeId)) return true;
+      if (String(a.title) === String(animeId)) return true;
+      return false;
+    });
+
+    if (!animeData) {
+      showMessage("Anime introuvable (vérifiez animeId dans l'URL).", "error");
+      return;
+    }
+
+    // render page
+    renderInfo();
+    renderSeasons();
+    renderRelated();
+    // clamp season & episode
+    currentSeason = Math.max(0, Math.min(currentSeason, (animeData.seasons?.length || 1) - 1 ));
+    currentEpisode = Math.max(0, Math.min(currentEpisode, ((animeData.seasons?.[currentSeason]?.episodes?.length) || 1) - 1 ));
+    loadEpisode(currentSeason, currentEpisode, { autoplay: true, restoreTime: true });
+  })
+  .catch(err => {
+    console.error(err);
+    showMessage("Erreur lors du chargement de anime.json", "error");
   });
 
-// ▶ Charger épisode
-function loadEpisode(season, episode) {
+/* --- Render info général --- */
+function renderInfo() {
+  animeTitleEl.innerText = animeData.title || "Titre inconnu";
+  document.title = `${animeData.title || "Anime"} — AnimeFlix26`;
+}
 
+/* --- Seasons & Episodes rendering et handlers --- */
+function renderSeasons() {
+  seasonsListEl.innerHTML = "";
+  const seasons = animeData.seasons || [];
+  seasons.forEach((s, i) => {
+    const btn = document.createElement("button");
+    btn.className = "season-item" + (i === currentSeason ? " active" : "");
+    btn.textContent = s.name || `Saison ${i+1}`;
+    btn.addEventListener("click", () => {
+      if (currentSeason === i) return;
+      currentSeason = i;
+      currentEpisode = 0;
+      updateUrl();
+      renderSeasons();
+      renderEpisodes();
+      loadEpisode(currentSeason, currentEpisode, { autoplay:true });
+    });
+    seasonsListEl.appendChild(btn);
+  });
+  renderEpisodes();
+}
+
+function renderEpisodes() {
+  episodesListEl.innerHTML = "";
+  const episodes = (animeData.seasons?.[currentSeason]?.episodes) || [];
+  episodes.forEach((ep, j) => {
+    const el = document.createElement("button");
+    el.className = "episode-item" + (j === currentEpisode ? " active" : "");
+    el.textContent = ep.title || `Ép ${j+1}`;
+    el.addEventListener("click", () => {
+      if (currentEpisode === j) return;
+      currentEpisode = j;
+      updateUrl();
+      renderEpisodes();
+      loadEpisode(currentSeason, currentEpisode, { autoplay:true, restoreTime:false });
+    });
+    episodesListEl.appendChild(el);
+  });
+}
+
+/* --- Related animes (simple) --- */
+function renderRelated() {
+  relatedAnimesEl.innerHTML = "";
+  const list = (allData.animes || allData).filter(a => a.id !== animeData.id).slice(0,6);
+  list.forEach(a => {
+    const div = document.createElement("div");
+    div.className = "related-item";
+    const link = document.createElement("a");
+    link.href = `joueur.html?animeId=${encodeURIComponent(a.id)}&season=0&episode=0`;
+    link.style.color = "inherit";
+    link.textContent = a.title || `Anime ${a.id}`;
+    div.appendChild(link);
+    relatedAnimesEl.appendChild(div);
+  });
+}
+
+/* --- Mise à jour de l'URL (pushState) --- */
+function updateUrl(replace=false) {
+  const u = new URL(window.location);
+  u.searchParams.set("animeId", animeData.id);
+  u.searchParams.set("season", currentSeason);
+  u.searchParams.set("episode", currentEpisode);
+  if (replace) history.replaceState({}, "", u);
+  else history.pushState({}, "", u);
+}
+
+/* --- Chargement d'un épisode --- */
+function loadEpisode(season, episode, opts = {}) {
   if (!animeData) return;
+  const seasons = animeData.seasons || [];
+  const seasonObj = seasons[season];
+  if (!seasonObj) {
+    showMessage("Saison introuvable.", "error");
+    return;
+  }
+  const ep = seasonObj.episodes?.[episode];
+  if (!ep) {
+    showMessage("Épisode introuvable.", "error");
+    return;
+  }
+  showMessage(""); // clear
+  const videoUrl = getVideoUrl(ep);
+  if (!videoUrl) {
+    showMessage("Aucune URL vidéo trouvée pour cet épisode.", "error");
+    return;
+  }
 
-  const ep = animeData.seasons[season].episodes[episode];
+  // poster
+  const poster = getPoster(ep, animeData);
+  if (poster) videoPlayer.poster = poster;
 
-  videoSource.src = ep.videoUrl;
+  // set source
+  videoSource.src = videoUrl;
+  // met à jour infos texte
+  episodeTitleEl.innerText = ep.title || `Épisode ${episode+1}`;
+  episodeDescEl.innerText = ep.description || ep.summary || animeData.description || "";
+
+  // reload vidéo
   videoPlayer.load();
 
-  videoPlayer.oncanplay = () => {
-    videoPlayer.play();
-  };
+  // restauration position si demandé
+  const storageKey = `anime_${animeData.id}_s${season}_e${episode}`;
+  if (opts.restoreTime) {
+    const t = parseFloat(localStorage.getItem(storageKey) || "0");
+    if (t > 1) {
+      videoPlayer.currentTime = t;
+    }
+  }
 
+  // autoplay si demandé
+  if (opts.autoplay) {
+    // wait canplay
+    videoPlayer.oncanplay = () => {
+      videoPlayer.play().catch(e => {
+        // autoplay blocked — leave paused
+        console.debug("Autoplay bloqué", e);
+      });
+    };
+  } else {
+    videoPlayer.oncanplay = null;
+  }
+
+  // save current indices
   currentSeason = season;
   currentEpisode = episode;
-
-  document.getElementById("episodeTitle").innerText = ep.title;
-  document.getElementById("animeTitle").innerText = animeData.title;
-}
-// ▶ Info anime
-function renderInfo() {
-  document.getElementById("animeTitle").innerText = animeData.title;
+  renderSeasons();
+  renderEpisodes();
+  updateUrl(true);
 }
 
-// ▶ Next episode
+/* --- Next / Prev across season bounds --- */
 function nextEpisode() {
-  const episodes = animeData.seasons[currentSeason].episodes;
-
+  const seasons = animeData.seasons || [];
+  const episodes = seasons[currentSeason]?.episodes || [];
   if (currentEpisode < episodes.length - 1) {
-    loadEpisode(currentSeason, currentEpisode + 1);
+    loadEpisode(currentSeason, currentEpisode + 1, { autoplay:true, restoreTime:true });
+  } else {
+    // basculer vers saison suivante si présente
+    if (currentSeason < seasons.length - 1) {
+      loadEpisode(currentSeason + 1, 0, { autoplay:true, restoreTime:true });
+    } else {
+      // rien après
+      showMessage("Fin de la série.", "info");
+    }
   }
 }
-
-// ▶ Previous episode
 function prevEpisode() {
   if (currentEpisode > 0) {
-    loadEpisode(currentSeason, currentEpisode - 1);
+    loadEpisode(currentSeason, currentEpisode - 1, { autoplay:true, restoreTime:true });
+  } else {
+    // aller à la fin de la saison précédente si présente
+    if (currentSeason > 0) {
+      const prevSeasonIndex = currentSeason - 1;
+      const prevEpisodes = animeData.seasons[prevSeasonIndex].episodes || [];
+      loadEpisode(prevSeasonIndex, Math.max(0, prevEpisodes.length - 1), { autoplay:true, restoreTime:true });
+    } else {
+      showMessage("Début de la série.", "info");
+    }
   }
 }
 
-// ▶ Play/Pause
+/* --- Play/Pause et fullscreen helpers --- */
 function togglePlay() {
   if (videoPlayer.paused) videoPlayer.play();
   else videoPlayer.pause();
 }
-
-// ⛶ Fullscreen
+function requestFullscreen(el) {
+  if (el.requestFullscreen) return el.requestFullscreen();
+  if (el.webkitRequestFullscreen) return el.webkitRequestFullscreen();
+  if (el.mozRequestFullScreen) return el.mozRequestFullScreen();
+  if (el.msRequestFullscreen) return el.msRequestFullscreen();
+}
 function fullscreen() {
-  videoPlayer.requestFullscreen();
+  requestFullscreen(videoPlayer);
 }
 
-// ▶ Auto next
-videoPlayer.addEventListener("ended", nextEpisode);
+/* --- Save playback position périodiquement --- */
+let saveTimer = null;
+videoPlayer.addEventListener("timeupdate", () => {
+  const key = `anime_${animeData?.id}_s${currentSeason}_e${currentEpisode}`;
+  try {
+    localStorage.setItem(key, String(videoPlayer.currentTime));
+  } catch (e) { /* quota ou mode privé */ }
+});
+
+/* --- lecture terminée : auto next --- */
+videoPlayer.addEventListener("ended", () => {
+  nextEpisode();
+});
+
+/* --- Buttons event listeners --- */
+document.getElementById("prevBtn").addEventListener("click", prevEpisode);
+document.getElementById("nextBtn").addEventListener("click", nextEpisode);
+document.getElementById("playBtn").addEventListener("click", togglePlay);
+document.getElementById("fsBtn").addEventListener("click", fullscreen);
+
+/* --- Keyboard shortcuts (espace, flèche droite/gauche) --- */
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Space") { e.preventDefault(); togglePlay(); }
+  if (e.code === "ArrowRight") { videoPlayer.currentTime += 10; }
+  if (e.code === "ArrowLeft") { videoPlayer.currentTime -= 10; }
+  if (e.code === "KeyF") { fullscreen(); }
+});
+
+/* --- Navigation `popstate` pour le back/forward du navigateur --- */
+window.addEventListener("popstate", () => {
+  // relire params et charger l'épisode correspondant
+  const p = new URLSearchParams(window.location.search);
+  const s = parseInt(p.get("season")) || 0;
+  const e = parseInt(p.get("episode")) || 0;
+  if (animeData) {
+    currentSeason = Math.max(0, Math.min(s, animeData.seasons?.length - 1 || 0));
+    currentEpisode = Math.max(0, Math.min(e, animeData.seasons?.[currentSeason]?.episodes?.length - 1 || 0));
+    loadEpisode(currentSeason, currentEpisode, { autoplay:false, restoreTime:true });
+  }
+});
 </script>
 </body>
 </html>
+
