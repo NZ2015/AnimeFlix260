@@ -56,10 +56,10 @@ function renderPage() {
         <p class="rating">⭐ ${anime.rating}/5</p>
 
         <a
-            class="play-btn"
-         <a href="joueur.html?animeId=${anime.id}&season=1&episode=1" class="play-btn">
-              ▶ Regarder
-         </a>
+        <a href="joueur.html?animeId=${anime.id}&season=1&episode=1"
+           class="play-btn">
+           ▶ Regarder
+        </a>
 
     </div>
 
