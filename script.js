@@ -39,9 +39,9 @@ function renderPage() {
 
     const page = filteredAnimes.slice(start, end);
 
-    page.forEach(anime => {
-
-        container.innerHTML += `
+   page.forEach(anime => {
+    container.innerHTML += creerCarte(anime);
+});
 
 <div class="anime-card">
 
