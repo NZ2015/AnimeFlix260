@@ -1,5 +1,5 @@
 // ===============================
-// AnimeFlix26 Script
+// AnimePlace Script
 // ===============================
 
 let animes = [];
