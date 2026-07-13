@@ -221,6 +221,6 @@ function trackUserAction(action, data) {
 
 // === Initialisation === 
 window.addEventListener('load', function() {
-    console.log('AnimeFlix26 - Page chargée avec succès');
+    console.log('WilliamsAnime - Page chargée avec succès');
     initAdvancedSearch();
 });
