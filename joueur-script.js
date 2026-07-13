@@ -1,5 +1,5 @@
 // ===============================
-// AnimeFlix26 - Player Script FIXED
+// WilliamsAnime - Player Script FIXED
 // ===============================
 
 let animeData = null;
