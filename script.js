@@ -32,6 +32,8 @@ function renderPage() {
 
     const container = document.getElementById("animeList");
 
+    if (!container) return;
+
     container.innerHTML = "";
 
     const start = currentPage * perPage;
@@ -39,10 +41,10 @@ function renderPage() {
 
     const page = filteredAnimes.slice(start, end);
 
- page.forEach(anime => {
-    container.innerHTML += creerCarte(anime);
-});
-});
+    page.forEach(anime => {
+        container.innerHTML += creerCarte(anime);
+    });
+}
 <div class="anime-card">
 
     <img src="${anime.poster}" alt="${anime.title}">
