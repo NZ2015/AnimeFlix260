@@ -45,33 +45,7 @@ function renderPage() {
         container.innerHTML += creerCarte(anime);
     });
 }
-<div class="anime-card">
 
-    <img src="${anime.poster}" alt="${anime.title}">
-
-    <div class="anime-info">
-
-        <h3>${anime.title}</h3>
-
-        <p>${anime.description}</p>
-
-        <p class="rating">⭐ ${anime.rating}/5</p>
-
-        <a
-        <a href="joueur.html?animeId=${anime.id}&season=1&episode=1"
-           class="play-btn">
-           ▶ Regarder
-        </a>
-
-    </div>
-
-</div>
-
-`;
-
-    });
-
-}
 // ===============================
 // Pagination
 // ===============================
