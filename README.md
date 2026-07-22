@@ -1,4 +1,4 @@
-# AnimeFlix26 - Plateforme de Streaming d'Anime
+# WilliamsAnime - Plateforme de Streaming d'Anime
 
 Une page d'accueil moderne et responsive pour une plateforme de streaming d'animes, créée avec HTML5, CSS3 et JavaScript vanilla.
 
