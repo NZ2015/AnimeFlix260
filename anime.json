@@ -16,7 +16,7 @@
               "number": 1,
               "title": "Uzumaki Naruto",
               "duration": "24:00",
-              "videoUrl": ""
+              "videoUrl": "https://franime.fr/anime/{slug}?s={saison}&ep={episode}&lang={vf|vo}&anime_id={id}"
             }
           ]
         }
