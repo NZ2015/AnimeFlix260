@@ -16,7 +16,7 @@
               "number": 1,
               "title": "Uzumaki Naruto",
               "duration": "24:00",
-              "videoUrl": "https://franime.fr/anime/{slug}?s={saison}&ep={episode}&lang={vf|vo}&anime_id={id}"
+              "videoUrl": "video/naruto-saison1-episode1.mp4"
             }
           ]
         }
@@ -38,7 +38,7 @@
               "number": 1,
               "title": "Je suis Luffy",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video2/mp4/720/big_buck_bunny_720p_2mb.mp4"
+              "videoUrl": "video/onepiece-saison1-episode1.mp4"
             }
           ]
         }
@@ -60,7 +60,7 @@
               "number": 1,
               "title": "La mort et le Shinigami",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video3/mp4/720/big_buck_bunny_720p_3mb.mp4"
+              "videoUrl": "video/bleach-saison1-episode1.mp4"
             }
           ]
         }
@@ -82,7 +82,7 @@
               "number": 1,
               "title": "Cruauté",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video4/mp4/720/big_buck_bunny_720p_4mb.mp4"
+              "videoUrl": "vidoe/demonslayer-saison1-episode1.mp4"
             }
           ]
         }
@@ -104,7 +104,7 @@
               "number": 1,
               "title": "À toi dans 2000 ans",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video5/mp4/720/big_buck_bunny_720p_5mb.mp4"
+              "videoUrl": "video/attackontian-saison1-episode1.mp4"
             }
           ]
         }
@@ -126,7 +126,7 @@
               "number": 1,
               "title": "Ryomen Sukuna",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video6/mp4/720/big_buck_bunny_720p_6mb.mp4"
+              "videoUrl": "video/jjk-saison1-episode1.mp4"
             }
           ]
         }
@@ -148,7 +148,7 @@
               "number": 1,
               "title": "Rencontre",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video7/mp4/720/big_buck_bunny_720p_7mb.mp4"
+              "videoUrl": "deathnote-saison1-episode1.mp4"
             }
           ]
         }
@@ -158,7 +158,7 @@
       "id": 8,
       "title": "My Hero Academia",
       "rating": 4.5,
-      "poster": "images/myacademia.jpg",
+      "poster": "images/mha.jpg",
       "description": "Izuku veut devenir un héros.",
       "genres": ["Action", "Super-héros"],
       "seasons": [
@@ -170,7 +170,7 @@
               "number": 1,
               "title": "Izuku Midoriya",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video8/mp4/720/big_buck_bunny_720p_8mb.mp4"
+              "videoUrl": "video/mha-saison1-episode1.mp4"
             }
           ]
         }
@@ -192,7 +192,7 @@
               "number": 1,
               "title": "Tragédie",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video9/mp4/720/big_buck_bunny_720p_9mb.mp4"
+              "videoUrl": "video/tokyoghoul-saison1-episode1.mp4"
             }
           ]
         }
@@ -214,7 +214,7 @@
               "number": 1,
               "title": "Un enfant de guerre",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video10/mp4/720/big_buck_bunny_720p_10mb.mp4"
+              "videoUrl": "vinlandsaga-saison1-episode1.mp4"
             }
           ]
         }
@@ -236,7 +236,7 @@
               "number": 1,
               "title": "Départ",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video11/mp4/720/big_buck_bunny_720p_11mb.mp4"
+              "videoUrl": "video/hxh-saison1-episode1.mp4"
             }
           ]
         }
@@ -258,7 +258,7 @@
               "number": 1,
               "title": "L'échange équivalent",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video12/mp4/720/big_buck_bunny_720p_12mb.mp4"
+              "videoUrl": "video/fma-saison1-episode1.mp4"
             }
           ]
         }
@@ -280,7 +280,7 @@
               "number": 1,
               "title": "La guilde",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video13/mp4/720/big_buck_bunny_720p_13mb.mp4"
+              "videoUrl": "fairytail-saison1-episode1.mp4"
             }
           ]
         }
@@ -302,7 +302,7 @@
               "number": 1,
               "title": "Le début",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video14/mp4/720/big_buck_bunny_720p_14mb.mp4"
+              "videoUrl": "sao-saison1-episode1.mp4"
             }
           ]
         }
@@ -324,7 +324,7 @@
               "number": 1,
               "title": "Asta et Yuno",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video15/mp4/720/big_buck_bunny_720p_15mb.mp4"
+              "videoUrl": "video/blackclover-saison1-episode1.mp4"
             }
           ]
         }
@@ -346,7 +346,7 @@
               "number": 1,
               "title": "Dog & Chainsaw",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video16/mp4/720/big_buck_bunny_720p_16mb.mp4"
+              "videoUrl": "chainsawman-saison1-episode1.mp4"
             }
           ]
         }
@@ -368,7 +368,7 @@
               "number": 1,
               "title": "Operation Strix",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video17/mp4/720/big_buck_bunny_720p_17mb.mp4"
+              "videoUrl": "spyxfamily-saison1-episode1.mp4"
             }
           ]
         }
@@ -390,7 +390,7 @@
               "number": 1,
               "title": "Dungeon",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video18/mp4/720/big_buck_bunny_720p_18mb.mp4"
+              "videoUrl": "sololeveling-saison1-episode1.mp4"
             }
           ]
         }
@@ -412,7 +412,7 @@
               "number": 1,
               "title": "Éveil",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video19/mp4/720/big_buck_bunny_720p_19mb.mp4"
+              "videoUrl": "video/bluelock-saison1-episode1.mp4"
             }
           ]
         }
@@ -434,7 +434,7 @@
               "number": 1,
               "title": "Le petit géant",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video20/mp4/720/big_buck_bunny_720p_20mb.mp4"
+              "videoUrl": "video/haikyu-saison1-episode1.mp4"
             }
           ]
         }
@@ -456,7 +456,7 @@
               "number": 1,
               "title": "Le jour du Geass",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video21/mp4/720/big_buck_bunny_720p_21mb.mp4"
+              "videoUrl": "video/codegeass-saison1-episode1.mp4"
             }
           ]
         }
@@ -478,7 +478,7 @@
               "number": 1,
               "title": "Déviation",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video22/mp4/720/big_buck_bunny_720p_22mb.mp4"
+              "videoUrl": "video/steinsgate-saison1-episode1.mp4"
             }
           ]
         }
@@ -500,7 +500,7 @@
               "number": 1,
               "title": "Éveil",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video23/mp4/720/big_buck_bunny_720p_23mb.mp4"
+              "videoUrl": "video/drsone-saison1-episode1.mp4"
             }
           ]
         }
@@ -522,7 +522,7 @@
               "number": 1,
               "title": "Le départ",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video24/mp4/720/big_buck_bunny_720p_24mb.mp4"
+              "videoUrl": "video/sds-saison1-episode1.mp4"
             }
           ]
         }
@@ -544,7 +544,7 @@
               "number": 1,
               "title": "Retour",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video25/mp4/720/big_buck_bunny_720p_25mb.mp4"
+              "videoUrl": "video/tokyorevengers-saison1-episode1.mp4"
             }
           ]
         }
@@ -566,7 +566,7 @@
               "number": 1,
               "title": "Contact",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video26/mp4/720/big_buck_bunny_720p_26mb.mp4"
+              "videoUrl": "video/parasyte-saison1-episode1.mp4"
             }
           ]
         }
@@ -588,7 +588,7 @@
               "number": 1,
               "title": "Retour",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video27/mp4/720/big_buck_bunny_720p_27mb.mp4"
+              "videoUrl": "video/erased-saison1-episode1.mp4"
             }
           ]
         }
@@ -598,7 +598,7 @@
       "id": 28,
       "title": "Mob Psycho 100",
       "rating": 4.6,
-      "poster": "images/mob.jpg",
+      "poster": "images/mb100.jpg",
       "description": "Un garçon aux pouvoirs psychiques énormes.",
       "genres": ["Action", "Comédie"],
       "seasons": [
@@ -610,7 +610,7 @@
               "number": 1,
               "title": "Éveil",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video28/mp4/720/big_buck_bunny_720p_28mb.mp4"
+              "videoUrl": "video/mb100-saison1-episode1.mp4"
             }
           ]
         }
@@ -632,7 +632,7 @@
               "number": 1,
               "title": "Appel",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video29/mp4/720/big_buck_bunny_720p_29mb.mp4"
+              "videoUrl": "video/nge-saison1-episode1.mp4"
             }
           ]
         }
@@ -654,7 +654,7 @@
               "number": 1,
               "title": "Début",
               "duration": "24:00",
-              "videoUrl": "https://sample-videos.com/video30/mp4/720/big_buck_bunny_720p_30mb.mp4"
+              "videoUrl": "video/gintama-saison1-episode1.mp4"
             }
           ]
         }
