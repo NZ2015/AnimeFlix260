@@ -158,7 +158,7 @@
       "id": 8,
       "title": "My Hero Academia",
       "rating": 4.5,
-      "poster": "images/mha.jpg",
+      "poster": "images/myacademia.jpg",
       "description": "Izuku veut devenir un héros.",
       "genres": ["Action", "Super-héros"],
       "seasons": [
@@ -598,7 +598,7 @@
       "id": 28,
       "title": "Mob Psycho 100",
       "rating": 4.6,
-      "poster": "images/mobpsych100.jpg",
+      "poster": "images/mob.jpg",
       "description": "Un garçon aux pouvoirs psychiques énormes.",
       "genres": ["Action", "Comédie"],
       "seasons": [
