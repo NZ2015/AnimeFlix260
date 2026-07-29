@@ -1,5 +1,5 @@
 // ===============================
-// WilliamsAnime - Player Script FIXED
+// IrAnime - Player Script FIXED
 // ===============================
 
 let animeData = null;
