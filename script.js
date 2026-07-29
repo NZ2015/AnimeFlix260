@@ -1,5 +1,5 @@
 // ===============================
-// WilliamsAnime Script
+// IrAnime Script
 // ===============================
 
 let animes = [];
