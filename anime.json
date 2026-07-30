@@ -4,7 +4,7 @@
       "id": 1,
       "title": "Naruto",
       "rating": 4.7,
-      "poster": "images/naruto.jpg",
+      "poster": "images/naruto.jpg.png",
       "description": "Un jeune ninja rêve de devenir Hokage malgré son passé difficile.",
       "genres": ["Action", "Aventure", "Ninja"],
       "seasons": [
