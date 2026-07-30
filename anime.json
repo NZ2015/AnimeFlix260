@@ -26,7 +26,7 @@
       "id": 2,
       "title": "One Piece",
       "rating": 4.9,
-      "poster": "images/onepiece.jpg",
+      "poster": "images/onepiece.jpg.png",
       "description": "Luffy part à la recherche du One Piece pour devenir le Roi des Pirates.",
       "genres": ["Action", "Aventure", "Pirates"],
       "seasons": [
@@ -48,7 +48,7 @@
       "id": 3,
       "title": "Bleach",
       "rating": 4.6,
-      "poster": "images/bleach.jpg",
+      "poster": "images/bleach.jpg.png",
       "description": "Ichigo devient Shinigami et combat les Hollows.",
       "genres": ["Action", "Surnaturel"],
       "seasons": [
@@ -70,7 +70,7 @@
       "id": 4,
       "title": "Demon Slayer",
       "rating": 4.8,
-      "poster": "images/demonslayer.jpg",
+      "poster": "images/demonslayer.jpg.png",
       "description": "Tanjiro combat les démons pour sauver sa sœur.",
       "genres": ["Action", "Démon", "Historique"],
       "seasons": [
@@ -92,7 +92,7 @@
       "id": 5,
       "title": "Attack on Titan",
       "rating": 4.9,
-      "poster": "images/attackontitan.jpg",
+      "poster": "images/attackontitan.jpg.png",
       "description": "L'humanité lutte contre les Titans.",
       "genres": ["Action", "Drame", "Fantastique"],
       "seasons": [
@@ -114,7 +114,7 @@
       "id": 6,
       "title": "Jujutsu Kaisen",
       "rating": 4.7,
-      "poster": "images/jujutsukaisen.jpg",
+      "poster": "images/jujutsukaisen.jpg.png",
       "description": "Yuji entre dans le monde des malédictions.",
       "genres": ["Action", "Surnaturel"],
       "seasons": [
@@ -136,7 +136,7 @@
       "id": 7,
       "title": "Death Note",
       "rating": 4.8,
-      "poster": "images/deathnote.jpg",
+      "poster": "images/deathnote.jpg.png",
       "description": "Un carnet qui permet de tuer en écrivant un nom.",
       "genres": ["Thriller", "Mystère"],
       "seasons": [
