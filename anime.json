@@ -400,7 +400,7 @@
       "id": 19,
       "title": "Blue Lock",
       "rating": 4.6,
-      "poster": "images/bluelock.jpg",
+      "poster": "images/bluelock.jpg.jpg",
       "description": "Un projet pour créer le meilleur attaquant.",
       "genres": ["Sport", "Football"],
       "seasons": [
