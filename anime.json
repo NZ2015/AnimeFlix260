@@ -26,7 +26,7 @@
       "id": 2,
       "title": "One Piece",
       "rating": 4.9,
-      "poster": "images/onepiece.jpg.png",
+      "poster": "images/onepiece.jpg.jpg",
       "description": "Luffy part à la recherche du One Piece pour devenir le Roi des Pirates.",
       "genres": ["Action", "Aventure", "Pirates"],
       "seasons": [
@@ -70,7 +70,7 @@
       "id": 4,
       "title": "Demon Slayer",
       "rating": 4.8,
-      "poster": "images/demonslayer.jpg.png",
+      "poster": "images/demonslayer.jpg.jpg",
       "description": "Tanjiro combat les démons pour sauver sa sœur.",
       "genres": ["Action", "Démon", "Historique"],
       "seasons": [
@@ -92,7 +92,7 @@
       "id": 5,
       "title": "Attack on Titan",
       "rating": 4.9,
-      "poster": "images/attackontitan.jpg.png",
+      "poster": "images/attackontitan.jpg.jpg",
       "description": "L'humanité lutte contre les Titans.",
       "genres": ["Action", "Drame", "Fantastique"],
       "seasons": [
@@ -114,7 +114,7 @@
       "id": 6,
       "title": "Jujutsu Kaisen",
       "rating": 4.7,
-      "poster": "images/jujutsukaisen.jpg.png",
+      "poster": "images/jujutsukaisen.jpg.jpg",
       "description": "Yuji entre dans le monde des malédictions.",
       "genres": ["Action", "Surnaturel"],
       "seasons": [
@@ -136,7 +136,7 @@
       "id": 7,
       "title": "Death Note",
       "rating": 4.8,
-      "poster": "images/deathnote.jpg.png",
+      "poster": "images/deathnote.jpg.jpg",
       "description": "Un carnet qui permet de tuer en écrivant un nom.",
       "genres": ["Thriller", "Mystère"],
       "seasons": [
@@ -180,7 +180,7 @@
       "id": 9,
       "title": "Tokyo Ghoul",
       "rating": 4.4,
-      "poster": "images/tokyoghoul.jpg",
+      "poster": "images/tokyoghoul.jpg.jpg",
       "description": "Un étudiant devient demi-ghoul.",
       "genres": ["Action", "Horreur"],
       "seasons": [
@@ -202,7 +202,7 @@
       "id": 10,
       "title": "Vinland Saga",
       "rating": 4.7,
-      "poster": "images/vinlandsaga.jpg",
+      "poster": "images/vinlandsaga.jpg.jpg",
       "description": "Vikings et vengeance de Thorfinn.",
       "genres": ["Action", "Drame", "Historique"],
       "seasons": [
@@ -224,7 +224,7 @@
       "id": 11,
       "title": "Hunter x Hunter",
       "rating": 4.9,
-      "poster": "images/hxh.jpg",
+      "poster": "images/hxh.jpg.jpg",
       "description": "Gon part devenir Hunter pour retrouver son père.",
       "genres": ["Action", "Aventure"],
       "seasons": [
@@ -268,7 +268,7 @@
       "id": 13,
       "title": "Fairy Tail",
       "rating": 4.5,
-      "poster": "images/fairytail.jpg",
+      "poster": "images/fairytail.jpg.jpg",
       "description": "Lucy rejoint la guilde Fairy Tail.",
       "genres": ["Action", "Magie"],
       "seasons": [
@@ -290,7 +290,7 @@
       "id": 14,
       "title": "Sword Art Online",
       "rating": 4.4,
-      "poster": "images/sao.jpg",
+      "poster": "images/sao.jpg.jpg",
       "description": "Des joueurs piégés dans un jeu virtuel.",
       "genres": ["Action", "Isekai"],
       "seasons": [
@@ -334,7 +334,7 @@
       "id": 16,
       "title": "Chainsaw Man",
       "rating": 4.6,
-      "poster": "images/chainsawman.jpg",
+      "poster": "images/chainsawman.jpg.jpg",
       "description": "Denji combat des démons avec une tronçonneuse.",
       "genres": ["Action", "Horreur"],
       "seasons": [
@@ -356,7 +356,7 @@
       "id": 17,
       "title": "Spy x Family",
       "rating": 4.7,
-      "poster": "images/spyxfamily.jpg",
+      "poster": "images/spyxfamily.jpg.png",
       "description": "Une famille d'espion, assassin et télépathre.",
       "genres": ["Comédie", "Action"],
       "seasons": [
@@ -378,7 +378,7 @@
       "id": 18,
       "title": "Solo Leveling",
       "rating": 4.8,
-      "poster": "images/sololeveling.jpg",
+      "poster": "images/sololeveling.jpg.jpg",
       "description": "Un chasseur faible devient le plus puissant.",
       "genres": ["Action", "Fantastique"],
       "seasons": [
@@ -422,7 +422,7 @@
       "id": 20,
       "title": "Haikyu!!",
       "rating": 4.7,
-      "poster": "images/haikyu.jpg",
+      "poster": "images/haikyu.jpg.jpg",
       "description": "Volley-ball et rivalités scolaires.",
       "genres": ["Sport"],
       "seasons": [
@@ -444,7 +444,7 @@
       "id": 21,
       "title": "Code Geass",
       "rating": 4.8,
-      "poster": "images/codegeass.jpg",
+      "poster": "images/codegeass.jpg.jpg",
       "description": "Un pouvoir pour contrôler les gens.",
       "genres": ["Mecha", "Stratégie"],
       "seasons": [
@@ -466,7 +466,7 @@
       "id": 22,
       "title": "Steins;Gate",
       "rating": 4.8,
-      "poster": "images/steinsgate.jpg",
+      "poster": "images/steinsgate.jpg.jpg",
       "description": "Voyage dans le temps et paradoxes.",
       "genres": ["Science-fiction"],
       "seasons": [
@@ -532,7 +532,7 @@
       "id": 25,
       "title": "Tokyo Revengers",
       "rating": 4.5,
-      "poster": "images/tokyorevengers.jpg",
+      "poster": "images/tokyorevengers.jpg.jpg",
       "description": "Voyage dans le passé pour sauver des vies.",
       "genres": ["Action", "Drame"],
       "seasons": [
@@ -642,7 +642,7 @@
       "id": 30,
       "title": "Gintama",
       "rating": 4.8,
-      "poster": "images/gintama.jpg",
+      "poster": "images/gintama.jpg.jpg",
       "description": "Samouraïs et aliens dans un monde comique.",
       "genres": ["Comédie", "Action"],
       "seasons": [
