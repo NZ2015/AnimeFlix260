@@ -48,7 +48,7 @@
       "id": 3,
       "title": "Bleach",
       "rating": 4.6,
-      "poster": "images/bleach.jpg.png",
+      "poster": "images/bleach.jpg.jpg",
       "description": "Ichigo devient Shinigami et combat les Hollows.",
       "genres": ["Action", "Surnaturel"],
       "seasons": [
