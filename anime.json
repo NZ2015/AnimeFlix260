@@ -17,6 +17,12 @@
               "title": "Uzumaki Naruto",
               "duration": "24:00",
               "videoUrl": "video/naruto-saison1-episode1.mp4"
+              },
+              {
+                "number":1,
+                "title": "Konohamaru le petit genie",
+                "duration": "24:00",
+                "videoUrl":"video/naruto-saison1-episode2.mp4"
             }
           ]
         }
