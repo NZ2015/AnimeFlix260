@@ -4,26 +4,20 @@
       "id": 1,
       "title": "Naruto",
       "rating": 4.7,
-      "poster": "images/naruto.jpg.png",
+      "poster": "images/naruto.jpg",
       "description": "Un jeune ninja rêve de devenir Hokage malgré son passé difficile.",
       "genres": ["Action", "Aventure", "Ninja"],
+      "releaseYear": 2002,
+      "totalEpisodes": 220,
+      "studio": "Pierrot",
       "seasons": [
         {
           "number": 1,
           "title": "Saison 1",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Uzumaki Naruto",
-              "duration": "24:00",
-              "videoUrl": "video/naruto-saison1-episode1.mp4"
-              },
-              {
-                "number":1,
-                "title": "Konohamaru le petit genie",
-                "duration": "24:00",
-                "videoUrl":"video/naruto-saison1-episode2.mp4"
-            }
+            {"number": 1, "title": "Uzumaki Naruto", "duration": "24:00", "videoUrl": "video/naruto-saison1-episode1.mp4"},
+            {"number": 2, "title": "Mon nom est Konohamaru", "duration": "24:00", "videoUrl": "video/naruto-saison1-episode2.mp4"},
+            {"number": 3, "title": "Sasuke et Sakura", "duration": "24:00", "videoUrl": "video/naruto-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -32,20 +26,20 @@
       "id": 2,
       "title": "One Piece",
       "rating": 4.9,
-      "poster": "images/onepiece.jpg.jpg",
+      "poster": "images/onepiece.jpg",
       "description": "Luffy part à la recherche du One Piece pour devenir le Roi des Pirates.",
       "genres": ["Action", "Aventure", "Pirates"],
+      "releaseYear": 1999,
+      "totalEpisodes": 1000,
+      "studio": "Toei Animation",
       "seasons": [
         {
           "number": 1,
           "title": "East Blue",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Je suis Luffy",
-              "duration": "24:00",
-              "videoUrl": "video/onepiece-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Je suis Luffy! L'homme qui sera Roi des Pirates!", "duration": "24:00", "videoUrl": "video/onepiece-saison1-episode1.mp4"},
+            {"number": 2, "title": "Que mon équipage se forme!", "duration": "24:00", "videoUrl": "video/onepiece-saison1-episode2.mp4"},
+            {"number": 3, "title": "Morgan contre Luffy", "duration": "24:00", "videoUrl": "video/onepiece-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -54,20 +48,20 @@
       "id": 3,
       "title": "Bleach",
       "rating": 4.6,
-      "poster": "images/bleach.jpg.jpg",
+      "poster": "images/bleach.jpg",
       "description": "Ichigo devient Shinigami et combat les Hollows.",
       "genres": ["Action", "Surnaturel"],
+      "releaseYear": 2004,
+      "totalEpisodes": 366,
+      "studio": "Studio Pierrot",
       "seasons": [
         {
           "number": 1,
           "title": "Substitute Shinigami",
           "episodes": [
-            {
-              "number": 1,
-              "title": "La mort et le Shinigami",
-              "duration": "24:00",
-              "videoUrl": "video/bleach-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "La mort et le Shinigami", "duration": "24:00", "videoUrl": "video/bleach-saison1-episode1.mp4"},
+            {"number": 2, "title": "Le pouvoir d'un Shinigami", "duration": "24:00", "videoUrl": "video/bleach-saison1-episode2.mp4"},
+            {"number": 3, "title": "Protégez Rukia", "duration": "24:00", "videoUrl": "video/bleach-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -76,20 +70,20 @@
       "id": 4,
       "title": "Demon Slayer",
       "rating": 4.8,
-      "poster": "images/demonslayer.jpg.jpg",
+      "poster": "images/demonslayer.jpg",
       "description": "Tanjiro combat les démons pour sauver sa sœur.",
       "genres": ["Action", "Démon", "Historique"],
+      "releaseYear": 2019,
+      "totalEpisodes": 55,
+      "studio": "Ufotable",
       "seasons": [
         {
           "number": 1,
           "title": "Tanjiro Kamado",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Cruauté",
-              "duration": "24:00",
-              "videoUrl": "vidoe/demonslayer-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Cruauté", "duration": "24:00", "videoUrl": "video/demonslayer-saison1-episode1.mp4"},
+            {"number": 2, "title": "Le garçon qui vivait dans les montagnes", "duration": "24:00", "videoUrl": "video/demonslayer-saison1-episode2.mp4"},
+            {"number": 3, "title": "Sabuiro", "duration": "24:00", "videoUrl": "video/demonslayer-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -98,20 +92,20 @@
       "id": 5,
       "title": "Attack on Titan",
       "rating": 4.9,
-      "poster": "images/attackontitan.jpg.jpg",
+      "poster": "images/attackontitan.jpg",
       "description": "L'humanité lutte contre les Titans.",
       "genres": ["Action", "Drame", "Fantastique"],
+      "releaseYear": 2013,
+      "totalEpisodes": 139,
+      "studio": "Wit Studio",
       "seasons": [
         {
           "number": 1,
           "title": "Wall Maria",
           "episodes": [
-            {
-              "number": 1,
-              "title": "À toi dans 2000 ans",
-              "duration": "24:00",
-              "videoUrl": "video/attackontian-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "À toi dans 2000 ans", "duration": "24:00", "videoUrl": "video/attackontitan-saison1-episode1.mp4"},
+            {"number": 2, "title": "Le Titan brillant", "duration": "24:00", "videoUrl": "video/attackontitan-saison1-episode2.mp4"},
+            {"number": 3, "title": "Une éclosion inattendue", "duration": "24:00", "videoUrl": "video/attackontitan-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -120,20 +114,20 @@
       "id": 6,
       "title": "Jujutsu Kaisen",
       "rating": 4.7,
-      "poster": "images/jujutsukaisen.jpg.jpg",
+      "poster": "images/jujutsukaisen.jpg",
       "description": "Yuji entre dans le monde des malédictions.",
       "genres": ["Action", "Surnaturel"],
+      "releaseYear": 2020,
+      "totalEpisodes": 47,
+      "studio": "MAPPA",
       "seasons": [
         {
           "number": 1,
           "title": "Cursed Womb",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Ryomen Sukuna",
-              "duration": "24:00",
-              "videoUrl": "video/jjk-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Ryomen Sukuna", "duration": "24:00", "videoUrl": "video/jjk-saison1-episode1.mp4"},
+            {"number": 2, "title": "Entrée au lycée Jujutsu", "duration": "24:00", "videoUrl": "video/jjk-saison1-episode2.mp4"},
+            {"number": 3, "title": "Rencontre avec des Êtres Maudits", "duration": "24:00", "videoUrl": "video/jjk-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -142,20 +136,20 @@
       "id": 7,
       "title": "Death Note",
       "rating": 4.8,
-      "poster": "images/deathnote.jpg.jpg",
+      "poster": "images/deathnote.jpg",
       "description": "Un carnet qui permet de tuer en écrivant un nom.",
       "genres": ["Thriller", "Mystère"],
+      "releaseYear": 2006,
+      "totalEpisodes": 37,
+      "studio": "Madhouse",
       "seasons": [
         {
           "number": 1,
           "title": "Kira",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Rencontre",
-              "duration": "24:00",
-              "videoUrl": "deathnote-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Rencontre", "duration": "24:00", "videoUrl": "video/deathnote-saison1-episode1.mp4"},
+            {"number": 2, "title": "Confrontation", "duration": "24:00", "videoUrl": "video/deathnote-saison1-episode2.mp4"},
+            {"number": 3, "title": "Réjouissances", "duration": "24:00", "videoUrl": "video/deathnote-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -167,17 +161,17 @@
       "poster": "images/mha.jpg",
       "description": "Izuku veut devenir un héros.",
       "genres": ["Action", "Super-héros"],
+      "releaseYear": 2016,
+      "totalEpisodes": 113,
+      "studio": "Bones",
       "seasons": [
         {
           "number": 1,
           "title": "Izuku Midoriya",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Izuku Midoriya",
-              "duration": "24:00",
-              "videoUrl": "video/mha-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Izuku Midoriya", "duration": "24:00", "videoUrl": "video/mha-saison1-episode1.mp4"},
+            {"number": 2, "title": "Héros", "duration": "24:00", "videoUrl": "video/mha-saison1-episode2.mp4"},
+            {"number": 3, "title": "L'Exam d'Entrée du U.A.", "duration": "24:00", "videoUrl": "video/mha-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -186,20 +180,20 @@
       "id": 9,
       "title": "Tokyo Ghoul",
       "rating": 4.4,
-      "poster": "images/tokyoghoul.jpg.jpg",
+      "poster": "images/tokyoghoul.jpg",
       "description": "Un étudiant devient demi-ghoul.",
       "genres": ["Action", "Horreur"],
+      "releaseYear": 2014,
+      "totalEpisodes": 48,
+      "studio": "Studio Pierrot",
       "seasons": [
         {
           "number": 1,
           "title": "Transformation",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Tragédie",
-              "duration": "24:00",
-              "videoUrl": "video/tokyoghoul-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Tragédie", "duration": "24:00", "videoUrl": "video/tokyoghoul-saison1-episode1.mp4"},
+            {"number": 2, "title": "Lumière", "duration": "24:00", "videoUrl": "video/tokyoghoul-saison1-episode2.mp4"},
+            {"number": 3, "title": "Doute", "duration": "24:00", "videoUrl": "video/tokyoghoul-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -208,20 +202,20 @@
       "id": 10,
       "title": "Vinland Saga",
       "rating": 4.7,
-      "poster": "images/vinlandsaga.jpg.jpg",
+      "poster": "images/vinlandsaga.jpg",
       "description": "Vikings et vengeance de Thorfinn.",
       "genres": ["Action", "Drame", "Historique"],
+      "releaseYear": 2019,
+      "totalEpisodes": 48,
+      "studio": "Wit Studio",
       "seasons": [
         {
           "number": 1,
           "title": "Prologue",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Un enfant de guerre",
-              "duration": "24:00",
-              "videoUrl": "vinlandsaga-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Un enfant de guerre", "duration": "24:00", "videoUrl": "video/vinlandsaga-saison1-episode1.mp4"},
+            {"number": 2, "title": "Fugitive", "duration": "24:00", "videoUrl": "video/vinlandsaga-saison1-episode2.mp4"},
+            {"number": 3, "title": "Vengeance", "duration": "24:00", "videoUrl": "video/vinlandsaga-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -230,20 +224,20 @@
       "id": 11,
       "title": "Hunter x Hunter",
       "rating": 4.9,
-      "poster": "images/hxh.jpg.jpg",
+      "poster": "images/hxh.jpg",
       "description": "Gon part devenir Hunter pour retrouver son père.",
       "genres": ["Action", "Aventure"],
+      "releaseYear": 2011,
+      "totalEpisodes": 148,
+      "studio": "Madhouse",
       "seasons": [
         {
           "number": 1,
           "title": "Examen Hunter",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Départ",
-              "duration": "24:00",
-              "videoUrl": "video/hxh-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Départ", "duration": "24:00", "videoUrl": "video/hxh-saison1-episode1.mp4"},
+            {"number": 2, "title": "Rencontre", "duration": "24:00", "videoUrl": "video/hxh-saison1-episode2.mp4"},
+            {"number": 3, "title": "Décision", "duration": "24:00", "videoUrl": "video/hxh-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -255,17 +249,17 @@
       "poster": "images/fma.jpg",
       "description": "Deux frères cherchent la pierre philosophale.",
       "genres": ["Action", "Fantastique"],
+      "releaseYear": 2009,
+      "totalEpisodes": 64,
+      "studio": "Bones",
       "seasons": [
         {
           "number": 1,
           "title": "Alchimie",
           "episodes": [
-            {
-              "number": 1,
-              "title": "L'échange équivalent",
-              "duration": "24:00",
-              "videoUrl": "video/fma-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "L'échange équivalent", "duration": "24:00", "videoUrl": "video/fma-saison1-episode1.mp4"},
+            {"number": 2, "title": "Le Secret du Homunculus", "duration": "24:00", "videoUrl": "video/fma-saison1-episode2.mp4"},
+            {"number": 3, "title": "Un Autre Chemin", "duration": "24:00", "videoUrl": "video/fma-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -274,20 +268,20 @@
       "id": 13,
       "title": "Fairy Tail",
       "rating": 4.5,
-      "poster": "images/fairytail.jpg.jpg",
+      "poster": "images/fairytail.jpg",
       "description": "Lucy rejoint la guilde Fairy Tail.",
       "genres": ["Action", "Magie"],
+      "releaseYear": 2009,
+      "totalEpisodes": 328,
+      "studio": "A-1 Pictures",
       "seasons": [
         {
           "number": 1,
           "title": "Début",
           "episodes": [
-            {
-              "number": 1,
-              "title": "La guilde",
-              "duration": "24:00",
-              "videoUrl": "fairytail-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "La guilde", "duration": "24:00", "videoUrl": "video/fairytail-saison1-episode1.mp4"},
+            {"number": 2, "title": "Natsu", "duration": "24:00", "videoUrl": "video/fairytail-saison1-episode2.mp4"},
+            {"number": 3, "title": "Équipe", "duration": "24:00", "videoUrl": "video/fairytail-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -296,20 +290,20 @@
       "id": 14,
       "title": "Sword Art Online",
       "rating": 4.4,
-      "poster": "images/sao.jpg.jpg",
+      "poster": "images/sao.jpg",
       "description": "Des joueurs piégés dans un jeu virtuel.",
       "genres": ["Action", "Isekai"],
+      "releaseYear": 2012,
+      "totalEpisodes": 96,
+      "studio": "A-1 Pictures",
       "seasons": [
         {
           "number": 1,
           "title": "Aincrad",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Le début",
-              "duration": "24:00",
-              "videoUrl": "sao-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Le début", "duration": "24:00", "videoUrl": "video/sao-saison1-episode1.mp4"},
+            {"number": 2, "title": "Vivre", "duration": "24:00", "videoUrl": "video/sao-saison1-episode2.mp4"},
+            {"number": 3, "title": "Cordes Cramoisies", "duration": "24:00", "videoUrl": "video/sao-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -321,17 +315,17 @@
       "poster": "images/blackclover.jpg",
       "description": "Asta veut devenir Empereur-Mage.",
       "genres": ["Action", "Magie"],
+      "releaseYear": 2017,
+      "totalEpisodes": 170,
+      "studio": "Studio Pierrot",
       "seasons": [
         {
           "number": 1,
           "title": "Grimoire",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Asta et Yuno",
-              "duration": "24:00",
-              "videoUrl": "video/blackclover-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Asta et Yuno", "duration": "24:00", "videoUrl": "video/blackclover-saison1-episode1.mp4"},
+            {"number": 2, "title": "Le Grimoire Étrange", "duration": "24:00", "videoUrl": "video/blackclover-saison1-episode2.mp4"},
+            {"number": 3, "title": "Les Certificats", "duration": "24:00", "videoUrl": "video/blackclover-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -340,20 +334,20 @@
       "id": 16,
       "title": "Chainsaw Man",
       "rating": 4.6,
-      "poster": "images/chainsawman.jpg.jpg",
+      "poster": "images/chainsawman.jpg",
       "description": "Denji combat des démons avec une tronçonneuse.",
       "genres": ["Action", "Horreur"],
+      "releaseYear": 2022,
+      "totalEpisodes": 12,
+      "studio": "MAPPA",
       "seasons": [
         {
           "number": 1,
           "title": "Devils",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Dog & Chainsaw",
-              "duration": "24:00",
-              "videoUrl": "chainsawman-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Dog & Chainsaw", "duration": "24:00", "videoUrl": "video/chainsawman-saison1-episode1.mp4"},
+            {"number": 2, "title": "Combattant du diable", "duration": "24:00", "videoUrl": "video/chainsawman-saison1-episode2.mp4"},
+            {"number": 3, "title": "Tombeau", "duration": "24:00", "videoUrl": "video/chainsawman-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -362,20 +356,20 @@
       "id": 17,
       "title": "Spy x Family",
       "rating": 4.7,
-      "poster": "images/spyxfamily.jpg.png",
+      "poster": "images/spyxfamily.jpg",
       "description": "Une famille d'espion, assassin et télépathre.",
       "genres": ["Comédie", "Action"],
+      "releaseYear": 2022,
+      "totalEpisodes": 25,
+      "studio": "Wit Studio",
       "seasons": [
         {
           "number": 1,
           "title": "Mission",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Operation Strix",
-              "duration": "24:00",
-              "videoUrl": "spyxfamily-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Opération Strix", "duration": "24:00", "videoUrl": "video/spyxfamily-saison1-episode1.mp4"},
+            {"number": 2, "title": "Épée", "duration": "24:00", "videoUrl": "video/spyxfamily-saison1-episode2.mp4"},
+            {"number": 3, "title": "Accueil à Berlin", "duration": "24:00", "videoUrl": "video/spyxfamily-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -384,20 +378,20 @@
       "id": 18,
       "title": "Solo Leveling",
       "rating": 4.8,
-      "poster": "images/sololeveling.jpg.jpg",
+      "poster": "images/sololeveling.jpg",
       "description": "Un chasseur faible devient le plus puissant.",
       "genres": ["Action", "Fantastique"],
+      "releaseYear": 2024,
+      "totalEpisodes": 12,
+      "studio": "A-1 Pictures",
       "seasons": [
         {
           "number": 1,
           "title": "Awakening",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Dungeon",
-              "duration": "24:00",
-              "videoUrl": "sololeveling-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Donjon", "duration": "24:00", "videoUrl": "video/sololeveling-saison1-episode1.mp4"},
+            {"number": 2, "title": "Réveille-toi", "duration": "24:00", "videoUrl": "video/sololeveling-saison1-episode2.mp4"},
+            {"number": 3, "title": "Système", "duration": "24:00", "videoUrl": "video/sololeveling-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -406,20 +400,20 @@
       "id": 19,
       "title": "Blue Lock",
       "rating": 4.6,
-      "poster": "images/bluelock.jpg.jpg",
+      "poster": "images/bluelock.jpg",
       "description": "Un projet pour créer le meilleur attaquant.",
       "genres": ["Sport", "Football"],
+      "releaseYear": 2022,
+      "totalEpisodes": 25,
+      "studio": "8bit",
       "seasons": [
         {
           "number": 1,
           "title": "Projet Blue Lock",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Éveil",
-              "duration": "24:00",
-              "videoUrl": "video/bluelock-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Éveil", "duration": "24:00", "videoUrl": "video/bluelock-saison1-episode1.mp4"},
+            {"number": 2, "title": "Égoïsme", "duration": "24:00", "videoUrl": "video/bluelock-saison1-episode2.mp4"},
+            {"number": 3, "title": "Entraînement", "duration": "24:00", "videoUrl": "video/bluelock-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -428,20 +422,20 @@
       "id": 20,
       "title": "Haikyu!!",
       "rating": 4.7,
-      "poster": "images/haikyu.jpg.jpg",
+      "poster": "images/haikyu.jpg",
       "description": "Volley-ball et rivalités scolaires.",
       "genres": ["Sport"],
+      "releaseYear": 2014,
+      "totalEpisodes": 85,
+      "studio": "Production I.G",
       "seasons": [
         {
           "number": 1,
           "title": "Karasuno",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Le petit géant",
-              "duration": "24:00",
-              "videoUrl": "video/haikyu-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Le petit géant", "duration": "24:00", "videoUrl": "video/haikyu-saison1-episode1.mp4"},
+            {"number": 2, "title": "Entrée au Lycée", "duration": "24:00", "videoUrl": "video/haikyu-saison1-episode2.mp4"},
+            {"number": 3, "title": "Deux Kings", "duration": "24:00", "videoUrl": "video/haikyu-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -450,20 +444,20 @@
       "id": 21,
       "title": "Code Geass",
       "rating": 4.8,
-      "poster": "images/codegeass.jpg.jpg",
+      "poster": "images/codegeass.jpg",
       "description": "Un pouvoir pour contrôler les gens.",
       "genres": ["Mecha", "Stratégie"],
+      "releaseYear": 2006,
+      "totalEpisodes": 50,
+      "studio": "Sunrise",
       "seasons": [
         {
           "number": 1,
           "title": "Lelouch",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Le jour du Geass",
-              "duration": "24:00",
-              "videoUrl": "video/codegeass-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Le jour du Geass", "duration": "24:00", "videoUrl": "video/codegeass-saison1-episode1.mp4"},
+            {"number": 2, "title": "Le Pouvoir de Lelouch", "duration": "24:00", "videoUrl": "video/codegeass-saison1-episode2.mp4"},
+            {"number": 3, "title": "Révolte", "duration": "24:00", "videoUrl": "video/codegeass-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -472,20 +466,20 @@
       "id": 22,
       "title": "Steins;Gate",
       "rating": 4.8,
-      "poster": "images/steinsgate.jpg.jpg",
+      "poster": "images/steinsgate.jpg",
       "description": "Voyage dans le temps et paradoxes.",
       "genres": ["Science-fiction"],
+      "releaseYear": 2011,
+      "totalEpisodes": 24,
+      "studio": "White Fox",
       "seasons": [
         {
           "number": 1,
           "title": "Beta World",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Déviation",
-              "duration": "24:00",
-              "videoUrl": "video/steinsgate-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Déviation", "duration": "24:00", "videoUrl": "video/steinsgate-saison1-episode1.mp4"},
+            {"number": 2, "title": "Machine du Temps", "duration": "24:00", "videoUrl": "video/steinsgate-saison1-episode2.mp4"},
+            {"number": 3, "title": "Convergence", "duration": "24:00", "videoUrl": "video/steinsgate-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -497,17 +491,17 @@
       "poster": "images/drstone.jpg",
       "description": "Reconstruire la civilisation avec la science.",
       "genres": ["Science", "Aventure"],
+      "releaseYear": 2019,
+      "totalEpisodes": 25,
+      "studio": "TMS Entertainment",
       "seasons": [
         {
           "number": 1,
           "title": "Stone World",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Éveil",
-              "duration": "24:00",
-              "videoUrl": "video/drsone-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Éveil", "duration": "24:00", "videoUrl": "video/drstone-saison1-episode1.mp4"},
+            {"number": 2, "title": "Science", "duration": "24:00", "videoUrl": "video/drstone-saison1-episode2.mp4"},
+            {"number": 3, "title": "Renaissance", "duration": "24:00", "videoUrl": "video/drstone-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -519,17 +513,17 @@
       "poster": "images/sds.jpg",
       "description": "Chevaliers puissants et royaume en danger.",
       "genres": ["Action", "Fantastique"],
+      "releaseYear": 2014,
+      "totalEpisodes": 102,
+      "studio": "A-1 Pictures",
       "seasons": [
         {
           "number": 1,
           "title": "Lions",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Le départ",
-              "duration": "24:00",
-              "videoUrl": "video/sds-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Le départ", "duration": "24:00", "videoUrl": "video/sds-saison1-episode1.mp4"},
+            {"number": 2, "title": "Meliodas", "duration": "24:00", "videoUrl": "video/sds-saison1-episode2.mp4"},
+            {"number": 3, "title": "Poison", "duration": "24:00", "videoUrl": "video/sds-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -538,20 +532,20 @@
       "id": 25,
       "title": "Tokyo Revengers",
       "rating": 4.5,
-      "poster": "images/tokyorevengers.jpg.jpg",
+      "poster": "images/tokyorevengers.jpg",
       "description": "Voyage dans le passé pour sauver des vies.",
       "genres": ["Action", "Drame"],
+      "releaseYear": 2021,
+      "totalEpisodes": 24,
+      "studio": "Liden Films",
       "seasons": [
         {
           "number": 1,
           "title": "Tokyo Manji",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Retour",
-              "duration": "24:00",
-              "videoUrl": "video/tokyorevengers-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Retour", "duration": "24:00", "videoUrl": "video/tokyorevengers-saison1-episode1.mp4"},
+            {"number": 2, "title": "Présent", "duration": "24:00", "videoUrl": "video/tokyorevengers-saison1-episode2.mp4"},
+            {"number": 3, "title": "Destin", "duration": "24:00", "videoUrl": "video/tokyorevengers-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -563,17 +557,17 @@
       "poster": "images/parasyte.jpg",
       "description": "Un parasite contrôle la main d'un lycéen.",
       "genres": ["Horreur", "Science-fiction"],
+      "releaseYear": 2014,
+      "totalEpisodes": 24,
+      "studio": "Madhouse",
       "seasons": [
         {
           "number": 1,
           "title": "Invasion",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Contact",
-              "duration": "24:00",
-              "videoUrl": "video/parasyte-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Contact", "duration": "24:00", "videoUrl": "video/parasyte-saison1-episode1.mp4"},
+            {"number": 2, "title": "Migi", "duration": "24:00", "videoUrl": "video/parasyte-saison1-episode2.mp4"},
+            {"number": 3, "title": "Comprendre", "duration": "24:00", "videoUrl": "video/parasyte-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -585,17 +579,17 @@
       "poster": "images/erased.jpg",
       "description": "Retour dans le passé pour sauver des vies.",
       "genres": ["Mystère", "Drame"],
+      "releaseYear": 2016,
+      "totalEpisodes": 12,
+      "studio": "A-1 Pictures",
       "seasons": [
         {
           "number": 1,
           "title": "Revival",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Retour",
-              "duration": "24:00",
-              "videoUrl": "video/erased-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Retour", "duration": "24:00", "videoUrl": "video/erased-saison1-episode1.mp4"},
+            {"number": 2, "title": "Enfance", "duration": "24:00", "videoUrl": "video/erased-saison1-episode2.mp4"},
+            {"number": 3, "title": "Sauver", "duration": "24:00", "videoUrl": "video/erased-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -607,17 +601,17 @@
       "poster": "images/mb100.jpg",
       "description": "Un garçon aux pouvoirs psychiques énormes.",
       "genres": ["Action", "Comédie"],
+      "releaseYear": 2016,
+      "totalEpisodes": 25,
+      "studio": "Bones",
       "seasons": [
         {
           "number": 1,
           "title": "Mob",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Éveil",
-              "duration": "24:00",
-              "videoUrl": "video/mb100-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Éveil", "duration": "24:00", "videoUrl": "video/mb100-saison1-episode1.mp4"},
+            {"number": 2, "title": "Pouvoir", "duration": "24:00", "videoUrl": "video/mb100-saison1-episode2.mp4"},
+            {"number": 3, "title": "Contrôle", "duration": "24:00", "videoUrl": "video/mb100-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -629,17 +623,17 @@
       "poster": "images/nge.jpg",
       "description": "Mechas et apocalypse mystérieuse.",
       "genres": ["Mecha", "Drame"],
+      "releaseYear": 1995,
+      "totalEpisodes": 26,
+      "studio": "Gainax",
       "seasons": [
         {
           "number": 1,
           "title": "NERV",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Appel",
-              "duration": "24:00",
-              "videoUrl": "video/nge-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Appel", "duration": "24:00", "videoUrl": "video/nge-saison1-episode1.mp4"},
+            {"number": 2, "title": "Imago", "duration": "24:00", "videoUrl": "video/nge-saison1-episode2.mp4"},
+            {"number": 3, "title": "Transmission", "duration": "24:00", "videoUrl": "video/nge-saison1-episode3.mp4"}
           ]
         }
       ]
@@ -648,20 +642,20 @@
       "id": 30,
       "title": "Gintama",
       "rating": 4.8,
-      "poster": "images/gintama.jpg.jpg",
+      "poster": "images/gintama.jpg",
       "description": "Samouraïs et aliens dans un monde comique.",
       "genres": ["Comédie", "Action"],
+      "releaseYear": 2006,
+      "totalEpisodes": 367,
+      "studio": "Sunrise",
       "seasons": [
         {
           "number": 1,
           "title": "Edo",
           "episodes": [
-            {
-              "number": 1,
-              "title": "Début",
-              "duration": "24:00",
-              "videoUrl": "video/gintama-saison1-episode1.mp4"
-            }
+            {"number": 1, "title": "Début", "duration": "24:00", "videoUrl": "video/gintama-saison1-episode1.mp4"},
+            {"number": 2, "title": "Shinpachi", "duration": "24:00", "videoUrl": "video/gintama-saison1-episode2.mp4"},
+            {"number": 3, "title": "Kagura", "duration": "24:00", "videoUrl": "video/gintama-saison1-episode3.mp4"}
           ]
         }
       ]
