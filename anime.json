@@ -15,7 +15,7 @@
           "number": 1,
           "title": "Saison 1",
           "episodes": [
-            {"number": 1, "title": "Uzumaki Naruto", "duration": "24:00", "videoUrl": "https://archive.org/details/attaqueontitan-saison1-episode1.mp4"},
+            {"number": 1, "title": "Uzumaki Naruto", "duration": "24:00", "videoUrl": "video/attaqueontitan-saison1-episode1.mp4"},
             {"number": 2, "title": "Mon nom est Konohamaru", "duration": "24:00", "videoUrl": "video/naruto-saison1-episode2.mp4"},
             {"number": 3, "title": "Sasuke et Sakura", "duration": "24:00", "videoUrl": "video/naruto-saison1-episode3.mp4"}
           ]
