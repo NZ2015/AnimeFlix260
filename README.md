@@ -1,4 +1,4 @@
-# 🎬 AnimeFlix260 - Plateforme de Streaming d'Animes
+# 🎬 IrAnimeX - Plateforme de Streaming d'Animes
 
 Bienvenue sur **AnimeFlix260**, une plateforme moderne de streaming d'animes avec 30 animes populaires et des fonctionnalités avancées.
 
@@ -33,7 +33,7 @@ Bienvenue sur **AnimeFlix260**, une plateforme moderne de streaming d'animes ave
 ## 📁 Structure du Projet
 
 ```
-AnimeFlix260/
+IrAnimex/
 ├── index.html          # Page principale
 ├── details.html        # Page de détails des animes
 ├── categories.html     # Page des catégories
@@ -54,7 +54,7 @@ AnimeFlix260/
 ### 1. Cloner le Repository
 ```bash
 git clone https://github.com/NZ2015/AnimeFlix260.git
-cd AnimeFlix260
+cd IrAnimeX
 ```
 
 ### 2. Ajouter les Fichiers Vidéo
@@ -158,7 +158,7 @@ Pour activer GitHub Pages:
 2. Accédez à `Pages`
 3. Sélectionnez `main` comme branche source
 4. Sauvegardez
-5. Votre site sera accessible à: `https://NZ2015.github.io/AnimeFlix260`
+5. Votre site sera accessible à: `https://NZ2015.github.io/IrAnimeX`
 
 ## 📄 License
 
