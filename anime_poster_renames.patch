@@ -1,0 +1,29 @@
+*** Begin Patch: anime poster paths replacements ***
+*** Please review before applying. This patch updates poster paths only (no binary renames) ***
+
+*** Replace: "images/onepiece.jpg.jpg" -> "images/onepiece.jpg" ***
+*** Replace: "images/bleach.jpg.jpg" -> "images/bleach.jpg" ***
+*** Replace: "images/demonslayer.jpg.jpg" -> "images/demonslayer.jpg" ***
+*** Replace: "images/attackontitan.jpg.jpg" -> "images/attackontitan.jpg" ***
+*** Replace: "images/jujutsukaisen.jpg.jpg" -> "images/jujutsukaisen.jpg" ***
+*** Replace: "images/deathnote.jpg.jpg" -> "images/deathnote.jpg" ***
+*** Replace: "images/fairytail.jpg.jpg" -> "images/fairytail.jpg" ***
+*** Replace: "images/gintama.jpg.jpg" -> "images/gintama.jpg" ***
+*** Replace: "images/haikyu.jpg.jpg" -> "images/haikyu.jpg" ***
+*** Replace: "images/hxh.jpg.jpg" -> "images/hxh.jpg" ***
+*** Replace: "images/bluelock.jpg.jpg" -> "images/bluelock.jpg" ***
+*** Replace: "images/chainsawman.jpg.jpg" -> "images/chainsawman.jpg" ***
+*** Replace: "images/codegeass.jpg.jpg" -> "images/codegeass.jpg" ***
+*** Replace: "images/cyberpunk.jpg.jpg" -> "images/cyberpunk.jpg" ***
+*** Replace: "images/one-piece.jpg.jpg" -> "images/one-piece.jpg" ***
+*** Replace: "images/sololeveling.jpg.jpg" -> "images/sololeveling.jpg" ***
+*** Replace: "images/tokyorevengers.jpg.jpg" -> "images/tokyorevengers.jpg" ***
+*** Replace: "images/vinlandsaga.jpg.jpg" -> "images/vinlandsaga.jpg" ***
+*** Replace: "images/steintsgate.jpg.jpg" -> "images/steinsgate.jpg" ***
+*** Replace: "images/sao.jpg.jpg" -> "images/sao.jpg" ***
+*** Replace: "images/tokyoghould.jpg.jpg" -> "images/tokyoghoul.jpg" ***
+*** Replace: "images/onepiece.jpg.jpg" -> "images/onepiece.jpg" ***
+*** Replace: "images/spyxfamily.jpg.png" -> "images/spyxfamily.jpg" ***
+*** Replace: "images/naruto.jpg.png" -> "images/naruto.jpg" ***
+
+*** End Patch ***
