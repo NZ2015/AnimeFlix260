@@ -78,15 +78,21 @@ ul{
 }
 
 .logo img{
-    width:50px;
-    height:50px;
+    width:60px;
+    height:60px;
     object-fit:contain;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover{
+    transform: scale(1.05);
 }
 
 .logo span{
     font-size:30px;
     font-weight:bold;
 }
+
 /* MENU */
 
 .nav{
@@ -241,6 +247,7 @@ main{
 .hero{
     animation:fadeIn .8s ease;
 }
+
 /* =====================================
    IrAnimeX Premium V2
    Partie 2 : Cartes + Boutons + Pagination
@@ -596,6 +603,7 @@ main{
     animation:fadeIn .5s ease;
 
 }
+
 /* =====================================
    IrAnimeX Premium V2
    Partie 3 : Lecteur vidéo + Sidebar + Footer
@@ -900,6 +908,7 @@ main{
     font-size:15px;
 
 }
+
 /* =====================================
    IrAnimeX Premium V2
    Partie 4 : Responsive + Animations
@@ -999,253 +1008,228 @@ main{
 }
 
 /* ===========================
-   RESPONSIVE TABLETTE
+   RESPONSIVE
 =========================== */
 
-@media (max-width:992px){
+@media (max-width:1200px){
 
-.header{
+    .header-container{
+        width:90%;
+    }
 
-    height:auto;
+    main{
+        width:90%;
+    }
 
-}
-
-.header-container{
-
-    flex-direction:column;
-
-    gap:15px;
-
-    padding:20px;
+    .hero{
+        padding:120px 40px 60px;
+    }
 
 }
-
-.nav{
-
-    flex-wrap:wrap;
-
-    justify-content:center;
-
-}
-
-.hero{
-
-    padding:150px 40px 80px;
-
-}
-
-.hero h1{
-
-    font-size:48px;
-
-}
-
-.hero p{
-
-    font-size:20px;
-
-}
-
-.anime-grid,
-#animeList{
-
-    grid-template-columns:repeat(2,1fr);
-
-}
-
-.related-animes{
-
-    grid-template-columns:repeat(2,1fr);
-
-}
-
-}
-
-/* ===========================
-   RESPONSIVE MOBILE
-=========================== */
 
 @media (max-width:768px){
 
-.logo{
+    .header{
+        height:70px;
+    }
 
-    font-size:24px;
+    .header-container{
+        flex-wrap:wrap;
+    }
 
-}
+    .nav{
+        gap:20px;
+        font-size:15px;
+    }
 
-.logo i{
+    .logo img{
+        width:50px;
+        height:50px;
+    }
 
-    font-size:28px;
+    .logo span{
+        font-size:24px;
+    }
 
-}
+    .auth-buttons{
+        gap:10px;
+    }
 
-.hero{
+    .btn{
+        padding:10px 16px;
+        font-size:14px;
+    }
 
-    padding:140px 20px 60px;
+    .hero{
+        min-height:70vh;
+        padding:100px 40px 40px;
+    }
 
-    text-align:center;
+    .hero h1{
+        font-size:42px;
+    }
 
-}
+    .hero p{
+        font-size:18px;
+    }
 
-.hero h1{
+    .search-container{
+        width:100%;
+    }
 
-    font-size:34px;
+    .section-title{
+        font-size:28px;
+    }
 
-}
+    .anime-grid,
+    #animeList{
+        grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+        gap:20px;
+    }
 
-.hero p{
+    .anime-card img{
+        height:280px;
+    }
 
-    font-size:17px;
+    .anime-info{
+        padding:15px;
+    }
 
-}
+    .anime-info h3{
+        font-size:18px;
+    }
 
-.search-container{
+    .episode-info{
+        padding:20px;
+    }
 
-    flex-direction:column;
-
-    border-radius:15px;
-
-}
-
-.search-container input{
-
-    width:100%;
-    padding:15px;
-
-}
-
-.search-btn{
-
-    width:100%;
-    height:55px;
-
-}
-
-.anime-grid,
-#animeList{
-
-    grid-template-columns:1fr;
-
-}
-
-.controls{
-
-    flex-wrap:wrap;
-
-    gap:15px;
-
-}
-
-.controls button{
-
-    width:55px;
-    height:55px;
-
-}
-
-.card-buttons{
-
-    flex-direction:column;
+    .info-header h1{
+        font-size:28px;
+    }
 
 }
 
-.play-btn{
+@media (max-width:480px){
 
-    width:100%;
+    .header{
+        height:60px;
+    }
 
-}
+    .nav{
+        gap:15px;
+        font-size:13px;
+    }
 
-.favorite-btn{
+    .logo img{
+        width:40px;
+        height:40px;
+    }
 
-    width:100%;
+    .logo span{
+        font-size:18px;
+    }
 
-    border-radius:12px;
+    .btn{
+        padding:8px 12px;
+        font-size:12px;
+    }
 
-}
+    .hero{
+        min-height:60vh;
+        padding:80px 20px 30px;
+    }
 
-.related-animes{
+    .hero h1{
+        font-size:28px;
+    }
 
-    grid-template-columns:1fr;
+    .hero p{
+        font-size:14px;
+    }
 
-}
+    .search-container{
+        width:100%;
+    }
 
-.info-header h1{
+    .section-title{
+        font-size:22px;
+        margin-bottom:20px;
+    }
 
-    font-size:28px;
+    .anime-grid,
+    #animeList{
+        grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+        gap:15px;
+    }
 
-}
+    .anime-card img{
+        height:200px;
+    }
 
-}
+    .anime-info{
+        padding:12px;
+    }
 
-/* ===========================
-   GRAND ECRAN
-=========================== */
+    .anime-info h3{
+        font-size:15px;
+    }
 
-@media (min-width:1500px){
+    .anime-info p{
+        font-size:13px;
+    }
 
-.hero h1{
+    .card-buttons{
+        flex-direction:column;
+        gap:10px;
+    }
 
-    font-size:80px;
+    .play-btn{
+        width:100%;
+    }
 
-}
+    .favorite-btn{
+        width:40px;
+        height:40px;
+        font-size:18px;
+    }
 
-.hero p{
+    .controls button{
+        width:50px;
+        height:50px;
+        font-size:20px;
+    }
 
-    font-size:28px;
+    .pagination button{
+        width:45px;
+        height:45px;
+        font-size:18px;
+    }
 
-}
+    .info-header h1{
+        font-size:22px;
+    }
 
-.section-title{
+    .episode-title{
+        font-size:16px;
+    }
 
-    font-size:52px;
+    .episode-card{
+        flex-direction:column;
+        text-align:center;
+    }
 
-}
+    .related-animes{
+        grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
+        gap:15px;
+    }
 
-.anime-grid,
-#animeList{
+    .related-card img{
+        height:180px;
+    }
 
-    grid-template-columns:repeat(5,1fr);
+    .related-card h4{
+        font-size:14px;
+        padding:12px;
+    }
 
-}
-
-}
-
-/* ===========================
-   CORRECTIONS IMPORTANTES
-=========================== */
-
-/* Le bouton Regarder reste toujours cliquable */
-
-.play-btn{
-    position:relative;
-    z-index:100;
-    pointer-events:auto;
-}
-
-/* L'effet sombre ne bloque jamais les clics */
-
-.anime-card::after{
-    pointer-events:none;
-}
-
-/* Les images ne bloquent pas les boutons */
-
-.anime-card img{
-    pointer-events:none;
-}
-
-/* Les boutons restent au-dessus */
-
-.card-buttons{
-    position:relative;
-    z-index:101;
-}
-
-/* Évite le fond noir au clic */
-
-.play-btn:focus,
-.play-btn:active{
-    outline:none;
-    background:#ff0055;
-    color:#fff;
 }
