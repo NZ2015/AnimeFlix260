@@ -1,1235 +1,1882 @@
-/* =====================================
-   IrAnimeX Premium V2
-   Partie 1 : Base + Header + Hero
-===================================== */
+/* =========================================================
+IrAnimeX — Premium Style
+Version complète
+Compatible avec index.html et joueur.html
+========================================================= */
 
-/* RESET */
+/* =========================================================
+RESET
+========================================================= */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+html {
+scroll-behavior: smooth;
 }
 
-html{
-    scroll-behavior:smooth;
+body {
+background:
+radial-gradient(circle at 10% 10%, rgba(255, 0, 85, 0.08), transparent 30%),
+radial-gradient(circle at 90% 20%, rgba(0, 170, 255, 0.08), transparent 30%),
+#080b16;
+color: #ffffff;
+font-family: Arial, Helvetica, sans-serif;
+line-height: 1.5;
+overflow-x: hidden;
 }
 
-body{
-    background:#0b1020;
-    color:#fff;
-    font-family:Arial, Helvetica, sans-serif;
-    overflow-x:hidden;
-    line-height:1.5;
+a {
+color: inherit;
+text-decoration: none;
 }
 
-a{
-    color:inherit;
-    text-decoration:none;
+button,
+input {
+font-family: inherit;
 }
 
-img{
-    display:block;
-    max-width:100%;
-    user-select:none;
+button {
+cursor: pointer;
 }
 
-button{
-    cursor:pointer;
-    font-family:inherit;
+img {
+display: block;
+max-width: 100%;
+user-select: none;
 }
 
-ul{
-    list-style:none;
+ul {
+list-style: none;
 }
 
-/* HEADER */
+/* =========================================================
+SCROLLBAR
+========================================================= */
 
-.header{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:80px;
-    background:rgba(10,10,20,.96);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid rgba(255,255,255,.08);
-    z-index:1000;
+::-webkit-scrollbar {
+width: 9px;
 }
 
-.header-container{
-    width:95%;
-    height:100%;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+::-webkit-scrollbar-track {
+background: #080b16;
 }
 
-/* LOGO */
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-size:30px;
-    font-weight:bold;
-    color:#ff0055;
+::-webkit-scrollbar-thumb {
+background: linear-gradient(180deg, #ff0055, #7c00ff);
+border-radius: 20px;
 }
 
-.logo img{
-    width:60px;
-    height:60px;
-    object-fit:contain;
-    transition: transform 0.3s ease;
+::-webkit-scrollbar-thumb:hover {
+background: linear-gradient(180deg, #ff3377, #a133ff);
 }
 
-.logo img:hover{
-    transform: scale(1.05);
-}
+/* =========================================================
+HEADER
+========================================================= */
 
-.logo span{
-    font-size:30px;
-    font-weight:bold;
-}
+.header {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 80px;
 
-/* MENU */
+```
+background: rgba(7, 9, 18, 0.92);
+backdrop-filter: blur(18px);
+-webkit-backdrop-filter: blur(18px);
 
-.nav{
-    display:flex;
-    align-items:center;
-    gap:30px;
-}
+border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
-.nav a{
-    color:#fff;
-    transition:.3s;
-    font-size:17px;
-}
-
-.nav a:hover{
-    color:#ff0055;
-}
-
-/* BOUTONS */
-
-.auth-buttons{
-    display:flex;
-    gap:15px;
-}
-
-.btn{
-    padding:12px 24px;
-    border:none;
-    border-radius:30px;
-    transition:.3s;
-    font-size:16px;
-}
-
-.btn-primary{
-    background:#ff0055;
-    color:white;
-}
-
-.btn-primary:hover{
-    background:#ff3377;
-}
-
-.btn-secondary{
-    background:transparent;
-    color:white;
-    border:2px solid #ff0055;
-}
-
-.btn-secondary:hover{
-    background:#ff0055;
-}
-
-/* HERO */
-
-.hero{
-    min-height:90vh;
-    display:flex;
-    align-items:center;
-    padding:120px 80px 60px;
-
-    background:
-    linear-gradient(to right,
-    rgba(0,0,0,.88),
-    rgba(0,0,0,.35)),
-    url("images/naruto.jpg") center/cover no-repeat;
-}
-
-.hero-content{
-    max-width:700px;
-}
-
-.hero h1{
-    font-size:64px;
-    margin-bottom:20px;
-}
-
-.hero p{
-    color:#ddd;
-    font-size:22px;
-    margin-bottom:35px;
-}
-
-/* RECHERCHE */
-
-.search-container{
-    display:flex;
-    align-items:center;
-    width:650px;
-    max-width:100%;
-    background:white;
-    border-radius:40px;
-    overflow:hidden;
-}
-
-.search-container i{
-    color:#777;
-    padding:18px;
-    font-size:20px;
-}
-
-.search-container input{
-    flex:1;
-    border:none;
-    outline:none;
-    font-size:17px;
-}
-
-.search-btn{
-    border:none;
-    background:#ff0055;
-    color:white;
-    width:170px;
-    font-size:17px;
-    transition:.3s;
-}
-
-.search-btn:hover{
-    background:#ff3377;
-}
-
-/* MAIN */
-
-main{
-    width:95%;
-    margin:auto;
-    padding:60px 0;
-}
-
-.section-title{
-    font-size:40px;
-    margin-bottom:35px;
-    border-left:6px solid #ff0055;
-    padding-left:15px;
-}
-
-/* ANIMATION */
-
-@keyframes fadeIn{
-
-    from{
-        opacity:0;
-        transform:translateY(25px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+z-index: 1000;
+```
 
 }
 
-.hero{
-    animation:fadeIn .8s ease;
-}
+.header-container {
+width: 94%;
+max-width: 1500px;
+height: 100%;
+margin: auto;
 
-/* =====================================
-   IrAnimeX Premium V2
-   Partie 2 : Cartes + Boutons + Pagination
-===================================== */
-
-/* ===========================
-   GRILLE DES ANIMES
-=========================== */
-
-.anime-grid,
-#animeList{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-    gap:30px;
-}
-
-/* ===========================
-   CARTE
-=========================== */
-
-.anime-card{
-
-    position:relative;
-
-    background:#171c30;
-
-    border-radius:18px;
-
-    overflow:hidden;
-
-    box-shadow:0 12px 30px rgba(0,0,0,.35);
-
-    transition:.35s;
-
-    animation:fadeIn .6s ease;
+```
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 25px;
+```
 
 }
 
-.anime-card:hover{
+/* =========================================================
+LOGO
+========================================================= */
 
-    transform:translateY(-8px);
+.logo {
+display: flex;
+align-items: center;
+gap: 12px;
 
-    box-shadow:0 18px 40px rgba(255,0,85,.35);
+```
+color: #ffffff;
+font-size: 30px;
+font-weight: 800;
+white-space: nowrap;
+```
 
 }
 
-/* IMPORTANT :
-   le filtre sombre ne bloque plus les clics
-*/
+.logo img {
+width: 58px;
+height: 58px;
+object-fit: contain;
 
-.anime-card::after{
+```
+transition: 0.35s ease;
+filter: drop-shadow(0 0 12px rgba(255, 0, 85, 0.45));
+```
 
-    content:"";
+}
 
-    position:absolute;
+.logo img:hover {
+transform: scale(1.08) rotate(-3deg);
+}
 
-    inset:0;
+.logo span {
+font-size: 30px;
+font-weight: 800;
 
-    background:linear-gradient(
-        to top,
-        rgba(0,0,0,.65),
-        rgba(0,0,0,0)
+```
+background: linear-gradient(
+    90deg,
+    #ff0055,
+    #ff4d9d,
+    #8b5cff,
+    #00c8ff
+);
+
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+```
+
+}
+
+/* =========================================================
+NAVIGATION
+========================================================= */
+
+.nav {
+display: flex;
+align-items: center;
+gap: 28px;
+}
+
+.nav a {
+position: relative;
+
+```
+color: #dddddd;
+font-size: 16px;
+font-weight: 600;
+
+transition: 0.3s ease;
+```
+
+}
+
+.nav a::after {
+content: "";
+
+```
+position: absolute;
+left: 0;
+bottom: -8px;
+
+width: 0;
+height: 2px;
+
+background: linear-gradient(
+    90deg,
+    #ff0055,
+    #8b5cff
+);
+
+transition: 0.3s ease;
+```
+
+}
+
+.nav a:hover {
+color: #ffffff;
+}
+
+.nav a:hover::after {
+width: 100%;
+}
+
+/* =========================================================
+AUTH BUTTONS
+========================================================= */
+
+.auth-buttons {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.btn {
+border: none;
+border-radius: 30px;
+
+```
+padding: 11px 22px;
+
+font-size: 15px;
+font-weight: 700;
+
+transition: 0.3s ease;
+```
+
+}
+
+.btn-primary {
+background: linear-gradient(
+135deg,
+#ff0055,
+#ff3377,
+#8b00ff
+);
+
+```
+color: #ffffff;
+
+box-shadow:
+    0 8px 25px rgba(255, 0, 85, 0.25);
+```
+
+}
+
+.btn-primary:hover {
+transform: translateY(-2px);
+
+```
+box-shadow:
+    0 12px 35px rgba(255, 0, 85, 0.45);
+```
+
+}
+
+.btn-secondary {
+background: rgba(255, 255, 255, 0.03);
+
+```
+color: #ffffff;
+
+border: 1px solid rgba(255, 0, 85, 0.7);
+```
+
+}
+
+.btn-secondary:hover {
+background: #ff0055;
+
+```
+transform: translateY(-2px);
+
+box-shadow:
+    0 10px 25px rgba(255, 0, 85, 0.35);
+```
+
+}
+
+/* =========================================================
+HERO
+========================================================= */
+
+.hero {
+min-height: 92vh;
+
+```
+display: flex;
+align-items: center;
+
+padding: 130px 7% 70px;
+
+position: relative;
+
+background:
+    linear-gradient(
+        90deg,
+        rgba(3, 5, 12, 0.96) 0%,
+        rgba(3, 5, 12, 0.78) 42%,
+        rgba(3, 5, 12, 0.25) 100%
+    ),
+    url("images/naruto.jpg") center / cover no-repeat;
+
+animation: fadeIn 0.8s ease;
+```
+
+}
+
+.hero::before {
+content: "";
+
+```
+position: absolute;
+inset: 0;
+
+background:
+    linear-gradient(
+        180deg,
+        rgba(8, 11, 22, 0.2),
+        rgba(8, 11, 22, 0.9)
     );
 
-    opacity:0;
-
-    transition:.35s;
-
-    pointer-events:none;
+pointer-events: none;
+```
 
 }
 
-.anime-card:hover::after{
+.hero-content {
+position: relative;
+z-index: 2;
 
-    opacity:1;
-
-}
-
-/* ===========================
-   IMAGE
-=========================== */
-
-.anime-card img{
-
-    width:100%;
-
-    height:360px;
-
-    object-fit:cover;
-
-    transition:.35s;
+```
+max-width: 720px;
+```
 
 }
 
-.anime-card:hover img{
+.hero h1 {
+font-size: clamp(42px, 6vw, 72px);
+line-height: 1.05;
 
-    transform:scale(1.05);
+```
+margin-bottom: 22px;
 
-}
+font-weight: 900;
 
-/* ===========================
-   INFOS
-=========================== */
+background:
+    linear-gradient(
+        90deg,
+        #ffffff,
+        #ff4d91,
+        #8c5cff
+    );
 
-.anime-info{
-
-    position:relative;
-
-    z-index:2;
-
-    padding:18px;
-
-}
-
-.anime-info h3{
-
-    font-size:22px;
-
-    margin-bottom:12px;
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+```
 
 }
 
-.anime-info p{
+.hero p {
+color: #d8d8d8;
 
-    color:#cccccc;
+```
+font-size: clamp(16px, 2vw, 21px);
 
-    margin-bottom:10px;
+max-width: 650px;
 
-    line-height:1.5;
-
-}
-
-.rating{
-
-    color:#FFD700;
-
-    font-weight:bold;
+margin-bottom: 35px;
+```
 
 }
 
-.genre{
+/* =========================================================
+SEARCH
+========================================================= */
 
-    color:#80c7ff;
+.search-container {
+width: 650px;
+max-width: 100%;
 
-    font-size:15px;
+```
+min-height: 58px;
 
-}
+display: flex;
+align-items: center;
 
-/* ===========================
-   BOUTONS
-=========================== */
+background: rgba(255, 255, 255, 0.96);
 
-.card-buttons{
+border-radius: 40px;
 
-    display:flex;
+overflow: hidden;
 
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:15px;
-
-    margin-top:20px;
-
-}
-
-/* BOUTON REGARDER */
-
-.play-btn{
-
-    position:relative;
-
-    z-index:20;
-
-    flex:1;
-
-    text-align:center;
-
-    background:#ff0055;
-
-    color:#fff;
-
-    padding:12px;
-
-    border-radius:30px;
-
-    font-weight:bold;
-
-    transition:.3s;
-
-    pointer-events:auto;
+box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.35);
+```
 
 }
 
-.play-btn:hover{
+.search-container i {
+color: #777777;
 
-    background:#ff3377;
+```
+padding-left: 20px;
 
-    transform:translateY(-2px);
-
-}
-
-.play-btn:active{
-
-    transform:scale(.96);
+font-size: 20px;
+```
 
 }
 
-.play-btn:focus{
+.search-container input {
+flex: 1;
 
-    outline:none;
+```
+min-width: 0;
 
-}
+border: none;
+outline: none;
 
-/* FAVORI */
+background: transparent;
 
-.favorite-btn{
+color: #222222;
 
-    position:relative;
+padding: 0 15px;
 
-    z-index:20;
-
-    width:48px;
-
-    height:48px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#242942;
-
-    color:white;
-
-    font-size:22px;
-
-    transition:.3s;
+font-size: 16px;
+```
 
 }
 
-.favorite-btn:hover{
+.search-container input::placeholder {
+color: #888888;
+}
 
-    background:#ff0055;
+.search-btn {
+width: 150px;
+height: 58px;
 
-    transform:rotate(15deg);
+```
+border: none;
+
+background: linear-gradient(
+    135deg,
+    #ff0055,
+    #8b00ff
+);
+
+color: #ffffff;
+
+font-size: 16px;
+font-weight: 700;
+
+transition: 0.3s ease;
+```
 
 }
 
-/* ===========================
-   BADGES
-=========================== */
+.search-btn:hover {
+filter: brightness(1.15);
+}
 
-.badge-hd{
+/* =========================================================
+MAIN
+========================================================= */
 
-    position:absolute;
+main {
+width: 94%;
+max-width: 1500px;
 
-    top:12px;
+```
+margin: auto;
 
-    left:12px;
-
-    background:#00b894;
-
-    color:white;
-
-    padding:6px 10px;
-
-    border-radius:8px;
-
-    font-size:13px;
-
-    font-weight:bold;
-
-    z-index:30;
+padding: 70px 0;
+```
 
 }
 
-.badge-new{
+.section-title {
+position: relative;
 
-    position:absolute;
+```
+font-size: clamp(28px, 4vw, 40px);
 
-    top:12px;
+margin-bottom: 35px;
 
-    right:12px;
+padding-left: 18px;
 
-    background:#ff0055;
-
-    color:white;
-
-    padding:6px 10px;
-
-    border-radius:8px;
-
-    font-size:13px;
-
-    font-weight:bold;
-
-    z-index:30;
+font-weight: 800;
+```
 
 }
 
-/* ===========================
-   PAGINATION
-=========================== */
+.section-title::before {
+content: "";
 
-.pagination{
+```
+position: absolute;
 
-    display:flex;
+left: 0;
+top: 4px;
 
-    justify-content:center;
+width: 6px;
+height: calc(100% - 8px);
 
-    align-items:center;
+border-radius: 10px;
 
-    gap:20px;
+background:
+    linear-gradient(
+        180deg,
+        #ff0055,
+        #8b00ff,
+        #00c8ff
+    );
 
-    margin-top:50px;
-
-}
-
-.pagination button{
-
-    width:58px;
-
-    height:58px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#ff0055;
-
-    color:white;
-
-    font-size:22px;
-
-    transition:.3s;
+box-shadow:
+    0 0 15px rgba(255, 0, 85, 0.5);
+```
 
 }
 
-.pagination button:hover{
+/* =========================================================
+GRILLE DES ANIMES
+========================================================= */
 
-    transform:scale(1.1);
+.anime-grid,
+#animeList {
+display: grid;
 
-    background:#ff3377;
+```
+grid-template-columns:
+    repeat(auto-fill, minmax(245px, 1fr));
 
-}
-
-/* ===========================
-   LOADER
-=========================== */
-
-.loaded{
-
-    animation:fadeIn .5s ease;
-
-}
-
-/* =====================================
-   IrAnimeX Premium V2
-   Partie 3 : Lecteur vidéo + Sidebar + Footer
-===================================== */
-
-/* ===========================
-   LECTEUR VIDEO
-=========================== */
-
-.player-container{
-    display:flex;
-    flex-direction:column;
-    gap:30px;
-}
-
-.video-player{
-    position:relative;
-    width:100%;
-    background:#000;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 15px 40px rgba(0,0,0,.5);
-}
-
-.video-player video{
-    width:100%;
-    display:block;
-    background:#000;
-}
-
-/* CONTROLES */
-
-.controls{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:20px;
-    padding:20px;
-    background:#14192c;
-}
-
-.controls button{
-
-    width:60px;
-
-    height:60px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#ff0055;
-
-    color:white;
-
-    font-size:24px;
-
-    transition:.3s;
+gap: 28px;
+```
 
 }
 
-.controls button:hover{
+/* =========================================================
+CARTE ANIME
+========================================================= */
 
-    background:#ff3377;
+.anime-card {
+position: relative;
 
-    transform:scale(1.12);
+```
+background:
+    linear-gradient(
+        145deg,
+        #181d32,
+        #101426
+    );
 
-}
+border: 1px solid rgba(255, 255, 255, 0.06);
 
-/* ===========================
-   INFORMATIONS
-=========================== */
+border-radius: 20px;
 
-.episode-info{
+overflow: hidden;
 
-    background:#15192d;
+box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.3);
 
-    border-radius:20px;
+transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
 
-    padding:25px;
-
-}
-
-.info-header{
-
-    margin-bottom:20px;
-
-}
-
-.info-header h1{
-
-    font-size:36px;
-
-}
-
-.episode-title{
-
-    color:#ff0055;
-
-    margin-top:8px;
-
-    font-size:20px;
+animation: zoomIn 0.5s ease;
+```
 
 }
 
-.episode-description{
+.anime-card:hover {
+transform: translateY(-9px);
 
-    color:#d0d0d0;
+```
+border-color:
+    rgba(255, 0, 85, 0.35);
 
-    line-height:1.7;
-
-}
-
-/* ===========================
-   SAISONS
-=========================== */
-
-.seasons-container{
-
-    margin-top:20px;
+box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    0 0 25px rgba(255, 0, 85, 0.18);
+```
 
 }
 
-.seasons-list{
+/* Overlay */
 
-    display:flex;
+.anime-card::after {
+content: "";
 
-    flex-wrap:wrap;
+```
+position: absolute;
 
-    gap:15px;
+inset: 0;
 
-}
+background:
+    linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.72),
+        transparent 55%
+    );
 
-.seasons-list button{
+opacity: 0;
 
-    border:none;
+transition: 0.35s ease;
 
-    background:#232944;
+pointer-events: none;
 
-    color:white;
-
-    padding:12px 25px;
-
-    border-radius:30px;
-
-    transition:.3s;
-
-}
-
-.seasons-list button:hover{
-
-    background:#ff0055;
+z-index: 1;
+```
 
 }
 
-/* ===========================
-   EPISODES
-=========================== */
+.anime-card:hover::after {
+opacity: 1;
+}
 
-.episodes-container{
+/* =========================================================
+IMAGE
+========================================================= */
 
-    margin-top:30px;
+.anime-card img {
+width: 100%;
+height: 350px;
+
+```
+object-fit: cover;
+
+transition:
+    transform 0.5s ease,
+    filter 0.5s ease;
+```
 
 }
 
-.episodes-list{
+.anime-card:hover img {
+transform: scale(1.06);
 
-    display:grid;
-
-    gap:15px;
-
-}
-
-.episode-card{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    background:#171c30;
-
-    padding:18px;
-
-    border-radius:15px;
-
-    transition:.3s;
+```
+filter: brightness(1.08);
+```
 
 }
 
-.episode-card:hover{
+/* =========================================================
+INFOS
+========================================================= */
 
-    background:#232944;
+.anime-info {
+position: relative;
 
-    transform:translateX(5px);
+```
+z-index: 5;
 
-}
-
-.episode-card h4{
-
-    font-size:18px;
-
-}
-
-.episode-card span{
-
-    color:#bfbfbf;
+padding: 18px;
+```
 
 }
 
-/* ===========================
-   SIDEBAR
-=========================== */
+.anime-info h3 {
+color: #ffffff;
 
-.sidebar{
+```
+font-size: 21px;
 
-    margin-top:50px;
+margin-bottom: 10px;
 
-}
-
-.sidebar h2{
-
-    margin-bottom:25px;
-
-}
-
-.related-animes{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-
-    gap:20px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+```
 
 }
 
-.related-card{
+.anime-info p {
+color: #bfc3d2;
 
-    background:#171c30;
+```
+font-size: 14px;
 
-    border-radius:15px;
+margin-bottom: 10px;
 
-    overflow:hidden;
-
-    transition:.3s;
-
-}
-
-.related-card:hover{
-
-    transform:translateY(-6px);
+line-height: 1.55;
+```
 
 }
 
-.related-card img{
+.rating {
+color: #ffd700;
 
-    width:100%;
+```
+font-weight: 700;
 
-    height:250px;
-
-    object-fit:cover;
-
-}
-
-.related-card h4{
-
-    padding:15px;
-
-    font-size:17px;
+margin-bottom: 5px;
+```
 
 }
 
-/* ===========================
-   FOOTER
-=========================== */
+.genre {
+color: #78c8ff;
 
-.footer{
-
-    margin-top:80px;
-
-    background:#111629;
-
-    padding:50px 0 20px;
+```
+font-size: 14px;
+```
 
 }
 
-.footer-content{
+/* =========================================================
+BOUTONS DES CARTES
+========================================================= */
 
-    width:90%;
+.card-buttons {
+display: flex;
 
-    margin:auto;
+```
+align-items: center;
 
-    text-align:center;
+gap: 12px;
+
+margin-top: 18px;
+```
 
 }
 
-.footer-content p{
+/* Bouton regarder */
 
-    color:#bfbfbf;
+.play-btn {
+position: relative;
 
-    font-size:15px;
+```
+z-index: 20;
+
+flex: 1;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+min-height: 46px;
+
+padding: 10px 16px;
+
+border-radius: 30px;
+
+background:
+    linear-gradient(
+        135deg,
+        #ff0055,
+        #ff3377,
+        #8b00ff
+    );
+
+color: #ffffff;
+
+font-weight: 700;
+
+border: none;
+
+pointer-events: auto;
+
+transition: 0.3s ease;
+
+box-shadow:
+    0 8px 20px rgba(255, 0, 85, 0.25);
+```
 
 }
 
-/* =====================================
-   IrAnimeX Premium V2
-   Partie 4 : Responsive + Animations
-===================================== */
+.play-btn:hover {
+transform: translateY(-3px);
 
-/* ===========================
-   SCROLLBAR
-=========================== */
+```
+box-shadow:
+    0 12px 30px rgba(255, 0, 85, 0.45);
+```
 
-::-webkit-scrollbar{
-    width:10px;
 }
 
-::-webkit-scrollbar-track{
-    background:#0b1020;
+.play-btn:active {
+transform: scale(0.96);
 }
 
-::-webkit-scrollbar-thumb{
-    background:#ff0055;
-    border-radius:20px;
+/* =========================================================
+FAVORIS
+========================================================= */
+
+.favorite-btn {
+position: relative;
+
+```
+z-index: 20;
+
+flex-shrink: 0;
+
+width: 46px;
+height: 46px;
+
+border: 1px solid rgba(255, 255, 255, 0.08);
+
+border-radius: 50%;
+
+background: #242a43;
+
+color: #ffffff;
+
+font-size: 20px;
+
+transition: 0.3s ease;
+```
+
 }
 
-::-webkit-scrollbar-thumb:hover{
-    background:#ff3377;
+.favorite-btn:hover {
+background: #ff0055;
+
+```
+transform: scale(1.08);
+
+box-shadow:
+    0 0 20px rgba(255, 0, 85, 0.4);
+```
+
 }
 
-/* ===========================
-   BOUTON RETOUR EN HAUT
-=========================== */
+/* =========================================================
+BADGES
+========================================================= */
 
-#topBtn{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    width:55px;
-    height:55px;
-    border:none;
-    border-radius:50%;
-    background:#ff0055;
-    color:#fff;
-    font-size:22px;
-    display:none;
-    z-index:9999;
-    transition:.3s;
+.badge-hd,
+.badge-new {
+position: absolute;
+
+```
+top: 12px;
+
+padding: 6px 10px;
+
+border-radius: 8px;
+
+color: #ffffff;
+
+font-size: 12px;
+
+font-weight: 800;
+
+z-index: 30;
+
+box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.3);
+```
+
 }
 
-#topBtn:hover{
-    background:#ff3377;
-    transform:scale(1.1);
+.badge-hd {
+left: 12px;
+
+```
+background:
+    linear-gradient(
+        135deg,
+        #00b894,
+        #00cec9
+    );
+```
+
 }
 
-/* ===========================
-   ANIMATIONS
-=========================== */
+.badge-new {
+right: 12px;
 
-@keyframes zoomIn{
+```
+background:
+    linear-gradient(
+        135deg,
+        #ff0055,
+        #8b00ff
+    );
+```
 
-    from{
-        opacity:0;
-        transform:scale(.9);
-    }
+}
 
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
+/* =========================================================
+PAGINATION
+========================================================= */
+
+.pagination {
+display: flex;
+
+```
+justify-content: center;
+align-items: center;
+
+gap: 16px;
+
+margin-top: 55px;
+```
+
+}
+
+.pagination button {
+width: 52px;
+height: 52px;
+
+```
+border: none;
+
+border-radius: 50%;
+
+background:
+    linear-gradient(
+        135deg,
+        #ff0055,
+        #8b00ff
+    );
+
+color: #ffffff;
+
+font-size: 20px;
+font-weight: 700;
+
+transition: 0.3s ease;
+```
+
+}
+
+.pagination button:hover {
+transform: translateY(-3px) scale(1.06);
+
+```
+box-shadow:
+    0 10px 25px rgba(255, 0, 85, 0.35);
+```
+
+}
+
+/* =========================================================
+LOADING
+========================================================= */
+
+.loaded {
+animation: fadeIn 0.5s ease;
+}
+
+/* =========================================================
+LECTEUR VIDEO
+========================================================= */
+
+.player-container {
+display: flex;
+
+```
+flex-direction: column;
+
+gap: 28px;
+```
+
+}
+
+.video-player {
+position: relative;
+
+```
+width: 100%;
+
+background: #000000;
+
+border-radius: 20px;
+
+overflow: hidden;
+
+box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.55);
+```
+
+}
+
+.video-player video {
+width: 100%;
+
+```
+min-height: 300px;
+
+display: block;
+
+background: #000000;
+```
+
+}
+
+/* =========================================================
+CONTROLES VIDEO
+========================================================= */
+
+.controls {
+display: flex;
+
+```
+justify-content: center;
+align-items: center;
+
+gap: 18px;
+
+padding: 18px;
+
+background:
+    linear-gradient(
+        180deg,
+        #171c31,
+        #101426
+    );
+```
+
+}
+
+.controls button {
+width: 54px;
+height: 54px;
+
+```
+border: none;
+
+border-radius: 50%;
+
+background:
+    linear-gradient(
+        135deg,
+        #ff0055,
+        #8b00ff
+    );
+
+color: #ffffff;
+
+font-size: 21px;
+
+transition: 0.3s ease;
+```
+
+}
+
+.controls button:hover {
+transform: scale(1.1);
+
+```
+box-shadow:
+    0 0 25px rgba(255, 0, 85, 0.4);
+```
+
+}
+
+/* =========================================================
+INFORMATIONS EPISODE
+========================================================= */
+
+.episode-info {
+background:
+linear-gradient(
+145deg,
+#171c30,
+#101426
+);
+
+```
+border: 1px solid rgba(255, 255, 255, 0.05);
+
+border-radius: 20px;
+
+padding: 28px;
+
+box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.25);
+```
+
+}
+
+.info-header {
+margin-bottom: 20px;
+}
+
+.info-header h1 {
+font-size: clamp(26px, 4vw, 38px);
+
+```
+margin-bottom: 5px;
+```
+
+}
+
+.episode-title {
+color: #ff3377;
+
+```
+margin-top: 8px;
+
+font-size: 19px;
+
+font-weight: 700;
+```
+
+}
+
+.episode-description {
+color: #c9ccda;
+
+```
+line-height: 1.75;
+```
+
+}
+
+/* =========================================================
+SAISONS
+========================================================= */
+
+.seasons-container {
+margin-top: 25px;
+}
+
+.seasons-list {
+display: flex;
+
+```
+flex-wrap: wrap;
+
+gap: 12px;
+```
+
+}
+
+.seasons-list button {
+border: 1px solid rgba(255, 255, 255, 0.08);
+
+```
+background: #232944;
+
+color: #ffffff;
+
+padding: 11px 22px;
+
+border-radius: 30px;
+
+transition: 0.3s ease;
+```
+
+}
+
+.seasons-list button:hover,
+.seasons-list button.active {
+background:
+linear-gradient(
+135deg,
+#ff0055,
+#8b00ff
+);
+
+```
+transform: translateY(-2px);
+```
+
+}
+
+/* =========================================================
+EPISODES
+========================================================= */
+
+.episodes-container {
+margin-top: 30px;
+}
+
+.episodes-list {
+display: grid;
+
+```
+gap: 13px;
+```
+
+}
+
+.episode-card {
+display: flex;
+
+```
+justify-content: space-between;
+align-items: center;
+
+gap: 20px;
+
+background:
+    linear-gradient(
+        145deg,
+        #171c30,
+        #12172a
+    );
+
+border: 1px solid rgba(255, 255, 255, 0.05);
+
+padding: 17px 20px;
+
+border-radius: 15px;
+
+transition: 0.3s ease;
+```
+
+}
+
+.episode-card:hover {
+background: #242a43;
+
+```
+transform: translateX(5px);
+
+border-color:
+    rgba(255, 0, 85, 0.3);
+```
+
+}
+
+.episode-card h4 {
+font-size: 17px;
+}
+
+.episode-card span {
+color: #aaaec0;
+
+```
+white-space: nowrap;
+```
+
+}
+
+/* =========================================================
+SIDEBAR / ANIMES SIMILAIRES
+========================================================= */
+
+.sidebar {
+margin-top: 50px;
+}
+
+.sidebar h2 {
+margin-bottom: 25px;
+
+```
+font-size: 28px;
+```
+
+}
+
+.related-animes {
+display: grid;
+
+```
+grid-template-columns:
+    repeat(auto-fill, minmax(175px, 1fr));
+
+gap: 20px;
+```
+
+}
+
+.related-card {
+background:
+linear-gradient(
+145deg,
+#171c30,
+#101426
+);
+
+```
+border-radius: 16px;
+
+overflow: hidden;
+
+transition: 0.3s ease;
+
+border: 1px solid rgba(255, 255, 255, 0.05);
+```
+
+}
+
+.related-card:hover {
+transform: translateY(-7px);
+
+```
+box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.35);
+```
+
+}
+
+.related-card img {
+width: 100%;
+
+```
+height: 245px;
+
+object-fit: cover;
+```
+
+}
+
+.related-card h4 {
+padding: 14px;
+
+```
+font-size: 16px;
+```
+
+}
+
+/* =========================================================
+FOOTER
+========================================================= */
+
+.footer {
+margin-top: 80px;
+
+```
+background:
+    linear-gradient(
+        180deg,
+        #101426,
+        #080b16
+    );
+
+border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+padding: 55px 0 25px;
+```
+
+}
+
+.footer-content {
+width: 90%;
+max-width: 1200px;
+
+```
+margin: auto;
+
+text-align: center;
+```
+
+}
+
+.footer-content p {
+color: #9da2b5;
+
+```
+font-size: 14px;
+```
+
+}
+
+/* =========================================================
+BOUTON RETOUR EN HAUT
+========================================================= */
+
+#topBtn {
+position: fixed;
+
+```
+right: 24px;
+bottom: 24px;
+
+width: 52px;
+height: 52px;
+
+border: none;
+
+border-radius: 50%;
+
+background:
+    linear-gradient(
+        135deg,
+        #ff0055,
+        #8b00ff
+    );
+
+color: #ffffff;
+
+font-size: 20px;
+
+display: none;
+
+z-index: 9999;
+
+transition: 0.3s ease;
+
+box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.35);
+```
+
+}
+
+#topBtn:hover {
+transform: scale(1.1);
+
+```
+box-shadow:
+    0 0 25px rgba(255, 0, 85, 0.45);
+```
+
+}
+
+/* =========================================================
+ANIMATIONS
+========================================================= */
+
+@keyframes fadeIn {
+from {
+opacity: 0;
+transform: translateY(25px);
+}
+
+```
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+```
+
+}
+
+@keyframes zoomIn {
+from {
+opacity: 0;
+transform: scale(0.94);
+}
+
+```
+to {
+    opacity: 1;
+    transform: scale(1);
+}
+```
 
 }
 
 .anime-card,
 .related-card,
 .video-player,
-.episode-card{
-    animation:zoomIn .5s ease;
+.episode-card {
+animation: zoomIn 0.5s ease;
 }
 
-/* ===========================
-   EFFETS
-=========================== */
+/* =========================================================
+ACCESSIBILITÉ / FOCUS
+========================================================= */
 
-.play-btn,
-.favorite-btn,
-.controls button,
-.pagination button,
-.btn{
-    transition:.3s ease;
-}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+outline: 2px solid #ff3377;
 
-.play-btn:hover,
-.favorite-btn:hover,
-.controls button:hover,
-.pagination button:hover,
-.btn:hover{
-
-    box-shadow:0 0 20px rgba(255,0,85,.45);
+```
+outline-offset: 3px;
+```
 
 }
 
-/* ===========================
-   RESPONSIVE
-=========================== */
+/* =========================================================
+TABLETTE
+========================================================= */
 
-@media (max-width:1200px){
+@media (max-width: 1200px) {
 
-    .header-container{
-        width:90%;
-    }
+```
+.header-container {
+    width: 92%;
+}
 
-    main{
-        width:90%;
-    }
+main {
+    width: 92%;
+}
 
-    .hero{
-        padding:120px 40px 60px;
-    }
+.hero {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.anime-grid,
+#animeList {
+    grid-template-columns:
+        repeat(auto-fill, minmax(220px, 1fr));
+
+    gap: 22px;
+}
+```
 
 }
 
-@media (max-width:768px){
+/* =========================================================
+MOBILE
+========================================================= */
 
-    .header{
-        height:70px;
-    }
+@media (max-width: 768px) {
 
-    .header-container{
-        flex-wrap:wrap;
-    }
+```
+.header {
+    height: 70px;
+}
 
-    .nav{
-        gap:20px;
-        font-size:15px;
-    }
+.header-container {
+    width: 94%;
 
-    .logo img{
-        width:50px;
-        height:50px;
-    }
+    gap: 12px;
+}
 
-    .logo span{
-        font-size:24px;
-    }
+.logo {
+    gap: 7px;
+}
 
-    .auth-buttons{
-        gap:10px;
-    }
+.logo img {
+    width: 48px;
+    height: 48px;
+}
 
-    .btn{
-        padding:10px 16px;
-        font-size:14px;
-    }
+.logo span {
+    font-size: 23px;
+}
 
-    .hero{
-        min-height:70vh;
-        padding:100px 40px 40px;
-    }
+.nav {
+    gap: 15px;
+}
 
-    .hero h1{
-        font-size:42px;
-    }
+.nav a {
+    font-size: 14px;
+}
 
-    .hero p{
-        font-size:18px;
-    }
+.auth-buttons {
+    gap: 7px;
+}
 
-    .search-container{
-        width:100%;
-    }
+.btn {
+    padding: 9px 13px;
 
-    .section-title{
-        font-size:28px;
-    }
+    font-size: 13px;
+}
 
-    .anime-grid,
-    #animeList{
-        grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-        gap:20px;
-    }
+.hero {
+    min-height: 75vh;
 
-    .anime-card img{
-        height:280px;
-    }
+    padding:
+        105px 25px
+        45px;
+}
 
-    .anime-info{
-        padding:15px;
-    }
+.hero h1 {
+    font-size: 43px;
+}
 
-    .anime-info h3{
-        font-size:18px;
-    }
+.hero p {
+    font-size: 17px;
+}
 
-    .episode-info{
-        padding:20px;
-    }
+.search-container {
+    min-height: 52px;
+}
 
-    .info-header h1{
-        font-size:28px;
-    }
+.search-btn {
+    width: 110px;
+
+    height: 52px;
+
+    font-size: 14px;
+}
+
+main {
+    width: 92%;
+
+    padding: 50px 0;
+}
+
+.anime-grid,
+#animeList {
+    grid-template-columns:
+        repeat(auto-fill, minmax(190px, 1fr));
+
+    gap: 18px;
+}
+
+.anime-card img {
+    height: 275px;
+}
+
+.anime-info {
+    padding: 14px;
+}
+
+.anime-info h3 {
+    font-size: 18px;
+}
+
+.episode-info {
+    padding: 20px;
+}
+```
 
 }
 
-@media (max-width:480px){
+/* =========================================================
+PETITS TÉLÉPHONES
+========================================================= */
 
-    .header{
-        height:60px;
-    }
+@media (max-width: 480px) {
 
-    .nav{
-        gap:15px;
-        font-size:13px;
-    }
+```
+.header {
+    height: 62px;
+}
 
-    .logo img{
-        width:40px;
-        height:40px;
-    }
+.header-container {
+    width: 95%;
 
-    .logo span{
-        font-size:18px;
-    }
+    gap: 8px;
+}
 
-    .btn{
-        padding:8px 12px;
-        font-size:12px;
-    }
+.logo img {
+    width: 39px;
+    height: 39px;
+}
 
-    .hero{
-        min-height:60vh;
-        padding:80px 20px 30px;
-    }
+.logo span {
+    font-size: 18px;
+}
 
-    .hero h1{
-        font-size:28px;
-    }
+.nav {
+    gap: 10px;
+}
 
-    .hero p{
-        font-size:14px;
-    }
+.nav a {
+    font-size: 12px;
+}
 
-    .search-container{
-        width:100%;
-    }
+.auth-buttons {
+    display: none;
+}
 
-    .section-title{
-        font-size:22px;
-        margin-bottom:20px;
-    }
+.hero {
+    min-height: 68vh;
 
-    .anime-grid,
-    #animeList{
-        grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-        gap:15px;
-    }
+    padding:
+        85px 18px
+        30px;
+}
 
-    .anime-card img{
-        height:200px;
-    }
+.hero h1 {
+    font-size: 31px;
+}
 
-    .anime-info{
-        padding:12px;
-    }
+.hero p {
+    font-size: 14px;
 
-    .anime-info h3{
-        font-size:15px;
-    }
+    margin-bottom: 24px;
+}
 
-    .anime-info p{
-        font-size:13px;
-    }
+.search-container {
+    border-radius: 28px;
+}
 
-    .card-buttons{
-        flex-direction:column;
-        gap:10px;
-    }
+.search-container i {
+    padding-left: 13px;
 
-    .play-btn{
-        width:100%;
-    }
+    font-size: 16px;
+}
 
-    .favorite-btn{
-        width:40px;
-        height:40px;
-        font-size:18px;
-    }
+.search-container input {
+    font-size: 13px;
 
-    .controls button{
-        width:50px;
-        height:50px;
-        font-size:20px;
-    }
+    padding: 0 8px;
+}
 
-    .pagination button{
-        width:45px;
-        height:45px;
-        font-size:18px;
-    }
+.search-btn {
+    width: 85px;
 
-    .info-header h1{
-        font-size:22px;
-    }
+    font-size: 12px;
+}
 
-    .episode-title{
-        font-size:16px;
-    }
+main {
+    width: 92%;
+}
 
-    .episode-card{
-        flex-direction:column;
-        text-align:center;
-    }
+.section-title {
+    font-size: 23px;
 
-    .related-animes{
-        grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
-        gap:15px;
-    }
+    margin-bottom: 22px;
+}
 
-    .related-card img{
-        height:180px;
-    }
+.anime-grid,
+#animeList {
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
-    .related-card h4{
-        font-size:14px;
-        padding:12px;
-    }
+    gap: 13px;
+}
+
+.anime-card {
+    border-radius: 14px;
+}
+
+.anime-card img {
+    height: 210px;
+}
+
+.anime-info {
+    padding: 11px;
+}
+
+.anime-info h3 {
+    font-size: 15px;
+
+    margin-bottom: 7px;
+}
+
+.anime-info p {
+    font-size: 12px;
+}
+
+.rating,
+.genre {
+    font-size: 12px;
+}
+
+.card-buttons {
+    margin-top: 13px;
+
+    gap: 7px;
+}
+
+.play-btn {
+    min-height: 40px;
+
+    padding: 8px;
+
+    font-size: 12px;
+}
+
+.favorite-btn {
+    width: 39px;
+    height: 39px;
+
+    font-size: 17px;
+}
+
+.badge-hd,
+.badge-new {
+    top: 8px;
+
+    padding: 4px 7px;
+
+    font-size: 10px;
+}
+
+.pagination {
+    gap: 10px;
+
+    margin-top: 35px;
+}
+
+.pagination button {
+    width: 43px;
+    height: 43px;
+
+    font-size: 17px;
+}
+
+.controls {
+    gap: 10px;
+
+    padding: 13px;
+}
+
+.controls button {
+    width: 45px;
+    height: 45px;
+
+    font-size: 17px;
+}
+
+.episode-info {
+    padding: 16px;
+
+    border-radius: 15px;
+}
+
+.info-header h1 {
+    font-size: 23px;
+}
+
+.episode-title {
+    font-size: 16px;
+}
+
+.episode-description {
+    font-size: 14px;
+}
+
+.episode-card {
+    flex-direction: column;
+
+    text-align: center;
+
+    gap: 8px;
+
+    padding: 14px;
+}
+
+.related-animes {
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+.related-card img {
+    height: 185px;
+}
+
+.related-card h4 {
+    font-size: 13px;
+
+    padding: 10px;
+}
+
+#topBtn {
+    right: 15px;
+    bottom: 15px;
+
+    width: 45px;
+    height: 45px;
+
+    font-size: 17px;
+}
+```
+
+}
+
+/* =========================================================
+TRÈS PETITS ÉCRANS
+========================================================= */
+
+@media (max-width: 350px) {
+
+```
+.nav a {
+    font-size: 11px;
+}
+
+.logo span {
+    font-size: 16px;
+}
+
+.anime-card img {
+    height: 185px;
+}
+
+.anime-info h3 {
+    font-size: 13px;
+}
+
+.play-btn {
+    font-size: 11px;
+}
+```
 
 }
