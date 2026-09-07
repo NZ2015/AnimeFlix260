@@ -1,1012 +1,169 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IrAnimeX</title>
 
-    <!-- CSS PRINCIPAL -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- FONT AWESOME -->
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-
 <body>
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
 
 <header class="header">
 
     <div class="header-container">
 
-
-        <!-- LOGO -->
-
-        <a href="index.html" class="logo">
-
-            <img
-                src="images/logo.png"
-                alt="IrAnimeX">
-
-            <span>IrAnimeX</span>
-
-        </a>
-
-
-        <!-- NAVIGATION -->
-
+       <div class="logo">
+          <img src="images/logo.png" alt="IrAnimeX Logo.png">
+          <span>IrAnimeX</span>
+        </div>
         <nav class="nav">
-
-            <a href="index.html"
-               class="nav-link active">
-
-                Accueil
-
-            </a>
-
-            <a href="#catalogue"
-               class="nav-link">
-
-                Catalogue
-
-            </a>
-
-            <a href="#top-rated"
-               class="nav-link">
-
-                Top Rated
-
-            </a>
-
-            <a href="#favoris"
-               class="nav-link">
-
-                Favoris
-
-            </a>
-
+            <a href="#" class="nav-link active">Accueil</a>
+            <a href="#" class="nav-link">Catalogue</a>
+            <a href="#" class="nav-link">Top Rated</a>
+            <a href="#" class="nav-link">Favoris</a>
         </nav>
 
-
-        <!-- AUTH -->
-
         <div class="auth-buttons">
-
-            <button
-                class="btn btn-secondary">
-
-                Connexion
-
-            </button>
-
-            <button
-                class="btn btn-primary">
-
-                S'inscrire
-
-            </button>
-
+            <button class="btn btn-secondary">Connexion</button>
+            <button class="btn btn-primary">S'inscrire</button>
         </div>
-
 
     </div>
 
 </header>
 
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
 <section class="hero">
 
     <div class="hero-content">
 
+        <h1>Bienvenue sur IrAnimeX</h1>
 
-        <h1>
-            Bienvenue sur IrAnimeX
-        </h1>
-
-
-        <p>
-            Découvrez des milliers d'animes en streaming HD.
-        </p>
-
-
-        <!-- RECHERCHE -->
+        <p>Découvrez des milliers d'animes en streaming HD.</p>
 
         <div class="search-bar">
 
             <div class="search-container">
 
-
                 <i class="fas fa-search"></i>
-
 
                 <input
                     id="searchInput"
                     type="text"
-                    placeholder="Rechercher un anime...">
+                    placeholder="Rechercher un anime..."
+                >
 
-
-                <button
-                    class="search-btn"
-                    type="button">
-
+                <button class="search-btn">
                     Rechercher
-
                 </button>
-
 
             </div>
 
         </div>
 
-
     </div>
 
 </section>
-
-
-
-<!-- =====================================================
-     CONTENU PRINCIPAL
-===================================================== -->
 
 <main>
-
-
-<!-- =====================================================
-     REPRENEZ VOTRE VISIONNAGE
-===================================================== -->
-
-<section class="watch-section">
-
-
-    <div class="section-heading">
-
-
-        <div class="heading-title">
-
-            <i class="fas fa-clock"></i>
-
-            <h2>
-                Reprenez votre visionnage
-            </h2>
-
-        </div>
-
-
-        <div class="heading-line"></div>
-
-
-        <div class="slider-buttons">
-
-            <button
-                type="button"
-                onclick="scrollSlider('continueSlider', -1)">
-
-                <i class="fas fa-arrow-left"></i>
-
-            </button>
-
-
-            <button
-                type="button"
-                onclick="scrollSlider('continueSlider', 1)">
-
-                <i class="fas fa-arrow-right"></i>
-
-            </button>
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- CARROUSEL -->
-
-    <div class="anime-slider-container">
-
-        <div
-            id="continueSlider"
-            class="anime-slider">
-
-
-            <!-- =================================================
-                 CARTE 1
-            ================================================== -->
-
-            <article class="watch-card">
-
-
-                <div class="watch-image">
-
-
-                    <img
-                        src="images/shangrilafrontier.jpg"
-                        alt="Shangri-La Frontier">
-
-
-                    <span class="anime-type">
-                        Anime
-                    </span>
-
-
-                    <span class="language">
-                        🇫🇷
-                    </span>
-
-
-                    <button
-                        class="remove-card"
-                        type="button"
-                        onclick="removeWatchCard(this)">
-
-                        ×
-
-                    </button>
-
-
-                </div>
-
-
-
-                <div class="watch-content">
-
-
-                    <h3>
-                        Shangri-La Frontier
-                    </h3>
-
-
-                    <div class="watch-separator"></div>
-
-
-                    <button
-                        class="episode-btn"
-                        type="button"
-                        onclick="openPlayer('shangri-la-frontier', 1, 1)">
-
-                        <i class="fas fa-tv"></i>
-
-                        Saison 1 Episode 1
-
-                    </button>
-
-
-                </div>
-
-
-            </article>
-
-
-
-            <!-- =================================================
-                 CARTE 2
-            ================================================== -->
-
-            <article class="watch-card">
-
-
-                <div class="watch-image">
-
-
-                    <img
-                        src="images/summoned.jpg"
-                        alt="Summoned to Another World Again">
-
-
-                    <span class="anime-type">
-                        Anime
-                    </span>
-
-
-                    <span class="language">
-                        🇯🇵
-                    </span>
-
-
-                    <button
-                        class="remove-card"
-                        type="button"
-                        onclick="removeWatchCard(this)">
-
-                        ×
-
-                    </button>
-
-
-                </div>
-
-
-
-                <div class="watch-content">
-
-
-                    <h3>
-                        Summoned to Another World... Again?!
-                    </h3>
-
-
-                    <div class="watch-separator"></div>
-
-
-                    <button
-                        class="episode-btn"
-                        type="button"
-                        onclick="openPlayer('summoned', 1, 4)">
-
-                        <i class="fas fa-tv"></i>
-
-                        Saison 1 Episode 4
-
-                    </button>
-
-
-                </div>
-
-
-            </article>
-
-
-
-            <!-- =================================================
-                 CARTE 3
-            ================================================== -->
-
-            <article class="watch-card">
-
-
-                <div class="watch-image">
-
-
-                    <img
-                        src="images/shangrilafrontier.jpg"
-                        alt="Shangri-La Frontier">
-
-
-                    <span class="anime-type">
-                        Anime
-                    </span>
-
-
-                    <span class="language">
-                        🇯🇵
-                    </span>
-
-
-                    <button
-                        class="remove-card"
-                        type="button"
-                        onclick="removeWatchCard(this)">
-
-                        ×
-
-                    </button>
-
-
-                </div>
-
-
-
-                <div class="watch-content">
-
-
-                    <h3>
-                        Shangri-La Frontier
-                    </h3>
-
-
-                    <div class="watch-separator"></div>
-
-
-                    <button
-                        class="episode-btn"
-                        type="button"
-                        onclick="openPlayer('shangri-la-frontier', 1, 1)">
-
-                        <i class="fas fa-tv"></i>
-
-                        Saison 1 Episode 1
-
-                    </button>
-
-
-                </div>
-
-
-            </article>
-
-
-
-            <!-- =================================================
-                 CARTE 4
-            ================================================== -->
-
-            <article class="watch-card">
-
-
-                <div class="watch-image">
-
-
-                    <img
-                        src="images/failure-skill.jpg"
-                        alt="Failure Skill Nut Master">
-
-
-                    <span class="anime-type">
-                        Anime
-                    </span>
-
-
-                    <span class="language">
-                        🇯🇵
-                    </span>
-
-
-                    <button
-                        class="remove-card"
-                        type="button"
-                        onclick="removeWatchCard(this)">
-
-                        ×
-
-                    </button>
-
-
-                </div>
-
-
-
-                <div class="watch-content">
-
-
-                    <h3>
-                        Failure Skill 'Nut Master'
-                    </h3>
-
-
-                    <div class="watch-separator"></div>
-
-
-                    <button
-                        class="episode-btn"
-                        type="button"
-                        onclick="openPlayer('failure-skill', 1, 1)">
-
-                        <i class="fas fa-tv"></i>
-
-                        Saison 1 Episode 1
-
-                    </button>
-
-
-                </div>
-
-
-            </article>
-
-
-        </div>
-
-
-        <!-- BARRE DE PROGRESSION -->
-
-        <div class="slider-progress">
-
-            <div class="slider-progress-value"></div>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     SORTIES DU LUNDI
-===================================================== -->
-
-<section class="release-section">
-
-
-    <div class="section-heading">
-
-
-        <div class="heading-title">
-
-
-            <span class="circle-arrow">
-                ←
-            </span>
-
-
-            <h2>
-                Sorties du lundi - 07/09
-            </h2>
-
-
-            <span class="circle-arrow">
-                →
-            </span>
-
-
-        </div>
-
-
-        <div class="heading-line"></div>
-
-
-        <div class="slider-buttons">
-
-
-            <button
-                type="button"
-                onclick="scrollSlider('mondaySlider', -1)">
-
-                <i class="fas fa-arrow-left"></i>
-
-            </button>
-
-
-            <button
-                type="button"
-                onclick="scrollSlider('mondaySlider', 1)">
-
-                <i class="fas fa-arrow-right"></i>
-
-            </button>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <div class="anime-slider-container">
-
-
-        <div
-            id="mondaySlider"
-            class="anime-slider">
-
-
-            <!-- CARTE -->
-
-            <article class="watch-card">
-
-
-                <div class="watch-image">
-
-                    <img
-                        src="images/anime1.jpg"
-                        alt="Anime">
-
-
-                    <span class="anime-type">
-                        Anime
-                    </span>
-
-
-                    <span class="language">
-                        🇯🇵
-                    </span>
-
-                </div>
-
-
-                <div class="watch-content">
-
-                    <h3>
-                        Nouvel Anime
-                    </h3>
-
-
-                    <div class="watch-separator"></div>
-
-
-                    <button
-                        class="episode-btn"
-                        type="button">
-
-                        <i class="fas fa-tv"></i>
-
-                        Saison 1 Episode 1
-
-                    </button>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- CARTE -->
-
-            <article class="watch-card">
-
-
-                <div class="watch-image">
-
-                    <img
-                        src="images/anime2.jpg"
-                        alt="Anime">
-
-
-                    <span class="anime-type">
-                        Anime
-                    </span>
-
-
-                    <span class="language">
-                        🇯🇵
-                    </span>
-
-                </div>
-
-
-                <div class="watch-content">
-
-                    <h3>
-                        Nouvel Anime
-                    </h3>
-
-
-                    <div class="watch-separator"></div>
-
-
-                    <button
-                        class="episode-btn"
-                        type="button">
-
-                        <i class="fas fa-tv"></i>
-
-                        Saison 1 Episode 1
-
-                    </button>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- CARTE -->
-
-            <article class="watch-card">
-
-
-                <div class="watch-image">
-
-                    <img
-                        src="images/anime3.jpg"
-                        alt="Anime">
-
-
-                    <span class="anime-type">
-                        Anime
-                    </span>
-
-
-                    <span class="language">
-                        🇯🇵
-                    </span>
-
-                </div>
-
-
-                <div class="watch-content">
-
-                    <h3>
-                        Nouvel Anime
-                    </h3>
-
-
-                    <div class="watch-separator"></div>
-
-
-                    <button
-                        class="episode-btn"
-                        type="button">
-
-                        <i class="fas fa-tv"></i>
-
-                        Saison 1 Episode 1
-
-                    </button>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- CARTE -->
-
-            <article class="watch-card">
-
-
-                <div class="watch-image">
-
-                    <img
-                        src="images/anime4.jpg"
-                        alt="Anime">
-
-
-                    <span class="anime-type">
-                        Anime
-                    </span>
-
-
-                    <span class="language">
-                        🇯🇵
-                    </span>
-
-                </div>
-
-
-                <div class="watch-content">
-
-                    <h3>
-                        Nouvel Anime
-                    </h3>
-
-
-                    <div class="watch-separator"></div>
-
-
-                    <button
-                        class="episode-btn"
-                        type="button">
-
-                        <i class="fas fa-tv"></i>
-
-                        Saison 1 Episode 1
-
-                    </button>
-
-                </div>
-
-            </article>
-
-
-        </div>
-
-
-        <div class="slider-progress">
-
-            <div class="slider-progress-value"></div>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     CATALOGUE
-===================================================== -->
-
-<section
-    id="catalogue"
-    class="catalogue-section">
-
 
     <h2 class="section-title">
         Nos Animes
     </h2>
 
-
-    <!-- IMPORTANT :
-         TON script.js CONTINUE D'UTILISER animeList -->
-
-    <div
-        id="animeList"
-        class="anime-grid">
+    <div id="animeList" class="anime-grid">
 
     </div>
-
-
-    <!-- PAGINATION -->
 
     <div class="pagination">
 
-
-        <button
-            type="button"
-            onclick="prevPage()">
-
+        <button onclick="prevPage()">
             ⏮
-
         </button>
 
-
-        <button
-            type="button"
-            onclick="nextPage()">
-
+        <button onclick="nextPage()">
             ⏭
-
         </button>
-
 
     </div>
 
-
-</section>
-
-
 </main>
-
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <footer class="footer">
 
-
     <div class="footer-content">
 
-
         <div class="footer-section">
 
-            <h4>
-                À propos
-            </h4>
+            <h4>À propos</h4>
 
             <ul>
 
-                <li>
-                    <a href="#">
-                        Qui sommes-nous ?
-                    </a>
-                </li>
+                <li><a href="#">Qui sommes-nous ?</a></li>
 
-                <li>
-                    <a href="#">
-                        Carrières
-                    </a>
-                </li>
+                <li><a href="#">Carrières</a></li>
 
-                <li>
-                    <a href="#">
-                        Blog
-                    </a>
-                </li>
+                <li><a href="#">Blog</a></li>
 
             </ul>
 
         </div>
 
-
-
         <div class="footer-section">
 
-            <h4>
-                Support
-            </h4>
+            <h4>Support</h4>
 
             <ul>
 
-                <li>
-                    <a href="#">
-                        Centre d'aide
-                    </a>
-                </li>
+                <li><a href="#">Centre d'aide</a></li>
 
-                <li>
-                    <a href="#">
-                        Contact
-                    </a>
-                </li>
+                <li><a href="#">Contact</a></li>
 
-                <li>
-                    <a href="#">
-                        FAQ
-                    </a>
-                </li>
+                <li><a href="#">FAQ</a></li>
 
             </ul>
 
         </div>
 
-
-
         <div class="footer-section">
 
-            <h4>
-                Légal
-            </h4>
+            <h4>Légal</h4>
 
             <ul>
 
-                <li>
-                    <a href="#">
-                        Conditions
-                    </a>
-                </li>
+                <li><a href="#">Conditions</a></li>
 
-                <li>
-                    <a href="#">
-                        Confidentialité
-                    </a>
-                </li>
+                <li><a href="#">Confidentialité</a></li>
 
-                <li>
-                    <a href="#">
-                        Cookies
-                    </a>
-                </li>
+                <li><a href="#">Cookies</a></li>
 
             </ul>
 
         </div>
 
-
-
         <div class="footer-section">
 
-            <h4>
-                Réseaux
-            </h4>
-
+            <h4>Réseaux</h4>
 
             <div class="social-links">
 
+                <a href="#"><i class="fab fa-facebook"></i></a>
 
-                <a href="#">
-                    <i class="fab fa-facebook"></i>
-                </a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
 
+                <a href="#"><i class="fab fa-instagram"></i></a>
 
-                <a href="#">
-                    <i class="fab fa-twitter"></i>
-                </a>
-
-
-                <a href="#">
-                    <i class="fab fa-instagram"></i>
-                </a>
-
-
-                <a href="#">
-                    <i class="fab fa-youtube"></i>
-                </a>
-
+                <a href="#"><i class="fab fa-youtube"></i></a>
 
             </div>
 
         </div>
 
-
     </div>
-
-
 
     <div class="footer-bottom">
 
@@ -1016,106 +173,10 @@
 
     </div>
 
-
 </footer>
-
-
-
-<!-- =====================================================
-     SCRIPT
-===================================================== -->
-
-<script>
-
-    /*
-     * Navigation des carrousels
-     */
-
-    function scrollSlider(id, direction) {
-
-        const slider =
-            document.getElementById(id);
-
-        if (!slider) return;
-
-
-        const distance = 360;
-
-
-        slider.scrollBy({
-
-            left: distance * direction,
-
-            behavior: "smooth"
-
-        });
-
-    }
-
-
-
-    /*
-     * Supprimer une carte de reprise
-     */
-
-    function removeWatchCard(button) {
-
-        const card =
-            button.closest(".watch-card");
-
-        if (!card) return;
-
-
-        card.style.opacity = "0";
-
-        card.style.transform =
-            "scale(0.9)";
-
-
-        setTimeout(function () {
-
-            card.remove();
-
-        }, 250);
-
-    }
-
-
-
-    /*
-     * Ouvrir le lecteur
-     *
-     * joueur.html recevra :
-     * anime
-     * season
-     * episode
-     */
-
-    function openPlayer(anime, season, episode) {
-
-        const url =
-            "joueur.html" +
-            "?anime=" +
-            encodeURIComponent(anime) +
-            "&season=" +
-            season +
-            "&episode=" +
-            episode;
-
-
-        window.location.href = url;
-
-    }
-
-</script>
-
-
-
-<!-- TON SCRIPT EXISTANT -->
 
 <script src="script.js"></script>
 
-
 </body>
-
 </html>
+    
