@@ -59,28 +59,28 @@ body {
 /* ================================
    LOGO
 ================================ */
+/* ================================
+   LOGO IrAnimeX
+================================ */
 
 .logo {
+    display: flex;
+    align-items: center;
+
     text-decoration: none;
 
-    font-size: 30px;
-    font-weight: 900;
+    height: 55px;
 
-    letter-spacing: -1px;
-
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
-.logo span {
-    color: #00cfff;
-}
+.logo img {
+    height: 50px;
+    width: auto;
 
-.logo strong {
-    color: #ffffff;
-}
+    display: block;
 
-.logo b {
-    color: #00e68a;
+    object-fit: contain;
 }
 
 .logo:hover {
