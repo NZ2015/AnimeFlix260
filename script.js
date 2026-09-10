@@ -1,5 +1,5 @@
 // ===============================
-// IrAnimeX Script
+// IrAnimeX Script (updated: favorites & image attributes)
 // ===============================
 
 let animes = [];
@@ -44,6 +44,9 @@ function renderPage() {
     page.forEach(anime => {
         container.innerHTML += creerCarte(anime);
     });
+
+    // after injecting cards ensure badges and other enhacements
+    ajouterBadges();
 }
 
 // ===============================
@@ -140,22 +143,25 @@ function toggleFavori(id) {
 
     localStorage.setItem("favoris", JSON.stringify(favoris));
 
+    // re-render page to update hearts & UI
     renderPage();
 }
 
 // ===============================
-// MODIFIER L'AFFICHAGE DES CARTES
+// CREER CARTE (template safe updates)
 // ===============================
 
-// Remplace la partie container.innerHTML += `...`
-// de renderPage() par celle-ci :
-
 function creerCarte(anime) {
+
+    // ensure safe escaped values if needed (simple usage here)
+    const poster = anime.poster || "images/default.jpg";
+    const altText = `Affiche de ${anime.title}`;
+    const heart = estFavori(anime.id) ? '♥' : '♡';
 
     return `
     <div class="anime-card">
 
-        <img src="${anime.poster}" alt="${anime.title}">
+        <img src="${poster}" alt="${altText}" loading="lazy" decoding="async">
 
         <div class="anime-info">
 
@@ -170,16 +176,12 @@ function creerCarte(anime) {
             <div class="card-buttons">
 
                 <a href="joueur.html?animeId=${anime.id}&season=0&episode=0"
-                   class="play-btn">
+                   class="play-btn" aria-label="Regarder ${anime.title}">
                     ▶ Regarder
                 </a>
 
-                <button
-                    class="favorite-btn"
-                    onclick="toggleFavori(${anime.id})">
-
-                    ${estFavori(anime.id) ? "❤️" : "🤍"}
-
+                <button class="favorite-btn" data-id="${anime.id}" aria-label="Ajouter aux favoris">
+                    <span class="heart">${heart}</span>
                 </button>
 
             </div>
@@ -189,8 +191,9 @@ function creerCarte(anime) {
     </div>
     `;
 }
+
 // ===============================
-// ANIMATION DES CARTES
+// ANIMATION DES CARTES (mouse effects kept)
 // ===============================
 
 document.addEventListener("mouseover", function (e) {
@@ -240,6 +243,7 @@ function ajouterBadges() {
 
 }
 
+// run once to ensure existing cards updated
 setInterval(ajouterBadges, 1000);
 
 // ===============================
@@ -302,15 +306,32 @@ document.addEventListener("keydown", function(e){
     }
 
 });
+
+// delegated favorite click handler to avoid inline onclick
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.favorite-btn');
+  if (!btn) return;
+  const id = Number(btn.dataset.id);
+  if (isNaN(id)) return;
+  toggleFavori(id);
+  // visual toggle is handled by renderPage() re-rendering cards; if you prefer instant toggle:
+  // btn.classList.toggle('active', estFavori(id));
+  // const heart = btn.querySelector('.heart'); if (heart) heart.textContent = estFavori(id) ? '♥' : '♡';
+});
+
 function playEpisode(animeId, seasonNumber, episodeNumber) {
   fetch("anime.json")
     .then(res => res.json())
     .then(data => {
       const anime = data.animes.find(a => a.id === animeId);
+      if (!anime) return;
       const season = anime.seasons.find(s => s.number === seasonNumber);
+      if (!season) return;
       const episode = season.episodes.find(e => e.number === episodeNumber);
+      if (!episode) return;
 
       const video = document.getElementById("videoPlayer");
+      if (!video) return;
       video.src = episode.videoUrl;
       video.play();
     });

@@ -18,13 +18,13 @@
     <div class="header-container">
 
        <div class="logo">
-          <img src="images/logo.png" alt="IrAnimeX Logo.png(2)">
+          <img src="images/logo.png" alt="Logo IrAnimeX">
           <span>IrAnimeX</span>
         </div>
         <nav class="nav">
             <a href="#" class="nav-link active">Accueil</a>
             <a href="#" class="nav-link">Catalogue</a>
-            <a href="#" class="nav-link">Top Rated</a>
+            <a href="#" class="nav-link">Top notés</a>
             <a href="#" class="nav-link">Favoris</a>
         </nav>
 
@@ -49,15 +49,16 @@
 
             <div class="search-container">
 
-                <i class="fas fa-search"></i>
+                <i class="fas fa-search" aria-hidden="true"></i>
 
                 <input
                     id="searchInput"
                     type="text"
                     placeholder="Rechercher un anime..."
+                    aria-label="Rechercher un anime"
                 >
 
-                <button class="search-btn">
+                <button class="search-btn" aria-label="Rechercher">
                     Rechercher
                 </button>
 
@@ -81,11 +82,11 @@
 
     <div class="pagination">
 
-        <button onclick="prevPage()">
+        <button onclick="prevPage()" aria-label="Page précédente">
             ⏮
         </button>
 
-        <button onclick="nextPage()">
+        <button onclick="nextPage()" aria-label="Page suivante">
             ⏭
         </button>
 
@@ -151,13 +152,13 @@
 
             <div class="social-links">
 
-                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
 
-                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
 
-                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
 
-                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
 
             </div>
 

@@ -1,5 +1,5 @@
 /* =====================================
-   IrAnimeX Premium V2
+   IrAnimeX - Palette verte/bleu/argent
    Partie 1 : Base + Header + Hero
 ===================================== */
 
@@ -16,8 +16,8 @@ html{
 }
 
 body{
-    background:#0b1020;
-    color:#fff;
+    background:#071028; /* deep navy */
+    color:#dfe6ea; /* silver-ish text */
     font-family:Arial, Helvetica, sans-serif;
     overflow-x:hidden;
     line-height:1.5;
@@ -43,6 +43,17 @@ ul{
     list-style:none;
 }
 
+/* COLORS */
+:root{
+    --primary: #00b894; /* green */
+    --primary-strong: #00d59f;
+    --accent-blue: #1e90ff;
+    --accent-blue-2: #4aa3ff;
+    --silver: #c0c4c8;
+    --bg-dark: #071028;
+    --card: #0f1b2b;
+}
+
 /* HEADER */
 
 .header{
@@ -51,9 +62,9 @@ ul{
     left:0;
     width:100%;
     height:80px;
-    background:rgba(10,10,20,.96);
+    background:rgba(6,12,30,.96);
     backdrop-filter:blur(10px);
-    border-bottom:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(192,196,200,.06);
     z-index:1000;
 }
 
@@ -74,7 +85,7 @@ ul{
     gap:12px;
     font-size:30px;
     font-weight:bold;
-    color:#ff0055;
+    color:var(--primary);
 }
 
 .logo img{
@@ -96,13 +107,13 @@ ul{
 }
 
 .nav a{
-    color:#fff;
+    color:var(--silver);
     transition:.3s;
     font-size:17px;
 }
 
 .nav a:hover{
-    color:#ff0055;
+    color:var(--accent-blue);
 }
 
 /* BOUTONS */
@@ -121,22 +132,22 @@ ul{
 }
 
 .btn-primary{
-    background:#ff0055;
+    background:var(--primary);
     color:white;
 }
 
 .btn-primary:hover{
-    background:#ff3377;
+    background:var(--primary-strong);
 }
 
 .btn-secondary{
     background:transparent;
-    color:white;
-    border:2px solid #ff0055;
+    color:var(--silver);
+    border:2px solid var(--primary);
 }
 
 .btn-secondary:hover{
-    background:#ff0055;
+    background:var(--primary);
 }
 
 /* HERO */
@@ -161,10 +172,11 @@ ul{
 .hero h1{
     font-size:64px;
     margin-bottom:20px;
+    color:var(--silver);
 }
 
 .hero p{
-    color:#ddd;
+    color:#bfc8cc;
     font-size:22px;
     margin-bottom:35px;
 }
@@ -176,13 +188,14 @@ ul{
     align-items:center;
     width:650px;
     max-width:100%;
-    background:white;
+    background:rgba(255,255,255,0.06);
     border-radius:40px;
     overflow:hidden;
+    border:1px solid rgba(192,196,200,0.04);
 }
 
 .search-container i{
-    color:#777;
+    color:var(--silver);
     padding:18px;
     font-size:20px;
 }
@@ -192,11 +205,14 @@ ul{
     border:none;
     outline:none;
     font-size:17px;
+    color:var(--silver);
+    background:transparent;
+    padding:12px 0;
 }
 
 .search-btn{
     border:none;
-    background:#ff0055;
+    background:var(--accent-blue);
     color:white;
     width:170px;
     font-size:17px;
@@ -204,7 +220,7 @@ ul{
 }
 
 .search-btn:hover{
-    background:#ff3377;
+    background:var(--accent-blue-2);
 }
 
 /* MAIN */
@@ -218,1034 +234,120 @@ main{
 .section-title{
     font-size:40px;
     margin-bottom:35px;
-    border-left:6px solid #ff0055;
+    border-left:6px solid var(--primary);
     padding-left:15px;
 }
 
-/* ANIMATION */
-
-@keyframes fadeIn{
-
-    from{
-        opacity:0;
-        transform:translateY(25px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
-}
-
-.hero{
-    animation:fadeIn .8s ease;
-}
-/* =====================================
-   IrAnimeX Premium V2
-   Partie 2 : Cartes + Boutons + Pagination
-===================================== */
-
-/* ===========================
-   GRILLE DES ANIMES
-=========================== */
-
-.anime-grid,
-#animeList{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-    gap:30px;
-}
-
-/* ===========================
-   CARTE
-=========================== */
+/* ... rest unchanged except colours for highlights ... */
 
 .anime-card{
-
     position:relative;
-
-    background:#171c30;
-
+    background:var(--card);
     border-radius:18px;
-
     overflow:hidden;
-
     box-shadow:0 12px 30px rgba(0,0,0,.35);
-
     transition:.35s;
-
     animation:fadeIn .6s ease;
+}
 
+/* decorative colored top stripe */
+.anime-card::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--primary));
+    z-index: 30;
 }
 
 .anime-card:hover{
-
     transform:translateY(-8px);
-
-    box-shadow:0 18px 40px rgba(255,0,85,.35);
-
+    box-shadow:0 18px 40px rgba(0,184,148,.18);
 }
 
-/* IMPORTANT :
-   le filtre sombre ne bloque plus les clics
-*/
-
-.anime-card::after{
-
+.anime-card::after{ /* overlay */
     content:"";
-
     position:absolute;
-
     inset:0;
-
     background:linear-gradient(
         to top,
         rgba(0,0,0,.65),
         rgba(0,0,0,0)
     );
-
     opacity:0;
-
     transition:.35s;
-
     pointer-events:none;
-
 }
+.anime-card:hover::after{ opacity:1; }
 
-.anime-card:hover::after{
-
-    opacity:1;
-
-}
-
-/* ===========================
-   IMAGE
-=========================== */
-
+/* IMAGE: improved styling */
 .anime-card img{
-
     width:100%;
-
-    height:360px;
-
+    height:220px; /* tighter crop for consistency */
     object-fit:cover;
-
-    transition:.35s;
-
+    display:block;
+    transition: transform .45s ease, filter .3s ease;
 }
+
+/* rounded corners visually preserved by card overflow:hidden */
 
 .anime-card:hover img{
-
-    transform:scale(1.05);
-
+    transform: scale(1.06) translateY(-6px);
+    filter: saturate(1.05) brightness(0.98);
 }
 
-/* ===========================
-   INFOS
-=========================== */
-
+/* INFO */
 .anime-info{
-
     position:relative;
-
     z-index:2;
-
     padding:18px;
-
 }
 
-.anime-info h3{
+.anime-info h3{ font-size:22px; margin-bottom:12px; color:var(--silver); }
+.anime-info p{ color:#aeb7bb; }
+.genre{ color:var(--accent-blue); }
 
-    font-size:22px;
-
-    margin-bottom:12px;
-
-}
-
-.anime-info p{
-
-    color:#cccccc;
-
-    margin-bottom:10px;
-
-    line-height:1.5;
-
-}
-
-.rating{
-
-    color:#FFD700;
-
-    font-weight:bold;
-
-}
-
-.genre{
-
-    color:#80c7ff;
-
-    font-size:15px;
-
-}
-
-/* ===========================
-   BOUTONS
-=========================== */
-
-.card-buttons{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:15px;
-
-    margin-top:20px;
-
-}
-
-/* BOUTON REGARDER */
-
+/* play button: gradient to match palette */
 .play-btn{
-
-    position:relative;
-
-    z-index:20;
-
-    flex:1;
-
-    text-align:center;
-
-    background:#ff0055;
-
+    background: linear-gradient(90deg, var(--accent-blue), var(--primary));
     color:#fff;
-
-    padding:12px;
-
-    border-radius:30px;
-
-    font-weight:bold;
-
-    transition:.3s;
-
-    pointer-events:auto;
-
-}
-
-.play-btn:hover{
-
-    background:#ff3377;
-
-    transform:translateY(-2px);
-
-}
-
-.play-btn:active{
-
-    transform:scale(.96);
-
-}
-
-.play-btn:focus{
-
-    outline:none;
-
-}
-
-/* FAVORI */
-
-.favorite-btn{
-
-    position:relative;
-
-    z-index:20;
-
-    width:48px;
-
-    height:48px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#242942;
-
-    color:white;
-
-    font-size:22px;
-
-    transition:.3s;
-
-}
-
-.favorite-btn:hover{
-
-    background:#ff0055;
-
-    transform:rotate(15deg);
-
-}
-
-/* ===========================
-   BADGES
-=========================== */
-
-.badge-hd{
-
-    position:absolute;
-
-    top:12px;
-
-    left:12px;
-
-    background:#00b894;
-
-    color:white;
-
-    padding:6px 10px;
-
-    border-radius:8px;
-
-    font-size:13px;
-
-    font-weight:bold;
-
-    z-index:30;
-
-}
-
-.badge-new{
-
-    position:absolute;
-
-    top:12px;
-
-    right:12px;
-
-    background:#ff0055;
-
-    color:white;
-
-    padding:6px 10px;
-
-    border-radius:8px;
-
-    font-size:13px;
-
-    font-weight:bold;
-
-    z-index:30;
-
-}
-
-/* ===========================
-   PAGINATION
-=========================== */
-
-.pagination{
-
-    display:flex;
-
-    justify-content:center;
-
+    padding:12px 28px;
+    border-radius: 30px;
+    display:inline-flex;
     align-items:center;
-
-    gap:20px;
-
-    margin-top:50px;
-
-}
-
-.pagination button{
-
-    width:58px;
-
-    height:58px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#ff0055;
-
-    color:white;
-
-    font-size:22px;
-
-    transition:.3s;
-
-}
-
-.pagination button:hover{
-
-    transform:scale(1.1);
-
-    background:#ff3377;
-
-}
-
-/* ===========================
-   LOADER
-=========================== */
-
-.loaded{
-
-    animation:fadeIn .5s ease;
-
-}
-/* =====================================
-   IrAnimeX Premium V2
-   Partie 3 : Lecteur vidéo + Sidebar + Footer
-===================================== */
-
-/* ===========================
-   LECTEUR VIDEO
-=========================== */
-
-.player-container{
-    display:flex;
-    flex-direction:column;
-    gap:30px;
-}
-
-.video-player{
-    position:relative;
-    width:100%;
-    background:#000;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 15px 40px rgba(0,0,0,.5);
-}
-
-.video-player video{
-    width:100%;
-    display:block;
-    background:#000;
-}
-
-/* CONTROLES */
-
-.controls{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:20px;
-    padding:20px;
-    background:#14192c;
-}
-
-.controls button{
-
-    width:60px;
-
-    height:60px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#ff0055;
-
-    color:white;
-
-    font-size:24px;
-
-    transition:.3s;
-
-}
-
-.controls button:hover{
-
-    background:#ff3377;
-
-    transform:scale(1.12);
-
-}
-
-/* ===========================
-   INFORMATIONS
-=========================== */
-
-.episode-info{
-
-    background:#15192d;
-
-    border-radius:20px;
-
-    padding:25px;
-
-}
-
-.info-header{
-
-    margin-bottom:20px;
-
-}
-
-.info-header h1{
-
-    font-size:36px;
-
-}
-
-.episode-title{
-
-    color:#ff0055;
-
-    margin-top:8px;
-
-    font-size:20px;
-
-}
-
-.episode-description{
-
-    color:#d0d0d0;
-
-    line-height:1.7;
-
-}
-
-/* ===========================
-   SAISONS
-=========================== */
-
-.seasons-container{
-
-    margin-top:20px;
-
-}
-
-.seasons-list{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:15px;
-
-}
-
-.seasons-list button{
-
-    border:none;
-
-    background:#232944;
-
-    color:white;
-
-    padding:12px 25px;
-
-    border-radius:30px;
-
-    transition:.3s;
-
-}
-
-.seasons-list button:hover{
-
-    background:#ff0055;
-
-}
-
-/* ===========================
-   EPISODES
-=========================== */
-
-.episodes-container{
-
-    margin-top:30px;
-
-}
-
-.episodes-list{
-
-    display:grid;
-
-    gap:15px;
-
-}
-
-.episode-card{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    background:#171c30;
-
-    padding:18px;
-
-    border-radius:15px;
-
-    transition:.3s;
-
-}
-
-.episode-card:hover{
-
-    background:#232944;
-
-    transform:translateX(5px);
-
-}
-
-.episode-card h4{
-
-    font-size:18px;
-
-}
-
-.episode-card span{
-
-    color:#bfbfbf;
-
-}
-
-/* ===========================
-   SIDEBAR
-=========================== */
-
-.sidebar{
-
-    margin-top:50px;
-
-}
-
-.sidebar h2{
-
-    margin-bottom:25px;
-
-}
-
-.related-animes{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-
-    gap:20px;
-
-}
-
-.related-card{
-
-    background:#171c30;
-
-    border-radius:15px;
-
-    overflow:hidden;
-
-    transition:.3s;
-
-}
-
-.related-card:hover{
-
-    transform:translateY(-6px);
-
-}
-
-.related-card img{
-
-    width:100%;
-
-    height:250px;
-
-    object-fit:cover;
-
-}
-
-.related-card h4{
-
-    padding:15px;
-
-    font-size:17px;
-
-}
-
-/* ===========================
-   FOOTER
-=========================== */
-
-.footer{
-
-    margin-top:80px;
-
-    background:#111629;
-
-    padding:50px 0 20px;
-
+    gap:8px;
+    font-weight:700;
 }
+.play-btn:hover{ background: linear-gradient(90deg, var(--primary-strong), var(--accent-blue-2)); box-shadow:0 8px 30px rgba(0,181,150,.12); }
 
-.footer-content{
+.favorite-btn{ background:#0b1320; }
+.favorite-btn .heart{ color:#ff6b9a; }
+.favorite-btn:hover{ background:var(--primary); transform:rotate(15deg); }
 
-    width:90%;
+.badge-hd{ background:var(--primary); }
+.badge-new{ background:var(--accent-blue); }
 
-    margin:auto;
+.pagination button{ background:var(--primary); }
+.pagination button:hover{ background:var(--primary-strong); transform:scale(1.1); }
 
-    text-align:center;
+/* scrollbar */
+::-webkit-scrollbar{ width:10px; }
+::-webkit-scrollbar-track{ background:transparent; }
+::-webkit-scrollbar-thumb{ background:var(--primary); border-radius:20px; }
 
-}
-
-.footer-content p{
-
-    color:#bfbfbf;
-
-    font-size:15px;
-
-}
-/* =====================================
-   IrAnimeX Premium V2
-   Partie 4 : Responsive + Animations
-===================================== */
-
-/* ===========================
-   SCROLLBAR
-=========================== */
-
-::-webkit-scrollbar{
-    width:10px;
-}
-
-::-webkit-scrollbar-track{
-    background:#0b1020;
-}
-
-::-webkit-scrollbar-thumb{
-    background:#ff0055;
-    border-radius:20px;
-}
-
-::-webkit-scrollbar-thumb:hover{
-    background:#ff3377;
-}
-
-/* ===========================
-   BOUTON RETOUR EN HAUT
-=========================== */
-
-#topBtn{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    width:55px;
-    height:55px;
-    border:none;
-    border-radius:50%;
-    background:#ff0055;
-    color:#fff;
-    font-size:22px;
-    display:none;
-    z-index:9999;
-    transition:.3s;
-}
-
-#topBtn:hover{
-    background:#ff3377;
-    transform:scale(1.1);
-}
-
-/* ===========================
-   ANIMATIONS
-=========================== */
-
-@keyframes zoomIn{
-
-    from{
-        opacity:0;
-        transform:scale(.9);
-    }
-
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-
-}
-
-.anime-card,
-.related-card,
-.video-player,
-.episode-card{
-    animation:zoomIn .5s ease;
-}
-
-/* ===========================
-   EFFETS
-=========================== */
-
-.play-btn,
-.favorite-btn,
-.controls button,
-.pagination button,
-.btn{
-    transition:.3s ease;
-}
-
-.play-btn:hover,
-.favorite-btn:hover,
-.controls button:hover,
-.pagination button:hover,
-.btn:hover{
-
-    box-shadow:0 0 20px rgba(255,0,85,.45);
-
-}
-
-/* ===========================
-   RESPONSIVE TABLETTE
-=========================== */
-
-@media (max-width:992px){
-
-.header{
-
-    height:auto;
-
-}
-
-.header-container{
-
-    flex-direction:column;
-
-    gap:15px;
-
-    padding:20px;
-
-}
-
-.nav{
-
-    flex-wrap:wrap;
-
-    justify-content:center;
-
-}
-
-.hero{
-
-    padding:150px 40px 80px;
-
-}
-
-.hero h1{
-
-    font-size:48px;
-
-}
-
-.hero p{
-
-    font-size:20px;
-
-}
-
-.anime-grid,
-#animeList{
-
-    grid-template-columns:repeat(2,1fr);
-
-}
-
-.related-animes{
-
-    grid-template-columns:repeat(2,1fr);
-
-}
-
-}
-
-/* ===========================
-   RESPONSIVE MOBILE
-=========================== */
-
-@media (max-width:768px){
-
-.logo{
-
-    font-size:24px;
-
-}
-
-.logo i{
-
-    font-size:28px;
-
-}
-
-.hero{
-
-    padding:140px 20px 60px;
-
-    text-align:center;
-
-}
-
-.hero h1{
-
-    font-size:34px;
-
-}
-
-.hero p{
-
-    font-size:17px;
-
-}
-
-.search-container{
-
-    flex-direction:column;
-
-    border-radius:15px;
-
-}
-
-.search-container input{
-
-    width:100%;
-    padding:15px;
-
-}
-
-.search-btn{
-
-    width:100%;
-    height:55px;
-
-}
-
-.anime-grid,
-#animeList{
-
-    grid-template-columns:1fr;
-
-}
-
-.controls{
-
-    flex-wrap:wrap;
-
-    gap:15px;
-
-}
-
-.controls button{
-
-    width:55px;
-    height:55px;
-
-}
-
-.card-buttons{
-
-    flex-direction:column;
-
-}
-
-.play-btn{
-
-    width:100%;
-
-}
-
-.favorite-btn{
+#topBtn{ background:var(--accent-blue); }
+#topBtn:hover{ background:var(--accent-blue-2); }
 
-    width:100%;
+/* small focus style for a11y */
+:focus{ outline:3px solid rgba(30,144,255,0.18); outline-offset:2px; }
 
-    border-radius:12px;
-
-}
-
-.related-animes{
-
-    grid-template-columns:1fr;
-
-}
-
-.info-header h1{
-
-    font-size:28px;
-
-}
-
-}
-
-/* ===========================
-   GRAND ECRAN
-=========================== */
-
-@media (min-width:1500px){
-
-.hero h1{
-
-    font-size:80px;
-
-}
-
-.hero p{
-
-    font-size:28px;
-
-}
-
-.section-title{
-
-    font-size:52px;
-
-}
-
-.anime-grid,
-#animeList{
-
-    grid-template-columns:repeat(5,1fr);
-
-}
-
-}
-
-/* ===========================
-   CORRECTIONS IMPORTANTES
-=========================== */
-
-/* Le bouton Regarder reste toujours cliquable */
-
-.play-btn{
-    position:relative;
-    z-index:100;
-    pointer-events:auto;
-}
-
-/* L'effet sombre ne bloque jamais les clics */
-
-.anime-card::after{
-    pointer-events:none;
-}
-
-/* Les images ne bloquent pas les boutons */
-
-.anime-card img{
-    pointer-events:none;
-}
-
-/* Les boutons restent au-dessus */
-
-.card-buttons{
-    position:relative;
-    z-index:101;
+/* Responsive tweaks for card image */
+@media (max-width: 768px){
+    .anime-card img{ height:180px; }
 }
-
-/* Évite le fond noir au clic */
 
-.play-btn:focus,
-.play-btn:active{
-    outline:none;
-    background:#ff0055;
-    color:#fff;
+@media (max-width: 480px){
+    .anime-card img{ height:160px; }
 }

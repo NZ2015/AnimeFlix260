@@ -1,0 +1,14 @@
+id: video_001
+title: "Titre exemple"
+filename: "videos/sample_video_001.mp4"
+duration: "00:05:20"
+size_bytes: 53000000
+description: "Courte description de la vidéo."
+tags:
+  - tag1
+  - tag2
+uploaded_by: "NZ2015"
+date: "2026-09-01"
+storage: "git-lfs"
+public: true
+checksum_sha256: "remplace_par_checksum_si_voulu"
