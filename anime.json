@@ -68,7 +68,7 @@
     },
     {
       "id": 4,
-      "title": "Bleach",
+      "title": "Bleach-Thousand-Year-Blood War",
       "rating": 4.6,
       "poster": "images/bleach.jpg.jpg",
       "description": "Ichigo devient Shinigami et combat les Hollows.",
@@ -81,9 +81,9 @@
           "number": 1,
           "title": "Substitute Shinigami",
           "episodes": [
-            {"number": 1, "title": "La mort et le Shinigami", "duration": "24:00", "videoUrl": "video/bleach-saison1-episode1.mp4"},
-            {"number": 2, "title": "Le pouvoir d'un Shinigami", "duration": "24:00", "videoUrl": "video/bleach-saison1-episode2.mp4"},
-            {"number": 3, "title": "Protégez Rukia", "duration": "24:00", "videoUrl": "video/bleach-saison1-episode3.mp4"}
+            {"number": 1, "title": "La mort et le Shinigami", "duration": "24:00", "videoUrl": "video/bleach.t-saison1-episode1.mp4"},
+            {"number": 2, "title": "Le pouvoir d'un Shinigami", "duration": "24:00", "videoUrl": "video/bleach.t-saison1-episode2.mp4"},
+            {"number": 3, "title": "Protégez Rukia", "duration": "24:00", "videoUrl": "video/bleach.t-saison1-episode3.mp4"}
           ]
         }
       ]
