@@ -1,182 +1,183 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IrAnimeX</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-
-<body>
-
-<header class="header">
-
-    <div class="header-container">
-
-       <div class="logo">
-          <img src="images/logo.png" alt="IrAnimeX Logo.png">
-          <span>IrAnimeX</span>
-        </div>
-        <nav class="nav">
-            <a href="#" class="nav-link active">Accueil</a>
-            <a href="#" class="nav-link">Catalogue</a>
-            <a href="#" class="nav-link">Top Rated</a>
-            <a href="#" class="nav-link">Favoris</a>
-        </nav>
-
-        <div class="auth-buttons">
-            <button class="btn btn-secondary">Connexion</button>
-            <button class="btn btn-primary">S'inscrire</button>
-        </div>
-
-    </div>
-
-</header>
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <h1>Bienvenue sur IrAnimeX</h1>
-
-        <p>Découvrez des milliers d'animes en streaming HD.</p>
-
-        <div class="search-bar">
-
-            <div class="search-container">
-
-                <i class="fas fa-search"></i>
-
-                <input
-                    id="searchInput"
-                    type="text"
-                    placeholder="Rechercher un anime..."
-                >
-
-                <button class="search-btn">
-                    Rechercher
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<main>
-
-    <h2 class="section-title">
-        Nos Animes
-    </h2>
-
-    <div id="animeList" class="anime-grid">
-
-    </div>
-
-    <div class="pagination">
-
-        <button onclick="prevPage()">
-            ⏮
-        </button>
-
-        <button onclick="nextPage()">
-            ⏭
-        </button>
-
-    </div>
-
-</main>
-
-<footer class="footer">
-
-    <div class="footer-content">
-
-        <div class="footer-section">
-
-            <h4>À propos</h4>
-
-            <ul>
-
-                <li><a href="#">Qui sommes-nous ?</a></li>
-
-                <li><a href="#">Carrières</a></li>
-
-                <li><a href="#">Blog</a></li>
-
-            </ul>
-
-        </div>
-
-        <div class="footer-section">
-
-            <h4>Support</h4>
-
-            <ul>
-
-                <li><a href="#">Centre d'aide</a></li>
-
-                <li><a href="#">Contact</a></li>
-
-                <li><a href="#">FAQ</a></li>
-
-            </ul>
-
-        </div>
-
-        <div class="footer-section">
-
-            <h4>Légal</h4>
-
-            <ul>
-
-                <li><a href="#">Conditions</a></li>
-
-                <li><a href="#">Confidentialité</a></li>
-
-                <li><a href="#">Cookies</a></li>
-
-            </ul>
-
-        </div>
-
-        <div class="footer-section">
-
-            <h4>Réseaux</h4>
-
-            <div class="social-links">
-
-                <a href="#"><i class="fab fa-facebook"></i></a>
-
-                <a href="#"><i class="fab fa-twitter"></i></a>
-
-                <a href="#"><i class="fab fa-instagram"></i></a>
-
-                <a href="#"><i class="fab fa-youtube"></i></a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
-
-        <p>
-            © 2026 IrAnimeX. Tous droits réservés.
-        </p>
-
-    </div>
-
-</footer>
-
-<script src="script.js"></script>
-
-</body>
-</html>
-    
+(function () {
+  const STORAGE_KEYS = {
+    FAVORITES: "animeFlix_favorites",
+    WATCHLIST: "animeFlix_watchlist",
+    RESUME: "animeFlix_resume",
+    ACCOUNT: "animeFlix_account",
+    ADMIN: "animeFlix_admin_animes",
+    SESSIONS: "animeFlix_sessions"
+  };
+
+  function safeJsonParse(value, fallback) {
+    try {
+      return value ? JSON.parse(value) : fallback;
+    } catch (error) {
+      return fallback;
+    }
+  }
+
+  function readStorage(key, fallback) {
+    return safeJsonParse(localStorage.getItem(key), fallback);
+  }
+
+  function writeStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  function normalizeAnime(anime, index) {
+    const seasons = Array.isArray(anime.seasons) && anime.seasons.length
+      ? anime.seasons
+      : [{
+          number: 1,
+          title: "Saison 1",
+          episodes: [{
+            number: 1,
+            title: "Épisode 1",
+            duration: "24:00",
+            videoUrl: ""
+          }]
+        }];
+
+    return {
+      id: Number(anime.id ?? index + 1),
+      title: anime.title || `Anime ${index + 1}`,
+      rating: Number(anime.rating ?? 4),
+      poster: anime.poster || "images/default-poster.jpg",
+      description: anime.description || "Description à venir.",
+      genres: Array.isArray(anime.genres) ? anime.genres : [],
+      releaseYear: Number(anime.releaseYear ?? 2024),
+      totalEpisodes: Number(anime.totalEpisodes ?? (seasons[0]?.episodes?.length ?? 0)),
+      studio: anime.studio || "Studio principal",
+      author: anime.author || "Auteur inconnu",
+      seasons
+    };
+  }
+
+  async function loadAnimeCatalog() {
+    try {
+      const response = await fetch("anime.json");
+      const data = await response.json();
+      const defaultAnimes = Array.isArray(data?.animes) ? data.animes : [];
+      const customAnimes = readStorage(STORAGE_KEYS.ADMIN, []);
+      const list = customAnimes.length ? customAnimes : defaultAnimes;
+      return list.map(normalizeAnime);
+    } catch (error) {
+      console.error("Erreur chargement anime.json :", error);
+      return [];
+    }
+  }
+
+  function getWatchlistStatus(animeId) {
+    const map = readStorage(STORAGE_KEYS.WATCHLIST, {});
+    return map[String(animeId)] || "watchlist";
+  }
+
+  function setWatchlistStatus(animeId, status) {
+    const map = readStorage(STORAGE_KEYS.WATCHLIST, {});
+    map[String(animeId)] = status;
+    writeStorage(STORAGE_KEYS.WATCHLIST, map);
+  }
+
+  function isFavorite(animeId) {
+    const favorites = readStorage(STORAGE_KEYS.FAVORITES, {});
+    return Boolean(favorites[String(animeId)]);
+  }
+
+  function toggleFavorite(animeId) {
+    const favorites = readStorage(STORAGE_KEYS.FAVORITES, {});
+    const key = String(animeId);
+    favorites[key] = !Boolean(favorites[key]);
+    writeStorage(STORAGE_KEYS.FAVORITES, favorites);
+    return favorites[key];
+  }
+
+  function getResumeState(animeId, seasonNumber, episodeNumber) {
+    const map = readStorage(STORAGE_KEYS.RESUME, {});
+    const key = `${animeId}:${seasonNumber}:${episodeNumber}`;
+    return map[key] || null;
+  }
+
+  function saveResumeState(animeId, seasonNumber, episodeNumber, currentTime, duration = 0) {
+    const map = readStorage(STORAGE_KEYS.RESUME, {});
+    const key = `${animeId}:${seasonNumber}:${episodeNumber}`;
+    map[key] = {
+      animeId,
+      seasonNumber,
+      episodeNumber,
+      currentTime,
+      duration,
+      updatedAt: new Date().toISOString()
+    };
+    writeStorage(STORAGE_KEYS.RESUME, map);
+  }
+
+  function getRecommendationsForAnime(currentAnimeId, animeList = []) {
+    const watchlistMap = readStorage(STORAGE_KEYS.WATCHLIST, {});
+    const selected = Object.entries(watchlistMap)
+      .filter(([, status]) => status && status !== "watchlist")
+      .map(([id]) => Number(id));
+
+    const baseAnime = animeList.find((anime) => Number(anime.id) === Number(currentAnimeId));
+    const baseGenres = baseAnime?.genres?.length ? baseAnime.genres : ["Action", "Drame"];
+
+    return animeList
+      .filter((anime) => Number(anime.id) !== Number(currentAnimeId))
+      .map((anime) => {
+        const score = (anime.genres || []).filter((genre) => baseGenres.includes(genre)).length;
+        return { anime, score };
+      })
+      .sort((a, b) => b.score - a.score || b.anime.rating - a.anime.rating)
+      .slice(0, 3)
+      .map((entry) => entry.anime);
+  }
+
+  function getUserProfile() {
+    return readStorage(STORAGE_KEYS.ACCOUNT, {
+      email: "",
+      password: "",
+      twoFactorEnabled: false,
+      twoFactorSecret: "AFX-2026",
+      recoveryCodes: [],
+      connectedSessions: []
+    });
+  }
+
+  function setUserProfile(profile) {
+    writeStorage(STORAGE_KEYS.ACCOUNT, profile);
+  }
+
+  function generateRecoveryCodes() {
+    return Array.from({ length: 4 }, () => {
+      const randomNumber = Math.floor(Math.random() * 9000) + 1000;
+      return `AFX-${randomNumber}`;
+    });
+  }
+
+  function getConnectedSessions() {
+    return readStorage(STORAGE_KEYS.SESSIONS, []);
+  }
+
+  function addConnectedSession(session) {
+    const sessions = getConnectedSessions();
+    const next = [session, ...sessions].slice(0, 5);
+    writeStorage(STORAGE_KEYS.SESSIONS, next);
+    return next;
+  }
+
+  window.AnimeFlix = {
+    STORAGE_KEYS,
+    loadAnimeCatalog,
+    getWatchlistStatus,
+    setWatchlistStatus,
+    isFavorite,
+    toggleFavorite,
+    getResumeState,
+    saveResumeState,
+    getRecommendationsForAnime,
+    getUserProfile,
+    setUserProfile,
+    generateRecoveryCodes,
+    getConnectedSessions,
+    addConnectedSession
+  };
+})();

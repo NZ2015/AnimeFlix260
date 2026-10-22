@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compte - AnimeFlix260</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Segoe UI", Tahoma, sans-serif; background: linear-gradient(135deg, #0f172a, #111827); color: white; }
+    a { text-decoration: none; color: white; }
+    header { background: rgba(15, 23, 42, 0.9); border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .header-inner { max-width: 1200px; margin: 0 auto; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { color: #f472b6; font-weight: 800; font-size: 1.8rem; }
+    nav { display: flex; gap: 12px; flex-wrap: wrap; }
+    nav a { padding: 10px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.12); }
+    nav a:hover, nav a.active { background: linear-gradient(135deg, #ec4899, #8b5cf6); border-color: transparent; }
+    .page { max-width: 1100px; margin: 0 auto; padding: 40px 20px 60px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .panel { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 20px; }
+    form { display: grid; gap: 12px; }
+    input, button { width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: rgba(15,23,42,0.9); color: white; }
+    button { background: linear-gradient(135deg, #ec4899, #8b5cf6); border: none; font-weight: 700; cursor: pointer; }
+    ul { margin: 8px 0 0 20px; color: #cbd5e1; }
+    .status-box { margin-top: 10px; color: #f9a8d4; }
+    @media (max-width: 780px) { .header-inner { flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">AnimeFlix260</div>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="categories.html">Catégories</a>
+        <a href="favorites.html">Liste</a>
+        <a class="active" href="account.html">Compte</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="grid">
+      <section class="panel">
+        <h2>Connexion / inscription</h2>
+        <form id="authForm">
+          <input id="emailInput" type="email" placeholder="Email">
+          <input id="passwordInput" type="password" placeholder="Mot de passe">
+          <button type="submit">Se connecter</button>
+        </form>
+        <div class="status-box" id="authStatus"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Récupération du compte</h2>
+        <input id="recoveryEmail" type="email" placeholder="Email de récupération">
+        <button id="recoveryBtn">Envoyer un code de reset</button>
+        <div class="status-box" id="recoveryStatus"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Sécurité 2FA</h2>
+        <button id="toggle2faBtn">Activer / désactiver 2FA</button>
+        <button id="generateCodesBtn">Générer codes de secours</button>
+        <div class="status-box" id="twoFactorStatus"></div>
+        <ul id="recoveryCodesList"></ul>
+      </section>
+
+      <section class="panel">
+        <h2>Sessions connectées</h2>
+        <ul id="sessionList"></ul>
+      </section>
+    </div>
+  </main>
+
+  <script src="app-data.js"></script>
+  <script>
+    const authForm = document.getElementById("authForm");
+    const authStatus = document.getElementById("authStatus");
+    const recoveryStatus = document.getElementById("recoveryStatus");
+    const twoFactorStatus = document.getElementById("twoFactorStatus");
+    const recoveryCodesList = document.getElementById("recoveryCodesList");
+    const sessionList = document.getElementById("sessionList");
+
+    function renderAccount() {
+      const profile = window.AnimeFlix.getUserProfile();
+      const sessions = window.AnimeFlix.getConnectedSessions();
+
+      sessionList.innerHTML = sessions.length
+        ? sessions.map((item) => `<li>${item.device} - ${new Date(item.lastSeen).toLocaleString()}</li>`).join("")
+        : "<li>Aucune session active.</li>";
+
+      if (profile.recoveryCodes && profile.recoveryCodes.length) {
+        recoveryCodesList.innerHTML = profile.recoveryCodes.map((code) => `<li>${code}</li>`).join("");
+      } else {
+        recoveryCodesList.innerHTML = "<li>Aucun code de secours généré.</li>";
+      }
+
+      twoFactorStatus.textContent = profile.twoFactorEnabled ? "2FA activé" : "2FA désactivé";
+    }
+
+    authForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const email = document.getElementById("emailInput").value.trim();
+      const password = document.getElementById("passwordInput").value.trim();
+
+      if (!email || !password) {
+        authStatus.textContent = "Email et mot de passe requis.";
+        return;
+      }
+
+      const profile = window.AnimeFlix.getUserProfile();
+      profile.email = email;
+      profile.password = password;
+      profile.connectedSessions = [{ device: "Session actuelle", os: "Navigateur", lastSeen: new Date().toISOString() }, ...profile.connectedSessions];
+      window.AnimeFlix.setUserProfile(profile);
+      window.AnimeFlix.addConnectedSession({ device: "Session actuelle", os: "Navigateur", lastSeen: new Date().toISOString() });
+      authStatus.textContent = "Connexion réussie. Session enregistrée.";
+      renderAccount();
+    });
+
+    document.getElementById("recoveryBtn").addEventListener("click", () => {
+      const email = document.getElementById("recoveryEmail").value.trim();
+      if (!email) {
+        recoveryStatus.textContent = "Saisissez votre email.";
+        return;
+      }
+      const profile = window.AnimeFlix.getUserProfile();
+      if (!profile.recoveryCodes || !profile.recoveryCodes.length) {
+        profile.recoveryCodes = window.AnimeFlix.generateRecoveryCodes();
+      }
+      window.AnimeFlix.setUserProfile(profile);
+      recoveryStatus.textContent = `Un code de réinitialisation a été généré pour ${email}.`;
+      renderAccount();
+    });
+
+    document.getElementById("toggle2faBtn").addEventListener("click", () => {
+      const profile = window.AnimeFlix.getUserProfile();
+      profile.twoFactorEnabled = !profile.twoFactorEnabled;
+      profile.twoFactorSecret = profile.twoFactorEnabled ? "AFX-SECURE-2026" : "AFX-SECURE-DESACTIVE";
+      window.AnimeFlix.setUserProfile(profile);
+      renderAccount();
+    });
+
+    document.getElementById("generateCodesBtn").addEventListener("click", () => {
+      const profile = window.AnimeFlix.getUserProfile();
+      profile.recoveryCodes = window.AnimeFlix.generateRecoveryCodes();
+      window.AnimeFlix.setUserProfile(profile);
+      renderAccount();
+    });
+
+    renderAccount();
+  </script>
+</body>
+</html>

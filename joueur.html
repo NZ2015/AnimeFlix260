@@ -1,183 +1,91 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>IrAnimeX - Lecteur</title>
-
-    <!-- CSS du lecteur -->
-    <link rel="stylesheet" href="joueur-style.css">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liste - AnimeFlix260</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: "Segoe UI", Tahoma, sans-serif; background: linear-gradient(135deg, #0f172a, #111827); color: white;
+    }
+    a { text-decoration: none; color: white; }
+    header { background: rgba(15, 23, 42, 0.9); border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .header-inner { max-width: 1200px; margin: 0 auto; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { color: #f472b6; font-weight: 800; font-size: 1.8rem; }
+    nav { display: flex; gap: 12px; flex-wrap: wrap; }
+    nav a { padding: 10px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.12); }
+    nav a:hover, nav a.active { background: linear-gradient(135deg, #ec4899, #8b5cf6); border-color: transparent; }
+    .page { max-width: 1200px; margin: 0 auto; padding: 40px 20px 60px; }
+    h1 { margin: 0 0 12px; }
+    .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; margin-top: 20px; }
+    .status-panel { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 18px; }
+    .status-panel h2 { margin: 0 0 16px; font-size: 1.4rem; }
+    .anime-item { display: flex; gap: 12px; background: rgba(255,255,255,0.02); border-radius: 12px; padding: 10px; margin-bottom: 12px; }
+    .anime-item img { width: 64px; height: 96px; object-fit: cover; border-radius: 10px; }
+    .anime-item .meta { flex: 1; }
+    .anime-item .meta strong { display: block; margin-bottom: 4px; }
+    .anime-item .meta span { color: #cbd5e1; }
+    .anime-item button { margin-top: 8px; background: linear-gradient(135deg, #ec4899, #8b5cf6); border: none; color: white; padding: 8px 10px; border-radius: 8px; cursor: pointer; }
+    @media (max-width: 780px) { .header-inner { flex-direction: column; } }
+  </style>
 </head>
-
 <body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">AnimeFlix260</div>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="categories.html">Catégories</a>
+        <a class="active" href="favorites.html">Liste</a>
+        <a href="account.html">Compte</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+  <main class="page">
+    <h1>Liste à regarder</h1>
+    <div id="watchlistPanel" class="status-grid"></div>
+  </main>
 
-<header class="player-header">
+  <script src="app-data.js"></script>
+  <script>
+    const statuses = ["watchlist", "watching", "completed"];
+    const labels = {
+      watchlist: "À regarder",
+      watching: "En cours",
+      completed: "Terminé"
+    };
 
-    <!-- LOGO -->
-    <a href="index.html" class="logo">
-        <img src="images/logo.png" alt="IrAnimeX">
-    </a>
+    async function renderWatchlist() {
+      const allAnimes = await window.AnimeFlix.loadAnimeCatalog();
+      const watchlistMap = JSON.parse(localStorage.getItem("animeFlix_watchlist") || "{}");
+      const grouped = { watchlist: [], watching: [], completed: [] };
 
-    <!-- RETOUR -->
-    <a href="index.html" class="back-btn">
-        <i class="fas fa-arrow-left"></i>
-        <span>Retour</span>
-    </a>
+      allAnimes.forEach((anime) => {
+        const status = watchlistMap[String(anime.id)] || "watchlist";
+        if (grouped[status]) grouped[status].push(anime);
+      });
 
-</header>
-
-
-<!-- =====================================================
-     CONTENU
-===================================================== -->
-
-<main class="player-container">
-
-
-    <!-- =================================================
-         INFORMATIONS ANIME
-    ================================================== -->
-
-    <section class="anime-info">
-
-        <div>
-            <h1 id="animeTitle">Chargement...</h1>
-
-            <p id="episodeInfo">
-                Saison 1 • Épisode 1
-            </p>
-        </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         ZONE LECTEUR + EPISODES
-    ================================================== -->
-
-    <section class="watch-area">
-
-
-        <!-- =========================
-             LECTEUR VIDEO
-        ========================== -->
-
-        <div class="video-column">
-
-            <div class="video-container">
-
-                <video
-                    id="videoPlayer"
-                    controls
-                    playsinline
-                    preload="metadata">
-
-                    Votre navigateur ne supporte pas la lecture vidéo.
-
-                </video>
-
-
-                <!-- Message erreur -->
-                <div id="videoError" class="video-error">
-
-                    <i class="fas fa-circle-exclamation"></i>
-
-                    <p>
-                        Impossible de charger cette vidéo.
-                    </p>
-
-                </div>
-
+      document.getElementById("watchlistPanel").innerHTML = statuses.map((status) => `
+        <section class="status-panel">
+          <h2>${labels[status]} (${grouped[status].length})</h2>
+          ${grouped[status].length ? grouped[status].map((anime) => `
+            <div class="anime-item">
+              <img src="${anime.poster}" alt="${anime.title}">
+              <div class="meta">
+                <strong>${anime.title}</strong>
+                <span>${(anime.genres || []).slice(0, 2).join(" • ")}</span>
+                <button onclick="location.href='details.html?id=${anime.id}'">Voir</button>
+              </div>
             </div>
+          `).join("") : "<div>Aucun anime dans cette catégorie.</div>"}
+        </section>
+      `).join("");
+    }
 
-
-            <!-- =========================
-                 BOUTONS PRECEDENT / SUIVANT
-            ========================== -->
-
-            <div class="episode-controls">
-
-                <button
-                    id="previousBtn"
-                    class="control-btn">
-
-                    <i class="fas fa-arrow-left"></i>
-
-                    Épisode précédent
-
-                </button>
-
-
-                <button
-                    id="nextBtn"
-                    class="control-btn next">
-
-                    Épisode suivant
-
-                    <i class="fas fa-arrow-right"></i>
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =========================
-             LISTE DES EPISODES
-        ========================== -->
-
-        <aside class="episodes-panel">
-
-            <div class="episodes-header">
-
-                <h2>
-                    <i class="fas fa-list"></i>
-                    Épisodes
-                </h2>
-
-                <span id="episodeCount">
-                    0 épisodes
-                </span>
-
-            </div>
-
-
-            <div
-                id="episodesList"
-                class="episodes-list">
-
-                <!--
-                    Les épisodes seront ajoutés
-                    automatiquement par joueur-script.js
-                -->
-
-            </div>
-
-        </aside>
-
-
-    </section>
-
-</main>
-
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
-<script src="joueur-script.js"></script>
-
+    renderWatchlist();
+  </script>
 </body>
 </html>

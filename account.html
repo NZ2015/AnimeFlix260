@@ -1,0 +1,128 @@
+const params = new URLSearchParams(window.location.search);
+let animeId = Number(params.get("animeId") || params.get("anime") || 1);
+let currentSeason = Number(params.get("season") || 0);
+let currentEpisode = Number(params.get("episode") || 0);
+
+const videoPlayer = document.getElementById("videoPlayer");
+const animeTitle = document.getElementById("animeTitle");
+const episodeInfo = document.getElementById("episodeInfo");
+const speedSelector = document.getElementById("speedSelector");
+const subtitleSelector = document.getElementById("subtitleSelector");
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
+const episodeCount = document.getElementById("episodeCount");
+const episodesList = document.getElementById("episodesList");
+
+let allAnimes = [];
+let animeData = null;
+
+async function initPlayer() {
+  allAnimes = await window.AnimeFlix.loadAnimeCatalog();
+  animeData = allAnimes.find((anime) => Number(anime.id) === animeId) || allAnimes[0];
+
+  if (!animeData) return;
+
+  animeTitle.textContent = animeData.title;
+  renderEpisodeList();
+  loadEpisode();
+
+  speedSelector.addEventListener("change", () => {
+    videoPlayer.playbackRate = Number(speedSelector.value);
+  });
+
+  subtitleSelector.addEventListener("change", () => {
+    const track = videoPlayer.querySelector("track");
+    if (!track) return;
+    track.default = subtitleSelector.value !== "off";
+  });
+
+  nextBtn.addEventListener("click", () => {
+    const currentSeasonEpisodes = animeData.seasons[currentSeason]?.episodes || [];
+    if (currentEpisode < currentSeasonEpisodes.length - 1) {
+      currentEpisode += 1;
+    } else if (currentSeason < animeData.seasons.length - 1) {
+      currentSeason += 1;
+      currentEpisode = 0;
+    }
+    renderEpisodeList();
+    loadEpisode();
+  });
+
+  prevBtn.addEventListener("click", () => {
+    if (currentEpisode > 0) {
+      currentEpisode -= 1;
+    } else if (currentSeason > 0) {
+      currentSeason -= 1;
+      currentEpisode = (animeData.seasons[currentSeason]?.episodes || []).length - 1;
+    }
+    renderEpisodeList();
+    loadEpisode();
+  });
+
+  document.getElementById("fullscreenBtn").addEventListener("click", () => {
+    if (videoPlayer.requestFullscreen) videoPlayer.requestFullscreen();
+  });
+
+  videoPlayer.ontimeupdate = () => {
+    const currentSeasonItem = animeData.seasons[currentSeason];
+    const episode = (currentSeasonItem?.episodes || [])[currentEpisode];
+    if (episode) {
+      window.AnimeFlix.saveResumeState(animeData.id, currentSeason, currentEpisode, videoPlayer.currentTime, videoPlayer.duration || 0);
+    }
+  };
+
+  videoPlayer.onended = () => {
+    nextBtn.click();
+  };
+}
+
+function renderEpisodeList() {
+  if (!animeData) return;
+
+  const season = animeData.seasons[currentSeason] || animeData.seasons[0];
+  const episodes = season.episodes || [];
+
+  episodeCount.textContent = `${episodes.length} épisodes`;
+
+  episodesList.innerHTML = episodes.map((episode, index) => `
+    <button class="episode-pill ${index === currentEpisode ? "active" : ""}" data-index="${index}">${index + 1}</button>
+  `).join("");
+
+  episodesList.querySelectorAll(".episode-pill").forEach((button) => {
+    button.addEventListener("click", () => {
+      currentEpisode = Number(button.dataset.index);
+      renderEpisodeList();
+      loadEpisode();
+    });
+  });
+}
+
+function loadEpisode() {
+  if (!animeData) return;
+
+  const season = animeData.seasons[currentSeason] || animeData.seasons[0];
+  const episode = (season.episodes || [])[currentEpisode];
+  if (!episode) return;
+
+  const resume = window.AnimeFlix.getResumeState(animeData.id, currentSeason, currentEpisode);
+
+  episodeInfo.textContent = `Saison ${currentSeason + 1} • Épisode ${episode.number} – ${episode.title}`;
+  videoPlayer.src = episode.videoUrl || "";
+  videoPlayer.load();
+
+  if (resume && Number(resume.currentTime) > 0 && Number.isFinite(resume.currentTime)) {
+    videoPlayer.onloadedmetadata = () => {
+      videoPlayer.currentTime = Math.min(resume.currentTime, videoPlayer.duration || resume.currentTime);
+    };
+  }
+
+  const nextSearch = new URLSearchParams(window.location.search);
+  nextSearch.set("animeId", animeData.id);
+  nextSearch.set("season", currentSeason);
+  nextSearch.set("episode", currentEpisode);
+  history.replaceState(null, "", `${window.location.pathname}?${nextSearch.toString()}`);
+
+  videoPlayer.playbackRate = Number(speedSelector.value || 1);
+}
+
+initPlayer();

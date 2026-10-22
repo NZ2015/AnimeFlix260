@@ -1,317 +1,159 @@
-// ===============================
-// IrAnimeX Script
-// ===============================
-
-let animes = [];
-let filteredAnimes = [];
-let currentPage = 0;
-const perPage = 6;
-
-// Chargement du fichier anime.json
-fetch("anime.json")
-    .then(response => response.json())
-    .then(data => {
-
-        animes = data.animes;
-        filteredAnimes = [...animes];
-
-        renderPage();
-
-    })
-    .catch(error => {
-
-        console.error("Erreur anime.json :", error);
-
-    });
-
-// ===============================
-// Affichage
-// ===============================
-
-function renderPage() {
-
-    const container = document.getElementById("animeList");
-
-    if (!container) return;
-
-    container.innerHTML = "";
-
-    const start = currentPage * perPage;
-    const end = start + perPage;
-
-    const page = filteredAnimes.slice(start, end);
-
-    page.forEach(anime => {
-        container.innerHTML += creerCarte(anime);
-    });
-}
-
-// ===============================
-// Pagination
-// ===============================
-
-function nextPage() {
-
-    if ((currentPage + 1) * perPage < filteredAnimes.length) {
-
-        currentPage++;
-
-        renderPage();
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AnimeFlix260</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #111827);
+      color: #f8fafc;
     }
-
-}
-
-function prevPage() {
-
-    if (currentPage > 0) {
-
-        currentPage--;
-
-        renderPage();
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
+    a { text-decoration: none; }
+    header {
+      background: rgba(15, 23, 42, 0.92);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      position: sticky; top: 0; z-index: 1000;
     }
-
-}
-
-// ===============================
-// Recherche
-// ===============================
-
-const searchInput = document.getElementById("searchInput");
-
-if (searchInput) {
-
-    searchInput.addEventListener("input", function () {
-
-        const texte = this.value.toLowerCase();
-
-        filteredAnimes = animes.filter(anime => {
-
-            return (
-
-                anime.title.toLowerCase().includes(texte) ||
-
-                anime.description.toLowerCase().includes(texte) ||
-
-                anime.genres.join(" ").toLowerCase().includes(texte)
-
-            );
-
-        });
-
-        currentPage = 0;
-
-        renderPage();
-
-    });
-
-}
-// ===============================
-// FAVORIS
-// ===============================
-
-// Charger les favoris
-let favoris = JSON.parse(localStorage.getItem("favoris")) || [];
-
-// Vérifie si un anime est en favori
-function estFavori(id) {
-    return favoris.includes(id);
-}
-
-// Ajouter / retirer un favori
-function toggleFavori(id) {
-
-    if (estFavori(id)) {
-        favoris = favoris.filter(f => f !== id);
-    } else {
-        favoris.push(id);
+    .header-inner {
+      max-width: 1200px; margin: 0 auto; padding: 16px 20px;
+      display: flex; justify-content: space-between; align-items: center; gap: 20px;
     }
-
-    localStorage.setItem("favoris", JSON.stringify(favoris));
-
-    renderPage();
-}
-
-// ===============================
-// MODIFIER L'AFFICHAGE DES CARTES
-// ===============================
-
-// Remplace la partie container.innerHTML += `...`
-// de renderPage() par celle-ci :
-
-function creerCarte(anime) {
-
-    return `
-    <div class="anime-card">
-
-        <img src="${anime.poster}" alt="${anime.title}">
-
-        <div class="anime-info">
-
-            <h3>${anime.title}</h3>
-
-            <p>${anime.description}</p>
-
-            <p class="rating">⭐ ${anime.rating}/5</p>
-
-            <p class="genre">${anime.genres.join(" • ")}</p>
-
-            <div class="card-buttons">
-
-                <a href="joueur.html?animeId=${anime.id}&season=0&episode=0"
-                   class="play-btn">
-                    ▶ Regarder
-                </a>
-
-                <button
-                    class="favorite-btn"
-                    onclick="toggleFavori(${anime.id})">
-
-                    ${estFavori(anime.id) ? "❤️" : "🤍"}
-
-                </button>
-
-            </div>
-
-        </div>
-
+    .logo { font-size: 1.8rem; font-weight: 800; color: #f472b6; }
+    nav { display: flex; gap: 12px; flex-wrap: wrap; }
+    nav a {
+      padding: 10px 14px; border-radius: 999px; color: #e2e8f0;
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: 0.2s ease;
+    }
+    nav a:hover, nav a.active {
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      color: white; border-color: transparent;
+    }
+    .hero {
+      max-width: 1200px; margin: 0 auto; padding: 60px 20px 30px;
+    }
+    .hero-content {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px; padding: 40px 30px;
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; align-items: center;
+    }
+    h1 { font-size: clamp(2.2rem, 4vw, 4rem); margin: 0 0 12px; }
+    .hero-sub { color: #cbd5e1; font-size: 1.1rem; }
+    .search-bar {
+      margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .search-bar input, .search-bar select {
+      border-radius: 12px; border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(15,23,42,0.9); color: white; padding: 12px 14px;
+    }
+    .search-bar input { flex: 1; min-width: 240px; }
+    .hero-side {
+      background: linear-gradient(135deg, rgba(236,72,153,0.2), rgba(139,92,246,0.2));
+      border-radius: 18px; padding: 24px; border: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-side strong { display: block; font-size: 1.25rem; margin-bottom: 8px; }
+    .main-shell { max-width: 1200px; margin: 0 auto; padding: 10px 20px 40px; }
+    .recommendations-box {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px; padding: 20px; margin-bottom: 30px;
+    }
+    .recommendation-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .recommendation-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;
+    }
+    .recommendation-card {
+      display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.03);
+      border-radius: 12px; padding: 10px; color: white; border: 1px solid rgba(255,255,255,0.09);
+    }
+    .recommendation-card img { width: 60px; height: 60px; object-fit: cover; border-radius: 10px; }
+    .section-row { display: flex; justify-content: space-between; align-items: center; margin: 24px 0 18px; }
+    .anime-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .anime-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; min-height: 100%;
+    }
+    .anime-card img { width: 100%; height: 240px; object-fit: cover; }
+    .anime-info { padding: 16px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .anime-top-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .anime-top-row h3 { margin: 0; font-size: 1.1rem; }
+    .favorite-toggle {
+      width: 38px; height: 38px; border-radius: 50%; border: none; background: rgba(236,72,153,0.15);
+      color: #f9a8d4; font-size: 1.4rem; cursor: pointer;
+    }
+    .favorite-toggle.active { background: #ec4899; color: white; }
+    .anime-meta-row { display: flex; justify-content: space-between; color: #cbd5e1; font-size: 0.9rem; }
+    .anime-info p { margin: 0; color: #cbd5e1; line-height: 1.5; }
+    .genres-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .genres-tags span { padding: 6px 9px; border-radius: 999px; font-size: 0.72rem; color: #f9a8d4; background: rgba(236,72,153,0.12); }
+    .card-actions { display: flex; gap: 10px; align-items: center; margin-top: auto; }
+    .primary-btn {
+      display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      color: white; border: none; border-radius: 10px; padding: 11px 16px; font-weight: 700; cursor: pointer;
+      flex: 1;
+    }
+    .watchlist-select { flex: 1; border-radius: 12px; border: 1px solid rgba(255,255,255,0.12); background: rgba(15,23,42,0.9); color: white; padding: 11px 14px; }
+    .status-indicator { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #c4b5fd; }
+    footer { border-top: 1px solid rgba(255,255,255,0.08); margin-top: 30px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 26px 20px; color: #cbd5e1; text-align: center; }
+    @media (max-width: 780px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .header-inner { flex-direction: column; }
+      nav { justify-content: center; }
+      .section-row { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">AnimeFlix260</div>
+      <nav>
+        <a class="active" href="index.html">Accueil</a>
+        <a href="categories.html">Catégories</a>
+        <a href="favorites.html">Liste</a>
+        <a href="account.html">Compte</a>
+        <a href="admin.html">Admin</a>
+      </nav>
     </div>
-    `;
-}
-// ===============================
-// ANIMATION DES CARTES
-// ===============================
+  </header>
 
-document.addEventListener("mouseover", function (e) {
+  <section class="hero">
+    <div class="hero-content">
+      <div>
+        <h1>Bienvenue sur AnimeFlix260</h1>
+        <p class="hero-sub">Découvrez des animes, reprenez votre lecture et gardez votre progression dans une interface pensée pour le streaming.</p>
+        <div class="search-bar">
+          <input id="searchInput" type="text" placeholder="Rechercher un anime, un auteur, un studio...">
+          <select id="genreFilter">
+            <option value="Tous">Tous</option>
+          </select>
+        </div>
+      </div>
+      <div class="hero-side">
+        <strong>À la une</strong>
+        <div>Progression sauvegardée automatiquement, recommandations personnalisées et liste à regarder en un clic.</div>
+      </div>
+    </div>
+  </section>
 
-    const card = e.target.closest(".anime-card");
+  <main class="main-shell">
+    <div id="recommendationsBox" class="recommendations-box"></div>
+    <div class="section-row">
+      <h2>Nos Animes</h2>
+    </div>
+    <div id="animeList" class="anime-grid"></div>
+  </main>
 
-    if (card) {
-        card.style.transform = "scale(1.05)";
-        card.style.transition = "0.3s";
-        card.style.zIndex = "100";
-    }
+  <footer>
+    <div class="footer-inner">© 2026 AnimeFlix260</div>
+  </footer>
 
-});
-
-document.addEventListener("mouseout", function (e) {
-
-    const card = e.target.closest(".anime-card");
-
-    if (card) {
-        card.style.transform = "scale(1)";
-        card.style.zIndex = "1";
-    }
-
-});
-
-// ===============================
-// BADGE HD
-// ===============================
-
-function ajouterBadges() {
-
-    document.querySelectorAll(".anime-card").forEach(card => {
-
-        if (!card.querySelector(".badge-hd")) {
-
-            const badge = document.createElement("div");
-
-            badge.className = "badge-hd";
-
-            badge.innerHTML = "HD";
-
-            card.appendChild(badge);
-
-        }
-
-    });
-
-}
-
-setInterval(ajouterBadges, 1000);
-
-// ===============================
-// SCROLL EN HAUT
-// ===============================
-
-const topBtn = document.createElement("button");
-
-topBtn.innerHTML = "⬆";
-
-topBtn.id = "topBtn";
-
-document.body.appendChild(topBtn);
-
-topBtn.onclick = () => {
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-};
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 300) {
-
-        topBtn.style.display = "block";
-
-    } else {
-
-        topBtn.style.display = "none";
-
-    }
-
-});
-
-// ===============================
-// CHARGEMENT
-// ===============================
-
-window.onload = () => {
-
-    document.body.classList.add("loaded");
-
-};
-
-// ===============================
-// RACCOURCI CLAVIER
-// ===============================
-
-document.addEventListener("keydown", function(e){
-
-    if(e.key==="ArrowRight"){
-        nextPage();
-    }
-
-    if(e.key==="ArrowLeft"){
-        prevPage();
-    }
-
-});
-function playEpisode(animeId, seasonNumber, episodeNumber) {
-  fetch("anime.json")
-    .then(res => res.json())
-    .then(data => {
-      const anime = data.animes.find(a => a.id === animeId);
-      const season = anime.seasons.find(s => s.number === seasonNumber);
-      const episode = season.episodes.find(e => e.number === episodeNumber);
-
-      const video = document.getElementById("videoPlayer");
-      video.src = episode.videoUrl;
-      video.play();
-    });
-}
+  <script src="app-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
