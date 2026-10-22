@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détails Anime - AnimeFlix260</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background: linear-gradient(135deg, #0f172a, #111827); color: white;
+    }
+    a { text-decoration: none; color: white; }
+    header { background: rgba(15,23,42,0.9); border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .header-inner { max-width: 1200px; margin: 0 auto; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.8rem; font-weight: 800; color: #f472b6; }
+    nav { display: flex; gap: 12px; flex-wrap: wrap; }
+    nav a { padding: 10px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.12); }
+    nav a:hover, nav a.active { background: linear-gradient(135deg, #ec4899, #8b5cf6); border-color: transparent; }
+    .page { max-width: 1200px; margin: 0 auto; padding: 40px 20px 60px; }
+    .anime-header { display: grid; grid-template-columns: 320px 1fr; gap: 28px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 24px; }
+    .anime-poster { width: 100%; aspect-ratio: 2 / 3; border-radius: 18px; overflow: hidden; }
+    .anime-poster img { width: 100%; height: 100%; object-fit: cover; }
+    .anime-info h1 { margin: 0 0 12px; font-size: clamp(2rem, 3vw, 3.2rem); }
+    .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 18px 0; }
+    .meta-box { background: rgba(236,72,153,0.08); border: 1px solid rgba(236,72,153,0.2); padding: 12px; border-radius: 12px; }
+    .meta-box span { display: block; font-size: 0.7rem; letter-spacing: 0.08em; color: #f9a8d4; margin-bottom: 6px; }
+    .rating-row { display: flex; gap: 12px; align-items: center; font-size: 1.1rem; }
+    .stars { color: #facc15; font-size: 1.6rem; }
+    .description { color: #cbd5e1; line-height: 1.7; margin: 18px 0; }
+    .genres { display: flex; flex-wrap: wrap; gap: 10px; }
+    .genres span { padding: 8px 12px; border-radius: 999px; color: #f9a8d4; background: rgba(236,72,153,0.12); border: 1px solid rgba(236,72,153,0.2); }
+    .action-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .play-btn, .status-select, .watchlist-btn {
+      border: none; border-radius: 12px; padding: 12px 16px; font-weight: 700; font-size: 0.96rem; cursor: pointer;
+    }
+    .play-btn { background: linear-gradient(135deg, #ec4899, #8b5cf6); color: white; }
+    .watchlist-btn { background: rgba(255,255,255,0.06); color: white; border: 1px solid rgba(255,255,255,0.12); }
+    .status-select { background: rgba(255,255,255,0.04); color: white; border: 1px solid rgba(255,255,255,0.12); }
+    .section-title { margin: 40px 0 18px; font-size: 2rem; }
+    .episode-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+    .episode-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 16px; }
+    .episode-card h4 { margin: 0 0 8px; }
+    .episode-card .duration { color: #cbd5e1; margin-bottom: 12px; }
+    .episode-card button { width: 100%; background: linear-gradient(135deg, #ec4899, #8b5cf6); color: white; border: none; padding: 10px 12px; border-radius: 10px; cursor: pointer; }
+    .recommendation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 8px; }
+    .recommendation-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; }
+    .recommendation-card img { width: 100%; height: 150px; object-fit: cover; }
+    .recommendation-card .info { padding: 12px; }
+    .modal { display: none; position: fixed; inset: 0; background: rgba(2,6,23,0.9); z-index: 1000; }
+    .modal-inner { max-width: 980px; margin: 40px auto; background: #111827; border-radius: 22px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; }
+    .close-btn { position: absolute; right: 26px; top: 20px; font-size: 2rem; cursor: pointer; }
+    video { width: 100%; background: black; display: block; }
+    .modal-meta { padding: 16px 20px 22px; }
+    .control-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .control-row select, .control-row button { padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.04); color: white; }
+    @media (max-width: 780px) { .anime-header { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">AnimeFlix260</div>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="categories.html">Catégories</a>
+        <a href="favorites.html">Liste</a>
+        <a href="account.html">Compte</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <div id="animeDetail"></div>
+  </main>
+
+  <div id="videoModal" class="modal">
+    <div class="close-btn" id="closeVideo">×</div>
+    <div class="modal-inner">
+      <video id="videoPlayer" controls playsinline></video>
+      <div class="modal-meta">
+        <h3 id="modalTitle">Lecture</h3>
+        <div id="modalEpisode">Chargement...</div>
+        <div class="control-row">
+          <select id="speedSelector">
+            <option value="0.75">0.75x</option>
+            <option value="1" selected>1x</option>
+            <option value="1.25">1.25x</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2x</option>
+          </select>
+          <select id="subtitleSelector">
+            <option value="off">Sous-titres : off</option>
+            <option value="fr">Français</option>
+            <option value="en">Anglais</option>
+          </select>
+          <button id="fullscreenBtn">Plein écran</button>
+          <button id="nextEpisodeBtn">Épisode suivant</button>
+          <label><input type="checkbox" id="autoplayToggle" checked> Lecture auto</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app-data.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const animeId = Number(urlParams.get('id'));
+    let allAnimes = [];
+    let currentAnime = null;
+    let currentSeasonIndex = 0;
+    let currentEpisodeIndex = 0;
+    let currentVideoElement = null;
+
+    function getStars(rating) {
+      const fullStars = Math.floor(rating);
+      const hasHalfStar = rating % 1 >= 0.5;
+      let stars = '★'.repeat(fullStars);
+      if (hasHalfStar) stars += '½';
+      return stars;
+    }
+
+    function renderAnime(anime) {
+      currentAnime = anime;
+      const status = window.AnimeFlix.getWatchlistStatus(anime.id);
+      const recommendationList = window.AnimeFlix.getRecommendationsForAnime(anime.id, allAnimes);
+      const resume = window.AnimeFlix.getResumeState(anime.id, 0, 0);
+
+      document.getElementById('animeDetail').innerHTML = `
+        <section class="anime-header">
+          <div class="anime-poster"><img src="${anime.poster}" alt="${anime.title}"></div>
+          <div class="anime-info">
+            <h1>${anime.title}</h1>
+            <div class="rating-row"><span class="stars">${getStars(anime.rating)}</span> <span>${anime.rating}/5</span></div>
+            <div class="meta-grid">
+              <div class="meta-box"><span>Année</span>${anime.releaseYear}</div>
+              <div class="meta-box"><span>Studio</span>${anime.studio}</div>
+              <div class="meta-box"><span>Auteur</span>${anime.author}</div>
+              <div class="meta-box"><span>Épisodes</span>${anime.totalEpisodes}</div>
+            </div>
+            <div class="description">${anime.description}</div>
+            <div class="genres">${(anime.genres || []).map((genre) => `<span>${genre}</span>`).join('')}</div>
+            <div class="action-row">
+              <button class="play-btn" onclick="playEpisode(0, 0)">▶ Regarder</button>
+              <select class="status-select" id="statusSelect">
+                <option value="watchlist" ${status === 'watchlist' ? 'selected' : ''}>À regarder</option>
+                <option value="watching" ${status === 'watching' ? 'selected' : ''}>En cours</option>
+                <option value="completed" ${status === 'completed' ? 'selected' : ''}>Terminé</option>
+              </select>
+            </div>
+            ${resume ? `<div style="margin-top:12px; color:#cbd5e1;">Reprise enregistrée : ${Math.floor(resume.currentTime / 60)} min</div>` : ''}
+          </div>
+        </section>
+
+        <h2 class="section-title">Épisodes</h2>
+        <div class="episode-grid">
+          ${(anime.seasons || []).map((season, seasonIndex) => (season.episodes || []).map((episode, episodeIndex) => `
+            <article class="episode-card">
+              <h4>S${season.number} · Épisode ${episode.number}</h4>
+              <div>${episode.title}</div>
+              <div class="duration">⏱️ ${episode.duration}</div>
+              <button onclick="playEpisode(${seasonIndex}, ${episodeIndex})">Regarder</button>
+            </article>
+          `).join('')).join('')}
+        </div>
+
+        <h2 class="section-title">Recommandations</h2>
+        <div class="recommendation-grid">
+          ${recommendationList.map((rec) => `
+            <a href="details.html?id=${rec.id}" class="recommendation-card">
+              <img src="${rec.poster}" alt="${rec.title}">
+              <div class="info">
+                <strong>${rec.title}</strong>
+                <div>${rec.genres.slice(0, 2).join(' • ')}</div>
+              </div>
+            </a>
+          `).join('')}
+        </div>
+      `;
+
+      const statusSelect = document.getElementById('statusSelect');
+      statusSelect.addEventListener('change', (event) => {
+        window.AnimeFlix.setWatchlistStatus(anime.id, event.target.value);
+      });
+    }
+
+    function openPlayer() {
+      document.getElementById('videoModal').style.display = 'block';
+    }
+
+    function closePlayer() {
+      const player = document.getElementById('videoPlayer');
+      if (player) {
+        player.pause();
+      }
+      document.getElementById('videoModal').style.display = 'none';
+    }
+
+    function playEpisode(seasonIndex, episodeIndex) {
+      if (!currentAnime) return;
+      const season = currentAnime.seasons[seasonIndex] || currentAnime.seasons[0];
+      const episode = (season.episodes || [])[episodeIndex];
+      if (!episode) return;
+
+      currentSeasonIndex = seasonIndex;
+      currentEpisodeIndex = episodeIndex;
+      const video = document.getElementById('videoPlayer');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalEpisode = document.getElementById('modalEpisode');
+      const resume = window.AnimeFlix.getResumeState(currentAnime.id, seasonIndex, episodeIndex);
+
+      video.src = episode.videoUrl || '';
+      modalTitle.textContent = currentAnime.title;
+      modalEpisode.textContent = `S${season.number} • Épisode ${episode.number} – ${episode.title}`;
+      openPlayer();
+
+      video.onloadedmetadata = () => {
+        if (resume && resume.currentTime > 0) {
+          video.currentTime = Math.min(resume.currentTime, video.duration || resume.currentTime);
+        }
+      };
+
+      video.addEventListener('timeupdate', () => {
+        if (!Number.isFinite(video.currentTime)) return;
+        window.AnimeFlix.saveResumeState(currentAnime.id, seasonIndex, episodeIndex, video.currentTime, video.duration || 0);
+      });
+
+      const speedSelector = document.getElementById('speedSelector');
+      speedSelector.addEventListener('change', () => {
+        video.playbackRate = Number(speedSelector.value);
+      });
+
+      const subtitleSelector = document.getElementById('subtitleSelector');
+      subtitleSelector.addEventListener('change', () => {
+        const track = video.querySelector('track');
+        if (!track) return;
+        track.default = subtitleSelector.value !== 'off';
+      });
+
+      document.getElementById('nextEpisodeBtn').onclick = () => {
+        const nextSeasonIndex = currentSeasonIndex;
+        const nextEpisodeIndex = currentEpisodeIndex + 1;
+        const currentSeasonEpisodes = (currentAnime.seasons[nextSeasonIndex] || { episodes: [] }).episodes || [];
+        if (nextEpisodeIndex < currentSeasonEpisodes.length) {
+          playEpisode(nextSeasonIndex, nextEpisodeIndex);
+        } else if (nextSeasonIndex + 1 < (currentAnime.seasons || []).length) {
+          playEpisode(nextSeasonIndex + 1, 0);
+        }
+      };
+
+      document.getElementById('fullscreenBtn').onclick = () => {
+        if (video.requestFullscreen) video.requestFullscreen();
+      };
+
+      document.getElementById('autoplayToggle').onchange = (event) => {
+        video.autoplay = event.target.checked;
+      };
+
+      video.onended = () => {
+        if (document.getElementById('autoplayToggle').checked) {
+          document.getElementById('nextEpisodeBtn').click();
+        }
+      };
+
+      video.play();
+    }
+
+    async function init() {
+      allAnimes = await window.AnimeFlix.loadAnimeCatalog();
+      const anime = allAnimes.find((item) => Number(item.id) === animeId) || allAnimes[0];
+      renderAnime(anime);
+      document.getElementById('closeVideo').addEventListener('click', closePlayer);
+      window.addEventListener('click', (event) => {
+        const modal = document.getElementById('videoModal');
+        if (event.target === modal) closePlayer();
+      });
+    }
+
+    init();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,170 @@
+const STORAGE_KEYS = {
+  FAVORITES: 'animeFlix_favorites',
+  WATCHLIST: 'animeFlix_watchlist',
+  RESUME: 'animeFlix_resume',
+  ACCOUNT: 'animeFlix_account',
+  ADMIN: 'animeFlix_admin_animes',
+  SESSIONS: 'animeFlix_sessions'
+};
+
+function readJSON(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
+  } catch (error) {
+    return fallback;
+  }
+}
+
+function normalizeAnimeList(list = []) {
+  return list.map((anime, index) => ({
+    id: Number(anime.id ?? index + 1),
+    title: anime.title || `Anime ${index + 1}`,
+    rating: Number(anime.rating ?? 4),
+    poster: anime.poster || 'images/default-poster.jpg',
+    description: anime.description || 'Description à venir.',
+    genres: Array.isArray(anime.genres) ? anime.genres : [],
+    releaseYear: Number(anime.releaseYear ?? 2024),
+    totalEpisodes: Number(anime.totalEpisodes ?? (anime.seasons?.[0]?.episodes?.length ?? 0)),
+    studio: anime.studio || 'Studio principal',
+    author: anime.author || anime.studio || 'Auteur inconnu',
+    seasons: Array.isArray(anime.seasons) && anime.seasons.length
+      ? anime.seasons
+      : [{ number: 1, title: 'Saison 1', episodes: [{ number: 1, title: 'Épisode 1', duration: '24:00', videoUrl: '' }] }]
+  }));
+}
+
+async function loadAnimeCatalog() {
+  const data = await fetch('anime.json').then((response) => response.json());
+  const baseAnimes = Array.isArray(data?.animes) ? data.animes : [];
+  const custom = readJSON(STORAGE_KEYS.ADMIN, []);
+  const merged = Array.isArray(custom) && custom.length ? custom : baseAnimes;
+  return normalizeAnimeList(merged);
+}
+
+function getWatchlistStatus(animeId) {
+  const map = readJSON(STORAGE_KEYS.WATCHLIST, {});
+  return map[String(animeId)] || 'watchlist';
+}
+
+function setWatchlistStatus(animeId, status) {
+  const map = readJSON(STORAGE_KEYS.WATCHLIST, {});
+  map[String(animeId)] = status;
+  localStorage.setItem(STORAGE_KEYS.WATCHLIST, JSON.stringify(map));
+}
+
+function isFavorite(animeId) {
+  const favorites = readJSON(STORAGE_KEYS.FAVORITES, {});
+  return Boolean(favorites[String(animeId)]);
+}
+
+function toggleFavorite(animeId) {
+  const favorites = readJSON(STORAGE_KEYS.FAVORITES, {});
+  const key = String(animeId);
+  favorites[key] = !Boolean(favorites[key]);
+  localStorage.setItem(STORAGE_KEYS.FAVORITES, JSON.stringify(favorites));
+  return favorites[key];
+}
+
+function getResumeState(animeId, seasonNumber, episodeNumber) {
+  const resumeMap = readJSON(STORAGE_KEYS.RESUME, {});
+  const key = `${animeId}:${seasonNumber}:${episodeNumber}`;
+  return resumeMap[key] || null;
+}
+
+function saveResumeState(animeId, seasonNumber, episodeNumber, currentTime, duration = 0) {
+  const map = readJSON(STORAGE_KEYS.RESUME, {});
+  const key = `${animeId}:${seasonNumber}:${episodeNumber}`;
+  map[key] = { animeId, seasonNumber, episodeNumber, currentTime, duration, updatedAt: new Date().toISOString() };
+  localStorage.setItem(STORAGE_KEYS.RESUME, JSON.stringify(map));
+}
+
+function createAnimeCookieData() {
+  const now = new Date();
+  return {
+    id: `session-${now.getTime()}`,
+    device: 'Navigateur web',
+    os: 'Desktop',
+    lastSeen: now.toISOString()
+  };
+}
+
+function getConnectedSessions() {
+  return readJSON(STORAGE_KEYS.SESSIONS, []);
+}
+
+function addConnectedSession(session) {
+  const sessions = getConnectedSessions();
+  const next = [{ ...session, lastSeen: new Date().toISOString() }, ...sessions].slice(0, 5);
+  localStorage.setItem(STORAGE_KEYS.SESSIONS, JSON.stringify(next));
+  return next;
+}
+
+function getRecommendationsForAnime(currentAnimeId, animeList = []) {
+  const statuses = readJSON(STORAGE_KEYS.WATCHLIST, {});
+  const preferredGenres = [];
+  const animeId = Number(currentAnimeId);
+
+  for (const [id, status] of Object.entries(statuses)) {
+    if (status && status !== 'watchlist' && Number(id) !== animeId) {
+      const anime = animeList.find((item) => Number(item.id) === Number(id));
+      if (anime) {
+        preferredGenres.push(...(anime.genres || []));
+      }
+    }
+  }
+
+  const baseAnime = animeList.find((anime) => Number(anime.id) === animeId);
+  const currentGenres = baseAnime ? baseAnime.genres : preferredGenres;
+  const sourceGenres = currentGenres.length ? currentGenres : ['Action', 'Drame'];
+
+  const recommended = animeList
+    .filter((anime) => Number(anime.id) !== animeId)
+    .map((anime) => {
+      const score = (anime.genres || []).filter((genre) => sourceGenres.includes(genre)).length;
+      return { anime, score };
+    })
+    .sort((a, b) => b.score - a.score || b.anime.rating - a.anime.rating)
+    .slice(0, 3)
+    .map((entry) => entry.anime);
+
+  return recommended;
+}
+
+function getUserProfile() {
+  return readJSON(STORAGE_KEYS.ACCOUNT, {
+    email: '',
+    password: '',
+    twoFactorEnabled: false,
+    twoFactorSecret: 'AFX-2026',
+    recoveryCodes: ['AFX-1001', 'AFX-1002', 'AFX-1003'],
+    connectedSessions: []
+  });
+}
+
+function setUserProfile(profile) {
+  localStorage.setItem(STORAGE_KEYS.ACCOUNT, JSON.stringify(profile));
+}
+
+function generateRecoveryCodes() {
+  return Array.from({ length: 4 }, (_, index) => `AFX-${Math.floor(Math.random() * 9000 + 1000)}-${index + 1}`);
+}
+
+window.AnimeFlix = {
+  STORAGE_KEYS,
+  normalizeAnimeList,
+  loadAnimeCatalog,
+  getWatchlistStatus,
+  setWatchlistStatus,
+  isFavorite,
+  toggleFavorite,
+  getResumeState,
+  saveResumeState,
+  getRecommendationsForAnime,
+  getUserProfile,
+  setUserProfile,
+  generateRecoveryCodes,
+  getConnectedSessions,
+  addConnectedSession,
+  createAnimeCookieData
+};
