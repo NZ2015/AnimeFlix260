@@ -31,8 +31,8 @@
     );
 
     --shadow-blue: 0 0 25px rgba(33, 150, 243, 0.35);
-    --shadow-green: 0 0 25px rgba(236, 72, 153, 0.35);
-    --shadow-pink: 0 0 25px rgba(0, 230, 118, 0.30);
+    --shadow-pink: 0 0 25px rgba(236, 72, 153, 0.35);
+    --shadow-green: 0 0 25px rgba(0, 230, 118, 0.30);
 
     --radius: 16px;
 }
