@@ -1,432 +1,227 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catégories - AnimeFlix260</title>
-    <style>
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #fff;
-            min-height: 100vh;
-        }
-        header {
-            background: rgba(0,0,0,0.8);
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            background: linear-gradient(135deg, #ff006e, #8338ec);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            cursor: pointer;
-        }
-        .nav-buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .btn {
-            padding: 10px 20px;
-            border: 2px solid #ff006e;
-            background: transparent;
-            color: #ff006e;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        .page-title {
-            font-size: 48px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            text-align: center;
-            background: linear-gradient(135deg, #ff006e, #8338ec);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .toolbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-        .duration-filters, .categories-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .duration-btn, .category-btn {
-            padding: 12px 18px;
-            border-radius: 999px;
-            border: 2px solid rgba(255,0,110,0.4);
-            background: rgba(255, 0, 110, 0.15);
-            color: #ff006e;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .duration-btn.active, .category-btn.active,
-        .duration-btn:hover, .category-btn:hover {
-            background: linear-gradient(135deg, #ff006e, #8338ec);
-            color: #fff;
-            border-color: transparent;
-            transform: translateY(-2px);
-        }
-        .sort-box {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-        }
-        .sort-box select {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
-            border-radius: 8px;
-            padding: 10px 12px;
-        }
-        .animes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .anime-card {
-            background: rgba(255,255,255,0.05);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.2s ease;
-        }
-        .anime-card:hover {
-            transform: translateY(-8px);
-            border-color: #ff006e;
-            box-shadow: 0 12px 30px rgba(255,0,110,0.25);
-        }
-        .anime-poster img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            display: block;
-        }
-        .anime-info {
-            padding: 20px;
-        }
-        .anime-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-        .anime-duration {
-            display: inline-block;
-            margin-bottom: 10px;
-            background: rgba(131, 56, 236, 0.25);
-            color: #d9c8ff;
-            border: 1px solid rgba(131,56,236,0.5);
-            border-radius: 999px;
-            padding: 4px 10px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-        .anime-rating {
-            margin-bottom: 10px;
-            color: #ffd700;
-            font-weight: 700;
-        }
-        .anime-genres {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 10px 0 12px;
-        }
-        .genre-tag {
-            background: rgba(255,0,110,0.2);
-            color: #ff006e;
-            border: 1px solid rgba(255,0,110,0.3);
-            border-radius: 20px;
-            padding: 4px 10px;
-            font-size: 12px;
-        }
-        .anime-description {
-            margin-bottom: 14px;
-            color: rgba(255,255,255,0.75);
-            line-height: 1.5;
-        }
-        .card-buttons {
-            display: flex;
-            gap: 10px;
-        }
-        .play-btn {
-            flex: 1;
-            display: inline-block;
-            text-align: center;
-            text-decoration: none;
-            padding: 12px 14px;
-            background: linear-gradient(135deg, #ff006e, #8338ec);
-            border-radius: 8px;
-            color: #fff;
-            font-weight: 700;
-        }
-        .favorite-btn {
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.08);
-            color: #fff;
-            border-radius: 8px;
-            padding: 12px 14px;
-            cursor: pointer;
-        }
-        .empty-message {
-            text-align: center;
-            padding: 30px;
-            color: rgba(255,255,255,0.7);
-            font-size: 18px;
-        }
-        @media (max-width: 768px) {
-            .page-title { font-size: 32px; }
-            .toolbar { align-items: flex-start; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IrAnimeX</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .anime-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto 25px;
+      padding: 0 20px;
+    }
+
+    .duration-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .duration-btn {
+      background: rgba(255, 0, 110, 0.15);
+      border: 2px solid rgba(255, 0, 110, 0.5);
+      color: #ff006e;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .duration-btn.active,
+    .duration-btn:hover {
+      background: linear-gradient(135deg, #ff006e, #8338ec);
+      color: #fff;
+      border-color: transparent;
+      transform: translateY(-1px);
+    }
+
+    .sort-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      font-weight: 600;
+    }
+
+    .sort-box select {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+
+    .anime-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+    }
+
+    .anime-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+
+    .anime-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .anime-card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .anime-info {
+      padding: 16px;
+    }
+
+    .anime-info h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    .anime-duration,
+    .rating,
+    .genre {
+      margin: 4px 0;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .card-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .play-btn,
+    .favorite-btn {
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+    }
+
+    .play-btn {
+      flex: 1;
+      background: linear-gradient(135deg, #ff006e, #8338ec);
+      color: white;
+    }
+
+    .favorite-btn {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .empty-message {
+      max-width: 1200px;
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      margin: 0 auto;
+      padding: 30px 20px 50px;
+    }
+  </style>
 </head>
-<body>
-    <header>
-        <div class="header-content">
-            <div class="logo" onclick="window.location.href='index.html'">🎬 AnimeFlix260</div>
-            <div class="nav-buttons">
-                <a href="index.html" class="btn">Accueil</a>
-                <a href="categories.html" class="btn">Catégories</a>
-                <a href="favorites.html" class="btn">❤️ Favoris</a>
-            </div>
+<body data-page="home">
+  <header class="header">
+    <div class="header-container">
+      <div class="logo">
+        <img src="images/logo.png" alt="IrAnimeX Logo.png">
+        <span>IrAnimeX</span>
+      </div>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-link active">Accueil</a>
+        <a href="categories.html" class="nav-link">Catalogue</a>
+        <a href="favorites.html" class="nav-link">Favoris</a>
+      </nav>
+
+      <div class="auth-buttons">
+        <button class="btn btn-secondary">Connexion</button>
+        <button class="btn btn-primary">S'inscrire</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Bienvenue sur IrAnimeX</h1>
+      <p>Découvrez des milliers d'animes en streaming HD.</p>
+
+      <div class="search-bar">
+        <div class="search-container">
+          <i class="fas fa-search"></i>
+          <input id="searchInput" type="text" placeholder="Rechercher un anime...">
+          <button class="search-btn">Rechercher</button>
         </div>
-    </header>
+      </div>
+    </div>
+  </section>
 
-    <div class="container">
-        <h1 class="page-title">Catégories</h1>
-
-        <div class="toolbar">
-            <div>
-                <div class="categories-grid" id="categoryButtons"></div>
-            </div>
-            <div class="sort-box">
-                <label for="sortSelect">Trier :</label>
-                <select id="sortSelect">
-                    <option value="default">Par défaut</option>
-                    <option value="rating-desc">Mieux notés</option>
-                    <option value="duration-asc">Plus courts</option>
-                    <option value="duration-desc">Plus longs</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="duration-filters" id="durationFilters"></div>
-        <div class="animes-grid" id="animeGrid"></div>
+  <main>
+    <div class="anime-toolbar">
+      <div class="duration-filters" id="durationFilters"></div>
+      <div class="sort-box">
+        <label for="sortSelect">Trier :</label>
+        <select id="sortSelect">
+          <option value="default">Par défaut</option>
+          <option value="rating-desc">Mieux notés</option>
+          <option value="duration-asc">Plus courts</option>
+          <option value="duration-desc">Plus longs</option>
+        </select>
+      </div>
     </div>
 
-    <script>
-        const STORAGE_KEY = 'animeFlix_favorites';
-        let allAnimes = [];
-        let currentCategory = 'Tous';
-        let currentDuration = 'Tous';
-        let currentSort = 'default';
+    <h2 class="section-title">Nos Animes</h2>
+    <div id="animeList" class="anime-grid"></div>
 
-        function getFavorites() {
-            try {
-                const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-                return Array.isArray(raw) ? raw : [];
-            } catch {
-                return [];
-            }
-        }
+    <div class="pagination">
+      <button onclick="prevPage()">⏮</button>
+      <button onclick="nextPage()">⏭</button>
+    </div>
+  </main>
 
-        function saveFavorites(list) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-        }
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>IrAnimeX</h3>
+        <p>Votre plateforme anime.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Liens utiles</h3>
+        <p><a href="index.html">Accueil</a></p>
+        <p><a href="categories.html">Catalogue</a></p>
+        <p><a href="favorites.html">Favoris</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Email : contact@iranimex.com</p>
+      </div>
+    </div>
+  </footer>
 
-        function isFavorite(id) {
-            return getFavorites().includes(Number(id));
-        }
-
-        function toggleFavorite(id) {
-            const favorites = getFavorites();
-            const numberId = Number(id);
-            const next = favorites.includes(numberId)
-                ? favorites.filter(item => item !== numberId)
-                : [...favorites, numberId];
-            saveFavorites(next);
-            renderCards();
-        }
-
-        function toMinutes(duration) {
-            if (!duration) return 0;
-            if (typeof duration === 'number') return duration;
-            const text = String(duration).trim();
-            if (text.includes('h')) {
-                const hours = parseFloat(text.split('h')[0]) || 0;
-                const minutesPart = (text.split('h')[1] || '').replace(/min|m/gi, '').trim();
-                const minutes = parseInt(minutesPart || '0', 10);
-                return (hours * 60) + minutes;
-            }
-            const parts = text.split(':').map(v => parseInt(v, 10));
-            if (parts.length === 2) return (parts[0] * 60) + parts[1];
-            return 0;
-        }
-
-        function getAnimeAvgDuration(anime) {
-            const values = (anime.seasons || []).flatMap(season => (season.episodes || []).map(ep => toMinutes(ep.duration)));
-            if (!values.length) return 0;
-            return values.reduce((sum, value) => sum + value, 0) / values.length;
-        }
-
-        function formatDurationLabel(minutes) {
-            if (!minutes) return 'Durée inconnue';
-            const hours = Math.floor(minutes / 60);
-            const mins = Math.round(minutes % 60);
-            if (hours === 0) return `${mins} min`;
-            if (mins === 0) return `${hours}h`;
-            return `${hours}h ${mins}min`;
-        }
-
-        function getGenres() {
-            const genres = new Set();
-            allAnimes.forEach(anime => (anime.genres || []).forEach(g => genres.add(g)));
-            return ['Tous', ...Array.from(genres).sort()];
-        }
-
-        function getDurationButtons() {
-            return ['Tous', '1h', '2h', '3h'];
-        }
-
-        function matchesDuration(anime, filter) {
-            if (filter === 'Tous') return true;
-            const target = { '1h': 60, '2h': 120, '3h': 180 };
-            const avg = getAnimeAvgDuration(anime);
-            return Math.abs(avg - target[filter]) <= 15;
-        }
-
-        function matchesCategory(anime, category) {
-            if (category === 'Tous') return true;
-            return (anime.genres || []).some(g => g.toLowerCase() === category.toLowerCase());
-        }
-
-        function sortAnimes(list) {
-            const sorted = [...list];
-            switch (currentSort) {
-                case 'rating-desc':
-                    return sorted.sort((a, b) => (b.rating || 0) - (a.rating || 0));
-                case 'duration-asc':
-                    return sorted.sort((a, b) => getAnimeAvgDuration(a) - getAnimeAvgDuration(b));
-                case 'duration-desc':
-                    return sorted.sort((a, b) => getAnimeAvgDuration(b) - getAnimeAvgDuration(a));
-                default:
-                    return sorted;
-            }
-        }
-
-        function renderButtons() {
-            const categoryContainer = document.getElementById('categoryButtons');
-            categoryContainer.innerHTML = getGenres().map(category => `
-                <button class="category-btn ${currentCategory === category ? 'active' : ''}" data-category="${category}">${category}</button>
-            `).join('');
-
-            const durationContainer = document.getElementById('durationFilters');
-            durationContainer.innerHTML = getDurationButtons().map(duration => `
-                <button class="duration-btn ${currentDuration === duration ? 'active' : ''}" data-duration="${duration}">${duration}</button>
-            `).join('');
-
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    currentCategory = btn.dataset.category;
-                    renderButtons();
-                    renderCards();
-                });
-            });
-
-            document.querySelectorAll('.duration-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    currentDuration = btn.dataset.duration;
-                    renderButtons();
-                    renderCards();
-                });
-            });
-        }
-
-        function renderCards() {
-            const grid = document.getElementById('animeGrid');
-            if (!grid) return;
-
-            const filtered = sortAnimes(
-                allAnimes.filter(anime => matchesCategory(anime, currentCategory))
-                         .filter(anime => matchesDuration(anime, currentDuration))
-            );
-
-            if (!filtered.length) {
-                grid.innerHTML = '<div class="empty-message">Aucun anime ne correspond à ce filtre.</div>';
-                return;
-            }
-
-            grid.innerHTML = filtered.map(anime => `
-                <div class="anime-card">
-                    <div class="anime-poster">
-                        <img src="${anime.poster}" alt="${anime.title}">
-                    </div>
-                    <div class="anime-info">
-                        <div class="anime-title">${anime.title}</div>
-                        <div class="anime-duration">⏱️ ${formatDurationLabel(getAnimeAvgDuration(anime))}</div>
-                        <div class="anime-rating">⭐ ${anime.rating}/5</div>
-                        <div class="anime-genres">
-                            ${(anime.genres || []).map(genre => `<span class="genre-tag">${genre}</span>`).join('')}
-                        </div>
-                        <div class="anime-description">${anime.description}</div>
-                        <div class="card-buttons">
-                            <a href="details.html?id=${anime.id}" class="play-btn">▶ Voir</a>
-                            <button class="favorite-btn" data-id="${anime.id}">${isFavorite(anime.id) ? '❤️' : '🤍'}</button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        document.getElementById('sortSelect')?.addEventListener('change', function () {
-            currentSort = this.value;
-            renderCards();
-        });
-
-        document.addEventListener('click', function (event) {
-            const favoriteBtn = event.target.closest('.favorite-btn');
-            if (favoriteBtn) {
-                toggleFavorite(favoriteBtn.dataset.id);
-            }
-        });
-
-        fetch('anime.json')
-            .then(res => res.json())
-            .then(data => {
-                allAnimes = data.animes || [];
-                renderButtons();
-                renderCards();
-            });
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>

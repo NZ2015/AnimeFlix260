@@ -1,464 +1,191 @@
-const STORAGE_KEY = "iranimex_favorites";
-
-let allAnimes = [];
-let filteredAnimes = [];
-let currentPage = 0;
-const perPage = 6;
-
-let currentCategory = "Tous";
-let currentSort = "default";
-let currentSearch = "";
-let currentDuration = "Tous";
-
-function getFavorites() {
-  try {
-    const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-    return Array.isArray(raw) ? raw : [];
-  } catch {
-    return [];
-  }
-}
-
-function saveFavorites(list) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-}
-
-function isFavorite(id) {
-  return getFavorites().includes(Number(id));
-}
-
-function toggleFavorite(id) {
-  const favorites = getFavorites();
-  const numericId = Number(id);
-
-  const next = favorites.includes(numericId)
-    ? favorites.filter((item) => item !== numericId)
-    : [...favorites, numericId];
-
-  saveFavorites(next);
-
-  renderHomePage();
-  renderCategoriesPage();
-  renderFavoritesPage();
-  renderDetailPage();
-}
-
-function toMinutes(duration) {
-  if (!duration) return 0;
-  if (typeof duration === "number") return duration;
-
-  const text = String(duration).trim();
-
-  if (text.includes("h")) {
-    const hours = parseFloat(text.split("h")[0]) || 0;
-    const minutesPart = (text.split("h")[1] || "").replace(/min|m/gi, "").trim();
-    const minutes = parseInt(minutesPart || "0", 10);
-    return hours * 60 + minutes;
-  }
-
-  const parts = text.split(":").map((v) => parseInt(v, 10));
-  if (parts.length === 2) return parts[0] * 60 + parts[1];
-
-  return 0;
-}
-
-function getAnimeAvgDuration(anime) {
-  const values = (anime.seasons || [])
-    .flatMap((season) => (season.episodes || []).map((ep) => toMinutes(ep.duration)));
-
-  if (!values.length) return 0;
-  return values.reduce((sum, val) => sum + val, 0) / values.length;
-}
-
-function formatDurationLabel(minutes) {
-  if (!minutes) return "Durée inconnue";
-
-  const hours = Math.floor(minutes / 60);
-  const mins = Math.round(minutes % 60);
-
-  if (hours === 0) return `${mins} min`;
-  if (mins === 0) return `${hours}h`;
-  return `${hours}h ${mins}min`;
-}
-
-function getStars(rating) {
-  const full = Math.floor(rating || 0);
-  const half = (rating || 0) % 1 >= 0.5 ? "½" : "";
-  return "★".repeat(full) + half;
-}
-
-function matchesSearch(anime, query) {
-  const text = query.trim().toLowerCase();
-  if (!text) return true;
-
-  return (
-    (anime.title || "").toLowerCase().includes(text) ||
-    (anime.description || "").toLowerCase().includes(text) ||
-    (anime.genres || []).join(" ").toLowerCase().includes(text)
-  );
-}
-
-function matchesCategory(anime, category) {
-  if (!category || category === "Tous") return true;
-  return (anime.genres || []).some(
-    (genre) => genre.toLowerCase() === category.toLowerCase()
-  );
-}
-
-function matchesDuration(anime, filter) {
-  if (filter === "Tous") return true;
-
-  const target = {
-    "1h": 60,
-    "2h": 120,
-    "3h": 180,
-  };
-
-  const avg = getAnimeAvgDuration(anime);
-  return Math.abs(avg - target[filter]) <= 15;
-}
-
-function sortAnimes(list) {
-  const sorted = [...list];
-
-  switch (currentSort) {
-    case "rating-desc":
-      return sorted.sort((a, b) => (b.rating || 0) - (a.rating || 0));
-    case "duration-asc":
-      return sorted.sort((a, b) => getAnimeAvgDuration(a) - getAnimeAvgDuration(b));
-    case "duration-desc":
-      return sorted.sort((a, b) => getAnimeAvgDuration(b) - getAnimeAvgDuration(a));
-    default:
-      return sorted;
-  }
-}
-
-function filterAndSortAnimes() {
-  const list = allAnimes.filter((anime) => matchesSearch(anime, currentSearch));
-  filteredAnimes = sortAnimes(
-    list.filter((anime) => matchesCategory(anime, currentCategory))
-  );
-  currentPage = 0;
-}
-
-function renderHomePage() {
-  const container = document.getElementById("animeList");
-  if (!container) return;
-
-  const start = currentPage * perPage;
-  const end = start + perPage;
-  const page = filteredAnimes.slice(start, end);
-
-  container.innerHTML = page
-    .map(
-      (anime) => `
-        <div class="anime-card">
-          <img src="${anime.poster}" alt="${anime.title}">
-          <div class="anime-info">
-            <h3>${anime.title}</h3>
-            <p class="anime-duration">⏱️ ${formatDurationLabel(getAnimeAvgDuration(anime))}</p>
-            <p class="rating">⭐ ${anime.rating}/5</p>
-            <p class="genre">${(anime.genres || []).join(" • ")}</p>
-            <p>${anime.description}</p>
-            <div class="card-buttons">
-              <a href="details.html?id=${anime.id}" class="play-btn">▶ Voir</a>
-              <button class="favorite-btn" data-id="${anime.id}">
-                ${isFavorite(anime.id) ? "❤️" : "🤍"}
-              </button>
-            </div>
-          </div>
-        </div>
-      `
-    )
-    .join("");
-
-  if (!filteredAnimes.length) {
-    container.innerHTML = '<p class="empty-message">Aucun anime ne correspond à votre recherche.</p>';
-  }
-}
-
-function nextPage() {
-  if ((currentPage + 1) * perPage < filteredAnimes.length) {
-    currentPage += 1;
-    renderHomePage();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-}
-
-function prevPage() {
-  if (currentPage > 0) {
-    currentPage -= 1;
-    renderHomePage();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-}
-
-function setupHomeSearch() {
-  const input = document.getElementById("searchInput");
-  if (!input) return;
-
-  input.addEventListener("input", function () {
-    currentSearch = this.value;
-    filterAndSortAnimes();
-    renderHomePage();
-  });
-}
-
-function setupSortSelect() {
-  const select = document.getElementById("sortSelect");
-  if (!select) return;
-
-  select.addEventListener("change", function () {
-    currentSort = this.value;
-    if (document.body.dataset.page === "home") {
-      filterAndSortAnimes();
-      renderHomePage();
-    } else if (document.body.dataset.page === "categories") {
-      renderCategoriesPage();
-    } else if (document.body.dataset.page === "favorites") {
-      renderFavoritesPage();
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détails Anime - AnimeFlix260</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #fff;
+      min-height: 100vh;
     }
-  });
-}
-
-function setupFavoriteButtons() {
-  document.addEventListener("click", function (event) {
-    const button = event.target.closest(".favorite-btn");
-    if (!button) return;
-    toggleFavorite(button.dataset.id);
-  });
-}
-
-function getGenres() {
-  const genres = new Set();
-  allAnimes.forEach((anime) => {
-    (anime.genres || []).forEach((genre) => genres.add(genre));
-  });
-  return ["Tous", ...Array.from(genres).sort()];
-}
-
-function renderCategoriesPage() {
-  const grid = document.getElementById("animeGrid");
-  const categoryContainer = document.getElementById("categoryButtons");
-  const durationContainer = document.getElementById("durationFilters");
-
-  if (!grid || !categoryContainer || !durationContainer) return;
-
-  const visibleAnimes = sortAnimes(
-    allAnimes.filter((anime) => matchesCategory(anime, currentCategory))
-      .filter((anime) => matchesDuration(anime, currentDuration))
-  );
-
-  categoryContainer.innerHTML = getGenres()
-    .map(
-      (category) => `
-        <button class="category-btn ${currentCategory === category ? "active" : ""}" data-category="${category}">
-          ${category}
-        </button>
-      `
-    )
-    .join("");
-
-  durationContainer.innerHTML = ["Tous", "1h", "2h", "3h"]
-    .map(
-      (filter) => `
-        <button class="duration-btn ${currentDuration === filter ? "active" : ""}" data-duration="${filter}">
-          ${filter}
-        </button>
-      `
-    )
-    .join("");
-
-  document.querySelectorAll(".category-btn").forEach((button) => {
-    button.addEventListener("click", () => {
-      currentCategory = button.dataset.category;
-      renderCategoriesPage();
-    });
-  });
-
-  document.querySelectorAll(".duration-btn").forEach((button) => {
-    button.addEventListener("click", () => {
-      currentDuration = button.dataset.duration;
-      renderCategoriesPage();
-    });
-  });
-
-  if (!visibleAnimes.length) {
-    grid.innerHTML = '<div class="empty-message">Aucun anime ne correspond à ce filtre.</div>';
-    return;
-  }
-
-  grid.innerHTML = visibleAnimes
-    .map(
-      (anime) => `
-        <div class="anime-card">
-          <div class="anime-poster">
-            <img src="${anime.poster}" alt="${anime.title}">
-          </div>
-          <div class="anime-info">
-            <div class="anime-title">${anime.title}</div>
-            <div class="anime-duration">⏱️ ${formatDurationLabel(getAnimeAvgDuration(anime))}</div>
-            <div class="anime-rating">⭐ ${anime.rating}/5</div>
-            <div class="anime-genres">
-              ${(anime.genres || []).map((genre) => `<span class="genre-tag">${genre}</span>`).join("")}
-            </div>
-            <div class="anime-description">${anime.description}</div>
-            <div class="card-buttons">
-              <a href="details.html?id=${anime.id}" class="play-btn">▶ Voir</a>
-              <button class="favorite-btn" data-id="${anime.id}">
-                ${isFavorite(anime.id) ? "❤️" : "🤍"}
-              </button>
-            </div>
-          </div>
-        </div>
-      `
-    )
-    .join("");
-}
-
-function renderFavoritesPage() {
-  const grid = document.getElementById("favoritesGrid");
-  const countNode = document.getElementById("favoritesCount");
-  if (!grid) return;
-
-  const favorites = getFavorites();
-  const favoriteAnimes = allAnimes.filter((anime) => favorites.includes(anime.id));
-  const visibleAnimes = sortAnimes(
-    favoriteAnimes.filter((anime) => matchesDuration(anime, currentDuration))
-  );
-
-  if (countNode) {
-    countNode.textContent = `${visibleAnimes.length} anime(s) en favori`;
-  }
-
-  if (!visibleAnimes.length) {
-    grid.innerHTML = '<div class="empty-message">Aucun anime favori ne correspond au filtre.</div>';
-    return;
-  }
-
-  grid.innerHTML = visibleAnimes
-    .map(
-      (anime) => `
-        <div class="anime-card">
-          <div class="anime-poster">
-            <img src="${anime.poster}" alt="${anime.title}">
-          </div>
-          <div class="anime-info">
-            <div class="anime-title">${anime.title}</div>
-            <div class="anime-duration">⏱️ ${formatDurationLabel(getAnimeAvgDuration(anime))}</div>
-            <div class="anime-rating">⭐ ${anime.rating}/5</div>
-            <div class="anime-genres">
-              ${(anime.genres || []).map((genre) => `<span class="genre-tag">${genre}</span>`).join("")}
-            </div>
-            <div class="anime-description">${anime.description}</div>
-            <div class="card-buttons">
-              <a href="details.html?id=${anime.id}" class="play-btn">▶ Voir</a>
-              <button class="favorite-btn" data-id="${anime.id}">
-                ${isFavorite(anime.id) ? "❤️" : "🤍"}
-              </button>
-            </div>
-          </div>
-        </div>
-      `
-    )
-    .join("");
-}
-
-function renderDetailPage() {
-  const container = document.getElementById("animeDetails");
-  if (!container) return;
-
-  const params = new URLSearchParams(window.location.search);
-  const animeId = Number(params.get("id"));
-
-  if (!animeId) {
-    container.innerHTML = "<h2>Anime introuvable.</h2>";
-    return;
-  }
-
-  const anime = (allAnimes || []).find((item) => Number(item.id) === animeId);
-  if (!anime) {
-    container.innerHTML = "<h2>Anime introuvable.</h2>";
-    return;
-  }
-
-  const totalEpisodes = (anime.seasons || []).reduce(
-    (sum, season) => sum + (season.episodes || []).length,
-    0
-  );
-
-  const avgDuration = getAnimeAvgDuration(anime);
-
-  container.innerHTML = `
-    <div class="anime-header">
-      <div class="anime-poster">
-        <img src="${anime.poster}" alt="${anime.title}">
-      </div>
-
-      <div class="anime-info">
-        <h1 class="anime-title">${anime.title}</h1>
-
-        <div class="anime-meta">
-          <div class="meta-item">
-            <div class="meta-label">Année</div>
-            <div class="meta-value">${anime.releaseYear || "Inconnue"}</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Studio</div>
-            <div class="meta-value">${anime.studio || "Inconnu"}</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Épisodes</div>
-            <div class="meta-value">${totalEpisodes}</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Durée moyenne</div>
-            <div class="meta-value">${formatDurationLabel(avgDuration)}</div>
-          </div>
-        </div>
-
-        <div class="anime-rating">
-          <span class="stars">★</span>
-          <span class="rating-text">${anime.rating || 0}/5</span>
-        </div>
-
-        <div class="genres-list">
-          ${(anime.genres || []).map((genre) => `<span class="genre-tag">${genre}</span>`).join("")}
-        </div>
-
-        <div class="anime-description">${anime.description}</div>
-
-        <div class="action-buttons">
-          <button class="action-btn primary-btn" onclick="window.location.href='joueur.html?id=${anime.id}'">
-            ▶ Regarder
-          </button>
-          <button class="action-btn secondary-btn" onclick="toggleFavorite(${anime.id})">
-            ${isFavorite(anime.id) ? "❤️ Retirer des favoris" : "🤍 Ajouter aux favoris"}
-          </button>
-        </div>
+    header {
+      background: rgba(0,0,0,0.8);
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #ff006e, #8338ec);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+    }
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 10px 20px;
+      border: 2px solid #ff006e;
+      background: transparent;
+      color: #ff006e;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .anime-header {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 40px;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 30px;
+    }
+    .anime-poster {
+      width: 100%;
+      aspect-ratio: 2/3;
+      border-radius: 10px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #8338ec, #3a86ff);
+    }
+    .anime-poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .anime-title {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #ff006e, #8338ec);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .anime-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(180px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .meta-item {
+      background: rgba(255, 0, 110, 0.1);
+      border-left: 4px solid #ff006e;
+      border-radius: 8px;
+      padding: 15px;
+    }
+    .meta-label {
+      font-size: 12px;
+      color: #ff006e;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .meta-value {
+      font-size: 16px;
+      color: #fff;
+    }
+    .anime-rating {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .stars {
+      font-size: 32px;
+      color: #ffd700;
+    }
+    .rating-text {
+      font-size: 24px;
+    }
+    .anime-description {
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 20px;
+    }
+    .genres-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .genre-tag {
+      background: rgba(255,0,110,0.2);
+      color: #ff006e;
+      border: 1px solid rgba(255,0,110,0.4);
+      border-radius: 20px;
+      padding: 8px 15px;
+      font-size: 14px;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .action-btn {
+      padding: 15px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .primary-btn {
+      background: linear-gradient(135deg, #ff006e, #8338ec);
+      color: #fff;
+    }
+    .secondary-btn {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    @media (max-width: 768px) {
+      .anime-header { grid-template-columns: 1fr; }
+      .anime-title { font-size: 32px; }
+    }
+  </style>
+</head>
+<body data-page="details">
+  <header>
+    <div class="header-content">
+      <div class="logo" onclick="window.location.href='index.html'">🎬 AnimeFlix260</div>
+      <div class="nav-buttons">
+        <a href="index.html" class="btn">Accueil</a>
+        <a href="categories.html" class="btn">Catégories</a>
+        <a href="favorites.html" class="btn">❤️ Favoris</a>
       </div>
     </div>
-  `;
-}
+  </header>
 
-async function initApp() {
-  try {
-    const response = await fetch("anime.json");
-    const data = await response.json();
-    allAnimes = data.animes || [];
+  <div class="container">
+    <div id="animeDetails"></div>
+  </div>
 
-    filterAndSortAnimes();
-    renderHomePage();
-    renderCategoriesPage();
-    renderFavoritesPage();
-    renderDetailPage();
-
-    setupHomeSearch();
-    setupSortSelect();
-    setupFavoriteButtons();
-  } catch (error) {
-    console.error("Erreur lors du chargement de anime.json :", error);
-  }
-}
-
-initApp();
+  <script src="script.js"></script>
+</body>
+</html>
