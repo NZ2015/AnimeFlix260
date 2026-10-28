@@ -1,50 +1,20 @@
-/* =========================================================
-   IrAnimeX — STYLE BLEU / VERT / ROSE
-   Cards horizontales + verticales
-   ========================================================= */
-
-/* =========================
-   VARIABLES
-   ========================= */
-
-:root {
-    --blue: #2196f3;
-    --blue-light: #38bdf8;
-    --green: #00e676;
-    --green-light: #34d399;
-    --pink: #ec4899;
-    --pink-light: #f472b6;
-
-    --bg: #050816;
-    --bg-secondary: #0b1225;
-    --card: #101a30;
-    --card-light: #17243d;
-
-    --text: #ffffff;
-    --text-secondary: #b8c4d9;
-
-    --gradient: linear-gradient(
-        135deg,
-        var(--blue),
-        var(--green),
-        var(--pink)
-    );
-
-    --shadow-blue: 0 0 25px rgba(33, 150, 243, 0.35);
-    --shadow-green: 0 0 25px rgba(236, 72, 153, 0.35);
-    --shadow-pink: 0 0 25px rgba(0, 230, 118, 0.30);
-
-    --radius: 16px;
+* {
+    box-sizing: border-box;
 }
 
-/* =========================
-   RESET
-   ========================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+    --bg: #070b17;
+    --bg-soft: #0f172a;
+    --card: rgba(17, 24, 39, 0.82);
+    --card-hover: rgba(25, 35, 58, 0.96);
+    --line: rgba(255,255,255,0.09);
+    --text: #f8fafc;
+    --muted: #cbd5e1;
+    --pink: #ff006e;
+    --purple: #8338ec;
+    --blue: #3a86ff;
+    --gold: #fbbf24;
+    --shadow: rgba(0,0,0,0.45);
 }
 
 html {
@@ -52,1276 +22,577 @@ html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
     background:
-        radial-gradient(
-            circle at top left,
-            rgba(33, 150, 243, 0.12),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at top right,
-            rgba(236, 72, 153, 0.12),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at bottom,
-            rgba(0, 230, 118, 0.08),
-            transparent 35%
-        ),
+        radial-gradient(circle at top left, rgba(131, 56, 236, 0.35), transparent 30%),
+        radial-gradient(circle at top right, rgba(58, 134, 255, 0.18), transparent 30%),
         var(--bg);
-
     color: var(--text);
-    min-height: 100vh;
+    line-height: 1.5;
 }
 
-/* =========================
-   SCROLLBAR
-   ========================= */
-
-::-webkit-scrollbar {
-    width: 9px;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-::-webkit-scrollbar-track {
-    background: #050816;
+button, input, select {
+    font: inherit;
 }
 
-::-webkit-scrollbar-thumb {
-    background: var(--gradient);
-    border-radius: 20px;
+img {
+    max-width: 100%;
+    display: block;
 }
 
-/* =========================
-   HEADER
-   ========================= */
-
-header {
+.header {
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 50;
+    background: rgba(7, 11, 23, 0.76);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+}
 
-    height: 80px;
-
+.header-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 18px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    padding: 0 5%;
-
-    background: rgba(5, 8, 22, 0.88);
-    backdrop-filter: blur(18px);
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    gap: 22px;
 }
-
-/* =========================
-   LOGO
-   ========================= */
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
-
-    font-size: 1.7rem;
-    font-weight: 900;
-
-    text-decoration: none;
-}
-
-.logo span {
-    background: var(--gradient);
+    gap: 12px;
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: -0.06em;
+    background: linear-gradient(135deg, var(--pink), var(--purple));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-
-    text-shadow:
-        0 0 15px rgba(33, 150, 243, 0.25);
 }
 
 .logo img {
-    width: 48px;
-    height: 48px;
-
-    object-fit: contain;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    object-fit: cover;
 }
 
-/* =========================
-   NAVIGATION
-   ========================= */
-
-nav {
+.nav {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 18px;
+    flex-wrap: wrap;
 }
 
-nav a {
-    position: relative;
-
-    color: var(--text-secondary);
-    text-decoration: none;
-
+.nav-link {
+    color: rgba(255,255,255,0.8);
     font-weight: 600;
-
-    transition: 0.3s;
+    padding: 8px 14px;
+    border-radius: 999px;
+    transition: all 0.2s ease;
 }
 
-nav a:hover {
-    color: white;
+.nav-link:hover,
+.nav-link.active {
+    color: #fff;
+    background: rgba(255,255,255,0.06);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
 }
-
-nav a::after {
-    content: "";
-
-    position: absolute;
-    left: 0;
-    bottom: -8px;
-
-    width: 0;
-    height: 3px;
-
-    border-radius: 10px;
-
-    background: var(--gradient);
-
-    transition: 0.3s;
-}
-
-nav a:hover::after {
-    width: 100%;
-}
-
-/* =========================
-   BOUTONS HEADER
-   ========================= */
 
 .auth-buttons {
     display: flex;
-    gap: 10px;
+    align-items: center;
+    gap: 12px;
 }
 
-.auth-buttons button {
+.btn {
     border: none;
-    padding: 10px 18px;
-
-    border-radius: 25px;
-
-    color: white;
-    background: var(--gradient);
-
-    font-weight: bold;
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-weight: 700;
     cursor: pointer;
-
-    transition: 0.3s;
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.auth-buttons button:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-pink);
+.btn:hover {
+    transform: translateY(-1px);
 }
 
-/* =========================
-   HERO
-   ========================= */
+.btn-secondary {
+    background: rgba(255,255,255,0.06);
+    color: var(--text);
+    border: 1px solid var(--line);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    color: white;
+    box-shadow: 0 10px 25px rgba(255, 0, 110, 0.35);
+}
 
 .hero {
-    min-height: 480px;
-
+    position: relative;
+    min-height: 560px;
     display: flex;
     align-items: center;
-
-    padding: 70px 8%;
-
     background:
-        linear-gradient(
-            90deg,
-            rgba(5, 8, 22, 0.98),
-            rgba(5, 8, 22, 0.65),
-            rgba(5, 8, 22, 0.25)
-        ),
-        url("images/naruto.jpg");
+        linear-gradient(90deg, rgba(7, 11, 23, 0.96) 0%, rgba(7, 11, 23, 0.72) 40%, rgba(7, 11, 23, 0.3) 100%),
+        url('images/banner.jpg') center/cover no-repeat;
+}
 
-    background-size: cover;
-    background-position: center;
-
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(7,11,23,0.2), rgba(7,11,23,0.7));
 }
 
 .hero-content {
-    max-width: 650px;
+    position: relative;
+    z-index: 1;
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 48px 24px 90px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--muted);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
 }
 
 .hero h1 {
-    font-size: clamp(2.5rem, 6vw, 5rem);
+    margin: 18px 0 14px;
+    max-width: 620px;
+    font-size: clamp(2.8rem, 5vw, 5rem);
     line-height: 1;
-
-    margin-bottom: 20px;
-
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    letter-spacing: -0.07em;
 }
 
 .hero p {
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-    line-height: 1.7;
-
-    margin-bottom: 30px;
+    max-width: 620px;
+    margin: 0 0 32px;
+    color: rgba(255,255,255,0.8);
+    font-size: 1.15rem;
 }
 
-/* =========================
-   BOUTON PRINCIPAL
-   ========================= */
-
-.btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 13px 25px;
-
-    border: none;
-    border-radius: 30px;
-
-    background: var(--gradient);
-    color: white;
-
-    font-weight: bold;
-    text-decoration: none;
-
-    cursor: pointer;
-
-    transition: 0.3s;
+.search-bar {
+    max-width: 760px;
+    width: 100%;
 }
-
-.btn-primary:hover {
-    transform: translateY(-3px) scale(1.03);
-
-    box-shadow:
-        var(--shadow-blue),
-        var(--shadow-green),
-        var(--shadow-pink);
-}
-
-/* =========================
-   RECHERCHE
-   ========================= */
 
 .search-container {
     display: flex;
-    justify-content: center;
-
-    padding: 35px 5%;
-}
-
-.search-box {
-    width: min(700px, 100%);
-
-    display: flex;
     align-items: center;
-
-    background: var(--card);
-
-    border: 1px solid rgba(255,255,255,0.1);
-
-    border-radius: 30px;
-
-    padding: 5px;
-
-    box-shadow: var(--shadow-blue);
+    gap: 12px;
+    background: rgba(15, 23, 42, 0.82);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 18px;
+    padding: 12px 14px 12px 18px;
+    box-shadow: 0 20px 35px rgba(0,0,0,0.22);
 }
 
-.search-box input {
-    flex: 1;
+.search-container i {
+    color: rgba(255,255,255,0.68);
+    font-size: 1.1rem;
+}
 
+.search-container input {
+    flex: 1;
+    background: transparent;
     border: none;
     outline: none;
-
-    padding: 15px 20px;
-
-    background: transparent;
-    color: white;
-
+    color: var(--text);
     font-size: 1rem;
+    min-width: 0;
 }
 
-.search-box input::placeholder {
-    color: #71809b;
+.search-container input::placeholder {
+    color: rgba(255,255,255,0.45);
 }
 
-.search-box button {
+.search-btn {
     border: none;
-
-    width: 48px;
-    height: 48px;
-
-    border-radius: 50%;
-
-    background: var(--gradient);
-    color: white;
-
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    color: #fff;
+    padding: 14px 22px;
+    font-weight: 700;
     cursor: pointer;
-
-    font-size: 18px;
+    box-shadow: 0 10px 20px rgba(255, 0, 110, 0.35);
 }
-
-/* =========================
-   MAIN
-   ========================= */
 
 main {
-    width: min(1400px, 92%);
-    margin: auto;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+}
+
+.featured-strip {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(160px, 1fr));
+    gap: 18px;
+    margin: 12px 0 30px;
+}
+
+.featured-item {
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(17,24,39,0.7));
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 14px 24px rgba(0,0,0,0.18);
+}
+
+.featured-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.64);
+}
+
+.featured-item strong {
+    font-size: 1.05rem;
 }
 
 .section-title {
-    margin: 40px 0 25px;
+    margin: 28px 0 20px;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    letter-spacing: -0.06em;
+}
 
-    font-size: 1.8rem;
-
+.anime-toolbar {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
 }
 
-.section-title::before {
-    content: "";
-
-    width: 6px;
-    height: 32px;
-
-    border-radius: 10px;
-
-    background: var(--gradient);
-}
-
-/* =========================================================
-   GRILLE DES CARDS
-   ========================================================= */
-
-.anime-grid,
-#animeList {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(230px, 1fr)
-        );
-
-    gap: 25px;
-
-    padding-bottom: 40px;
-}
-
-/* =========================================================
-   CARD ANIME VERTICALE
-   environ 5 × 10 cm
-   ========================================================= */
-
-.anime-card.vertical {
-
-    width: 100%;
-
-    aspect-ratio: 1 / 2;
-
-    min-height: 430px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    border-radius: var(--radius);
-
-    background: var(--card);
-
-    border: 1px solid rgba(255,255,255,0.08);
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-
-    transition:
-        transform 0.35s,
-        box-shadow 0.35s,
-        border-color 0.35s;
-}
-
-.anime-card.vertical:hover {
-    transform: translateY(-10px) scale(1.02);
-
-    border-color: var(--pink);
-
-    box-shadow:
-        var(--shadow-blue),
-        var(--shadow-pink);
-}
-
-/* Image verticale */
-
-.anime-card.vertical img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-
-    transition: 0.5s;
-}
-
-.anime-card.vertical:hover img {
-    transform: scale(1.08);
-}
-
-/* =========================
-   INFORMATIONS VERTICALES
-   ========================= */
-
-.anime-card.vertical .anime-info {
-
-    position: absolute;
-
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    padding: 25px 18px 18px;
-
-    background:
-        linear-gradient(
-            transparent,
-            rgba(5,8,22,0.85) 35%,
-            rgba(5,8,22,0.98)
-        );
-}
-
-.anime-card.vertical h3 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-}
-
-.anime-card.vertical p {
-    color: var(--text-secondary);
-
-    font-size: 0.85rem;
-
-    line-height: 1.4;
-
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-
-    overflow: hidden;
-}
-
-/* =========================================================
-   CARD ANIME HORIZONTALE
-   environ 10 × 5 cm
-   ========================================================= */
-
-.anime-card.horizontal {
-
-    width: 100%;
-
-    aspect-ratio: 2 / 1;
-
-    min-height: 180px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    display: flex;
-
-    background: var(--card);
-
-    border-radius: var(--radius);
-
-    border: 1px solid rgba(255,255,255,0.08);
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-
-    transition:
-        transform 0.35s,
-        box-shadow 0.35s,
-        border-color 0.35s;
-}
-
-.anime-card.horizontal:hover {
-
-    transform: translateY(-6px);
-
-    border-color: var(--green);
-
-    box-shadow:
-        var(--shadow-green),
-        var(--shadow-blue);
-}
-
-/* Image horizontale */
-
-.anime-card.horizontal img {
-
-    width: 38%;
-    height: 100%;
-
-    object-fit: cover;
-
-    flex-shrink: 0;
-
-    transition: 0.5s;
-}
-
-.anime-card.horizontal:hover img {
-    transform: scale(1.06);
-}
-
-/* =========================
-   INFORMATIONS HORIZONTALES
-   ========================= */
-
-.anime-card.horizontal .anime-info {
-
-    flex: 1;
-
-    padding: 20px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-}
-
-.anime-card.horizontal h3 {
-
-    font-size: 1.2rem;
-
-    margin-bottom: 8px;
-}
-
-.anime-card.horizontal p {
-
-    color: var(--text-secondary);
-
-    font-size: 0.85rem;
-
-    line-height: 1.5;
-
-    margin-bottom: 12px;
-
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-
-    overflow: hidden;
-}
-
-/* =========================
-   NOTE
-   ========================= */
-
-.rating {
-
-    color: #ffd43b;
-
-    font-size: 0.9rem;
-
-    margin-bottom: 8px;
-}
-
-/* =========================
-   GENRES
-   ========================= */
-
-.genres {
-
+.duration-filters {
     display: flex;
     flex-wrap: wrap;
-
-    gap: 6px;
-
-    margin-bottom: 12px;
-}
-
-.genre {
-
-    padding: 4px 9px;
-
-    border-radius: 20px;
-
-    font-size: 0.7rem;
-
-    color: white;
-
-    background: rgba(33,150,243,0.18);
-
-    border: 1px solid rgba(33,150,243,0.4);
-}
-
-/* =========================
-   BOUTON VOIR
-   ========================= */
-
-.play-btn {
-
-    position: relative;
-
-    z-index: 20;
-
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: fit-content;
-
-    padding: 9px 17px;
-
-    border: none;
-
-    border-radius: 25px;
-
-    background: var(--gradient);
-
-    color: white;
-
-    font-weight: bold;
-
-    text-decoration: none;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.play-btn:hover {
-
-    transform: scale(1.06);
-
-    box-shadow:
-        0 0 15px rgba(33,150,243,0.5),
-        0 0 15px rgba(0,230,118,0.4),
-        0 0 15px rgba(236,72,153,0.5);
-}
-
-/* =========================
-   FAVORIS
-   ========================= */
-
-.favorite-btn {
-
-    position: absolute;
-
-    top: 12px;
-    right: 12px;
-
-    z-index: 30;
-
-    width: 40px;
-    height: 40px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: rgba(5,8,22,0.8);
-
-    color: white;
-
-    cursor: pointer;
-
-    font-size: 18px;
-
-    transition: 0.3s;
-}
-
-.favorite-btn:hover {
-
-    background: var(--pink);
-
-    transform: scale(1.1);
-
-    box-shadow: var(--shadow-pink);
-}
-
-/* =========================
-   BADGES
-   ========================= */
-
-.badge {
-
-    position: absolute;
-
-    top: 12px;
-    left: 12px;
-
-    z-index: 25;
-
-    padding: 5px 10px;
-
-    border-radius: 20px;
-
-    font-size: 0.7rem;
-
-    font-weight: bold;
-
-    background: var(--gradient);
-
-    color: white;
-}
-
-/* =========================
-   CARD MIXTE
-   ========================= */
-
-/*
-   Si une card n'a ni .horizontal ni .vertical,
-   elle prend le format vertical par défaut.
-*/
-
-.anime-card:not(.horizontal):not(.vertical) {
-
-    position: relative;
-
-    overflow: hidden;
-
-    border-radius: var(--radius);
-
-    background: var(--card);
-
-    border: 1px solid rgba(255,255,255,0.08);
-
-    transition: 0.3s;
-}
-
-.anime-card:not(.horizontal):not(.vertical) img {
-
-    width: 100%;
-    height: 360px;
-
-    object-fit: cover;
-
-    display: block;
-}
-
-/* =========================
-   PAGINATION
-   ========================= */
-
-.pagination {
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
     gap: 10px;
-
-    margin: 30px 0 60px;
 }
 
-.pagination button {
-
-    min-width: 42px;
-    height: 42px;
-
-    border: 1px solid rgba(255,255,255,0.1);
-
-    border-radius: 10px;
-
-    background: var(--card);
-
-    color: white;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.pagination button:hover,
-.pagination button.active {
-
-    background: var(--gradient);
-
-    border-color: transparent;
-
-    box-shadow: var(--shadow-blue);
-}
-
-/* =========================
-   LECTEUR VIDEO
-   ========================= */
-
-.player-container {
-
-    width: min(1100px, 95%);
-
-    margin: 40px auto;
-
-    background: var(--card);
-
-    border-radius: var(--radius);
-
-    overflow: hidden;
-
-    border: 1px solid rgba(255,255,255,0.08);
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.5);
-}
-
-.video-player {
-
-    width: 100%;
-
-    display: block;
-
-    background: black;
-
-    aspect-ratio: 16 / 9;
-}
-
-/* =========================
-   CONTROLES
-   ========================= */
-
-.controls {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    padding: 15px;
-
-    background: #0c1428;
-}
-
-.controls button {
-
-    border: none;
-
-    background: transparent;
-
-    color: white;
-
-    font-size: 18px;
-
-    cursor: pointer;
-
-    transition: 0.2s;
-}
-
-.controls button:hover {
-
-    color: var(--green);
-
-    transform: scale(1.1);
-}
-
-/* =========================
-   SAISONS
-   ========================= */
-
-.seasons {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 10px;
-
-    margin: 20px 0;
-}
-
-.season-btn {
-
+.duration-btn {
+    background: rgba(255, 0, 110, 0.12);
+    border: 2px solid rgba(255, 0, 110, 0.45);
+    color: #ff8fc0;
+    border-radius: 999px;
     padding: 10px 18px;
-
-    border: none;
-
-    border-radius: 25px;
-
-    background: var(--card-light);
-
-    color: white;
-
+    font-weight: 700;
     cursor: pointer;
-
-    transition: 0.3s;
+    transition: all 0.2s ease;
 }
 
-.season-btn:hover,
-.season-btn.active {
-
-    background: var(--gradient);
-
-    box-shadow: var(--shadow-blue);
-}
-
-/* =========================
-   EPISODES
-   ========================= */
-
-.episodes {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fill, minmax(100px, 1fr));
-
-    gap: 10px;
-
-    margin-bottom: 30px;
-}
-
-.episode-btn {
-
-    padding: 12px;
-
-    border: 1px solid rgba(255,255,255,0.08);
-
-    border-radius: 10px;
-
-    background: var(--card);
-
-    color: white;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.episode-btn:hover,
-.episode-btn.active {
-
-    background: var(--gradient);
-
+.duration-btn.active,
+.duration-btn:hover {
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    color: #fff;
     border-color: transparent;
+    transform: translateY(-1px);
 }
 
-/* =========================
-   FOOTER
-   ========================= */
-
-footer {
-
-    margin-top: 70px;
-
-    padding: 40px 5%;
-
-    text-align: center;
-
-    background: #030610;
-
-    border-top: 1px solid rgba(255,255,255,0.08);
+.sort-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+    font-weight: 600;
 }
 
-footer p {
-
-    color: var(--text-secondary);
-
-    margin-bottom: 10px;
+.sort-box select {
+    background: rgba(255,255,255,0.06);
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 12px;
 }
 
-footer strong {
-
-    background: var(--gradient);
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent;
-}
-
-/* =========================
-   BOUTON RETOUR EN HAUT
-   ========================= */
-
-#topButton {
-
-    position: fixed;
-
-    right: 25px;
-    bottom: 25px;
-
-    width: 45px;
-    height: 45px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: var(--gradient);
-
-    color: white;
-
-    cursor: pointer;
-
-    z-index: 999;
-
-    box-shadow: var(--shadow-blue);
-
-    transition: 0.3s;
-}
-
-#topButton:hover {
-
-    transform: translateY(-5px);
-
-    box-shadow:
-        var(--shadow-blue),
-        var(--shadow-green),
-        var(--shadow-pink);
-}
-
-/* =========================
-   ANIMATION
-   ========================= */
-
-@keyframes fadeIn {
-
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
 }
 
 .anime-card {
-
-    animation: fadeIn 0.5s ease;
+    background: linear-gradient(180deg, rgba(17, 24, 39, 0.86), rgba(15, 23, 42, 0.92));
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    box-shadow: 0 18px 26px rgba(0,0,0,0.18);
 }
 
-/* =========================================================
-   RESPONSIVE TABLETTE
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-    header {
-
-        padding: 0 3%;
-
-    }
-
-    nav {
-
-        gap: 12px;
-
-    }
-
-    .anime-grid,
-    #animeList {
-
-        grid-template-columns:
-            repeat(
-                auto-fit,
-                minmax(200px, 1fr)
-            );
-
-    }
-
-    .anime-card.horizontal {
-
-        min-height: 170px;
-
-    }
-
+.anime-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 0, 110, 0.6);
+    box-shadow: 0 24px 28px rgba(255, 0, 110, 0.12);
 }
 
-/* =========================================================
-   RESPONSIVE MOBILE
-   ========================================================= */
+.anime-card img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    display: block;
+    background: linear-gradient(135deg, var(--purple), var(--blue));
+}
 
-@media (max-width: 650px) {
+.anime-info {
+    padding: 18px 18px 20px;
+}
 
-    header {
+.anime-info h3 {
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+    letter-spacing: -0.04em;
+}
 
-        height: auto;
+.anime-duration,
+.rating,
+.genre {
+    margin: 5px 0;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+}
 
-        min-height: 70px;
+.anime-duration {
+    display: inline-block;
+    margin-bottom: 12px;
+    background: rgba(131, 56, 236, 0.25);
+    border: 1px solid rgba(131, 56, 236, 0.7);
+    color: #d9c8ff;
+    border-radius: 999px;
+    padding: 5px 10px;
+    font-weight: 700;
+    font-size: 12px;
+}
 
-        padding: 12px 4%;
+.rating {
+    color: #ffd166;
+    font-weight: 700;
+}
 
+.genre {
+    color: rgba(255,255,255,0.7);
+}
+
+.card-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.play-btn,
+.favorite-btn {
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.play-btn {
+    flex: 1;
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    color: white;
+}
+
+.favorite-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #fff;
+    min-width: 52px;
+}
+
+.play-btn:hover,
+.favorite-btn:hover {
+    transform: translateY(-1px);
+}
+
+.empty-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: rgba(255,255,255,0.75);
+    padding: 40px 20px 10px;
+    font-size: 1.08rem;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 28px;
+}
+
+.pagination button {
+    width: 52px;
+    height: 52px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.pagination button:hover {
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    transform: translateY(-1px);
+}
+
+.footer {
+    border-top: 1px solid var(--line);
+    background: rgba(10, 14, 24, 0.95);
+}
+
+.footer-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 24px 24px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(180px, 1fr));
+    gap: 24px;
+}
+
+.footer-section h4 {
+    margin: 0 0 16px;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.9);
+    text-transform: uppercase;
+}
+
+.footer-section ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: rgba(255,255,255,0.7);
+}
+
+.footer-section a {
+    color: rgba(255,255,255,0.7);
+}
+
+.social-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--line);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--line);
+    padding: 18px 24px 30px;
+    text-align: center;
+    color: rgba(255,255,255,0.65);
+}
+
+@media (max-width: 920px) {
+    .header-container {
         flex-wrap: wrap;
-
-        gap: 12px;
-
-    }
-
-    nav {
-
-        order: 3;
-
-        width: 100%;
-
         justify-content: center;
-
-        padding-bottom: 5px;
-
-    }
-
-    nav a {
-
-        font-size: 0.85rem;
-
-    }
-
-    .auth-buttons {
-
-        display: none;
-
     }
 
     .hero {
-
-        min-height: 420px;
-
-        padding: 50px 7%;
-
+        min-height: 480px;
     }
 
-    .hero h1 {
-
-        font-size: 2.7rem;
-
+    .featured-strip {
+        grid-template-columns: repeat(2, minmax(160px, 1fr));
     }
 
-    .anime-grid,
-    #animeList {
-
-        grid-template-columns: 1fr;
-
-        gap: 18px;
-
+    .footer-content {
+        grid-template-columns: repeat(2, minmax(180px, 1fr));
     }
-
-    /* Card verticale mobile */
-
-    .anime-card.vertical {
-
-        aspect-ratio: 5 / 8;
-
-        min-height: 420px;
-
-    }
-
-    /* Card horizontale mobile */
-
-    .anime-card.horizontal {
-
-        aspect-ratio: 2 / 1;
-
-        min-height: 160px;
-
-    }
-
-    .anime-card.horizontal img {
-
-        width: 38%;
-
-    }
-
-    .anime-card.horizontal .anime-info {
-
-        padding: 12px;
-
-    }
-
-    .anime-card.horizontal h3 {
-
-        font-size: 1rem;
-
-    }
-
-    .anime-card.horizontal p {
-
-        font-size: 0.75rem;
-
-        -webkit-line-clamp: 2;
-
-    }
-
-    .genres {
-
-        display: none;
-
-    }
-
 }
 
-/* =========================================================
-   PETIT TELEPHONE
-   ========================================================= */
-
-@media (max-width: 420px) {
-
-    .logo {
-
-        font-size: 1.3rem;
-
+@media (max-width: 640px) {
+    .header-container {
+        padding-top: 16px;
+        padding-bottom: 16px;
     }
 
-    .logo img {
+    .logo {
+        font-size: 1.5rem;
+    }
 
-        width: 40px;
-        height: 40px;
+    .nav {
+        justify-content: center;
+    }
 
+    .auth-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-content {
+        padding-top: 32px;
     }
 
     .hero h1 {
-
-        font-size: 2.2rem;
-
+        font-size: 2.6rem;
     }
 
-    .anime-card.horizontal {
-
-        min-height: 140px;
-
+    .search-container {
+        padding: 10px 12px 10px 14px;
     }
 
-    .anime-card.horizontal img {
-
-        width: 35%;
-
+    .search-btn {
+        padding: 10px 14px;
     }
 
-    .anime-card.horizontal .anime-info {
-
-        padding: 9px;
-
+    .featured-strip,
+    .footer-content {
+        grid-template-columns: 1fr;
     }
 
-    .anime-card.horizontal p {
-
-        display: none;
-
+    .anime-toolbar {
+        align-items: flex-start;
     }
 
-    .play-btn {
-
-        padding: 7px 12px;
-
-        font-size: 0.8rem;
-
+    .sort-box {
+        width: 100%;
+        justify-content: space-between;
     }
-
 }
