@@ -6,9 +6,73 @@
     <title>IrAnimeX</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .anime-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto 25px;
+            padding: 0 20px;
+        }
 
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        .duration-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .duration-btn {
+            background: rgba(255, 0, 110, 0.15);
+            border: 2px solid rgba(255, 0, 110, 0.5);
+            color: #ff006e;
+            border-radius: 999px;
+            padding: 10px 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .duration-btn.active,
+        .duration-btn:hover {
+            background: linear-gradient(135deg, #ff006e, #8338ec);
+            color: #fff;
+            border-color: transparent;
+            transform: translateY(-1px);
+        }
+
+        .sort-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .sort-box select {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 14px;
+        }
+
+        .anime-card .duration-tag {
+            display: inline-block;
+            margin-bottom: 12px;
+            background: rgba(131, 56, 236, 0.25);
+            border: 1px solid rgba(131, 56, 236, 0.7);
+            color: #d9c8ff;
+            border-radius: 999px;
+            padding: 5px 10px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+    </style>
 </head>
 
 <body>
@@ -18,20 +82,20 @@
     <div class="header-container">
 
        <div class="logo">
-          <img src="images/logo.png" alt="IrAnimeX Logo.png">
-          <span>IrAnimeX</span>
-        </div>
-        <nav class="nav">
-            <a href="#" class="nav-link active">Accueil</a>
-            <a href="#" class="nav-link">Catalogue</a>
-            <a href="#" class="nav-link">Top Rated</a>
-            <a href="#" class="nav-link">Favoris</a>
-        </nav>
+           <img src="images/logo.png" alt="IrAnimeX Logo.png">
+           <span>IrAnimeX</span>
+       </div>
+       <nav class="nav">
+           <a href="#" class="nav-link active">Accueil</a>
+           <a href="#" class="nav-link">Catalogue</a>
+           <a href="#" class="nav-link">Top Rated</a>
+           <a href="#" class="nav-link">Favoris</a>
+       </nav>
 
-        <div class="auth-buttons">
-            <button class="btn btn-secondary">Connexion</button>
-            <button class="btn btn-primary">S'inscrire</button>
-        </div>
+       <div class="auth-buttons">
+           <button class="btn btn-secondary">Connexion</button>
+           <button class="btn btn-primary">S'inscrire</button>
+       </div>
 
     </div>
 
@@ -74,6 +138,25 @@
     <h2 class="section-title">
         Nos Animes
     </h2>
+
+    <div class="anime-toolbar">
+        <div class="duration-filters">
+            <button class="duration-btn active" data-duration="Tous">Tous</button>
+            <button class="duration-btn" data-duration="1h">1h</button>
+            <button class="duration-btn" data-duration="2h">2h</button>
+            <button class="duration-btn" data-duration="3h">3h</button>
+        </div>
+
+        <div class="sort-box">
+            <label for="sortSelect">Trier :</label>
+            <select id="sortSelect">
+                <option value="default">Par défaut</option>
+                <option value="duration-asc">Plus courts</option>
+                <option value="duration-desc">Plus longs</option>
+                <option value="rating-desc">Mieux notés</option>
+            </select>
+        </div>
+    </div>
 
     <div id="animeList" class="anime-grid">
 
@@ -179,4 +262,3 @@
 
 </body>
 </html>
-    
