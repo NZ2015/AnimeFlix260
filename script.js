@@ -1,7 +1,8 @@
-// IrAnimeX — navigation, catalogue, recherche, favoris et pagination.
+// IrAnimeX — menu, catalogue, favoris, filtres et reprise de lecture.
 
 const FAVORITES_KEY = 'animeFlix_favorites';
 const LEGACY_FAVORITES_KEY = 'favoris';
+const RESUME_KEY = 'iranimeX_resume_v1';
 const PER_PAGE = 8;
 
 let animes = [];
@@ -19,15 +20,20 @@ const sortSelect = document.getElementById('sortSelect');
 const menuToggle = document.getElementById('menuToggle');
 const mainNavigation = document.getElementById('mainNavigation');
 
+function readJson(key, fallback) {
+  try {
+    const value = JSON.parse(localStorage.getItem(key) || 'null');
+    return value ?? fallback;
+  } catch (error) {
+    return fallback;
+  }
+}
+
 function readFavorites() {
   const ids = new Set();
   [FAVORITES_KEY, LEGACY_FAVORITES_KEY, 'favorites'].forEach((key) => {
-    try {
-      const stored = JSON.parse(localStorage.getItem(key) || '[]');
-      if (Array.isArray(stored)) stored.forEach((id) => ids.add(String(id)));
-    } catch (error) {
-      // Ignore les favoris locaux invalides et continue le chargement du catalogue.
-    }
+    const stored = readJson(key, []);
+    if (Array.isArray(stored)) stored.forEach((id) => ids.add(String(id)));
   });
   return ids;
 }
@@ -35,12 +41,21 @@ function readFavorites() {
 function saveFavorites() {
   const values = [...favorites];
   [FAVORITES_KEY, LEGACY_FAVORITES_KEY].forEach((key) => {
-    try {
-      localStorage.setItem(key, JSON.stringify(values));
-    } catch (error) {
+    try { localStorage.setItem(key, JSON.stringify(values)); } catch (error) {
       console.warn('Impossible d’enregistrer les favoris localement.', error);
     }
   });
+}
+
+function readResumeHistory() {
+  const value = readJson(RESUME_KEY, {});
+  return value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+}
+
+function writeResumeHistory(history) {
+  try { localStorage.setItem(RESUME_KEY, JSON.stringify(history)); } catch (error) {
+    console.warn('Impossible d’enregistrer la reprise de lecture.', error);
+  }
 }
 
 function escapeHtml(value = '') {
@@ -73,6 +88,60 @@ function formatDuration(minutes) {
   return remainder ? `${hours}h ${remainder}min` : `${hours}h`;
 }
 
+function formatTime(seconds) {
+  const safeSeconds = Math.max(0, Math.floor(Number(seconds) || 0));
+  const minutes = Math.floor(safeSeconds / 60);
+  const remainder = safeSeconds % 60;
+  return `${minutes}:${String(remainder).padStart(2, '0')}`;
+}
+
+function renderResumeSection() {
+  const section = document.getElementById('resumeSection');
+  const container = document.getElementById('resumeList');
+  if (!section || !container) return;
+
+  const history = readResumeHistory();
+  const entries = Object.values(history)
+    .filter((entry) => entry && Number(entry.currentTime) > 0)
+    .sort((a, b) => Number(b.updatedAt || 0) - Number(a.updatedAt || 0))
+    .map((entry) => ({ entry, anime: animes.find((item) => String(item.id) === String(entry.animeId)) }))
+    .filter((item) => item.anime);
+
+  section.hidden = entries.length === 0;
+  if (!entries.length) {
+    container.innerHTML = '';
+    return;
+  }
+
+  container.innerHTML = entries.map(({ entry, anime }) => {
+    const id = String(anime.id);
+    const title = escapeHtml(anime.title || 'Anime');
+    const poster = escapeHtml(anime.poster || 'images/logo.png');
+    const episodeNumber = Math.max(1, Number(entry.episode) || 1);
+    const seasonNumber = Math.max(1, Number(entry.season) || 1);
+    const progress = Number(entry.duration) > 0
+      ? Math.min(99, Math.max(0, Number(entry.currentTime) / Number(entry.duration) * 100))
+      : 0;
+    const episodeTitle = escapeHtml(entry.episodeTitle || `Épisode ${episodeNumber}`);
+    const target = `joueur.html?animeId=${encodeURIComponent(id)}&season=${seasonNumber}&episode=${episodeNumber}&resume=1`;
+    return `<article class="resume-card">
+      <a class="resume-poster" href="${target}" aria-label="Reprendre ${title}, ${episodeTitle}">
+        <img src="${poster}" alt="Affiche de ${title}" loading="lazy" onerror="this.onerror=null;this.src='images/logo.png';">
+        <span class="resume-play" aria-hidden="true">▶</span>
+      </a>
+      <div class="resume-copy">
+        <p class="resume-kicker">Saison ${seasonNumber} · ${episodeTitle}</p>
+        <h3>${title}</h3>
+        <div class="resume-progress" role="progressbar" aria-label="Progression de ${title}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(progress)}">
+          <span style="width:${progress}%"></span>
+        </div>
+        <p class="resume-time">${formatTime(entry.currentTime)}${Number(entry.duration) > 0 ? ` / ${formatTime(entry.duration)}` : ''}</p>
+        <a class="resume-button" href="${target}">Continuer à regarder</a>
+      </div>
+    </article>`;
+  }).join('');
+}
+
 function matchesDuration(anime) {
   if (currentDuration === 'Tous') return true;
   const target = { '1h': 60, '2h': 120, '3h': 180 }[currentDuration];
@@ -82,8 +151,8 @@ function matchesDuration(anime) {
 function filterAndSort() {
   const query = currentQuery.trim().toLocaleLowerCase();
   let results = animes.filter((anime) => {
-    const text = `${anime.title || ''} ${anime.description || ''} ${(anime.genres || []).join(' ')}`.toLocaleLowerCase();
-    const matchesQuery = !query || text.includes(query);
+    const searchable = `${anime.title || ''} ${anime.description || ''} ${(anime.genres || []).join(' ')}`.toLocaleLowerCase();
+    const matchesQuery = !query || searchable.includes(query);
     const matchesFavorite = currentView !== 'favorites' || favorites.has(String(anime.id));
     return matchesQuery && matchesFavorite && matchesDuration(anime);
   });
@@ -227,16 +296,19 @@ animeList?.addEventListener('click', (event) => {
 });
 
 document.getElementById('previousPage')?.addEventListener('click', () => {
-  if (currentPage > 0) {
-    currentPage -= 1;
-    render();
-  }
+  if (currentPage > 0) { currentPage -= 1; render(); }
 });
 document.getElementById('nextPage')?.addEventListener('click', () => {
-  if ((currentPage + 1) * PER_PAGE < visibleAnimes.length) {
-    currentPage += 1;
-    render();
-  }
+  if ((currentPage + 1) * PER_PAGE < visibleAnimes.length) { currentPage += 1; render(); }
+});
+
+document.getElementById('clearResumeButton')?.addEventListener('click', () => {
+  writeResumeHistory({});
+  renderResumeSection();
+});
+
+window.addEventListener('storage', (event) => {
+  if (event.key === RESUME_KEY) renderResumeSection();
 });
 
 async function loadAnimes() {
@@ -249,9 +321,11 @@ async function loadAnimes() {
     animes = Array.isArray(data) ? data : data.animes;
     if (!Array.isArray(animes) || !animes.length) throw new Error('Le fichier anime.json ne contient aucun anime.');
     render();
+    renderResumeSection();
   } catch (error) {
     console.error('Erreur de chargement du catalogue :', error);
     animeList.innerHTML = '<p class="empty-message">Le catalogue ne peut pas être chargé. Vérifiez que anime.json est servi par un serveur local ou GitHub Pages.</p>';
+    renderResumeSection();
   }
 }
 

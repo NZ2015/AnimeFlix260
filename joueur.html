@@ -8,19 +8,13 @@
 
     <link rel="stylesheet" href="joueur-style.css">
     <link rel="stylesheet" href="player-modes.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
 <header class="player-header">
-    <a href="index.html" class="logo">
-        <img src="images/logo.png" alt="IrAnimeX">
-    </a>
-    <a href="index.html" class="back-btn">
-        <i class="fas fa-arrow-left"></i>
-        <span>Retour</span>
-    </a>
+    <a href="index.html" class="logo"><img src="images/logo.png" alt="IrAnimeX"></a>
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i><span>Retour</span></a>
 </header>
 
 <main class="player-container" id="playerContainer">
@@ -40,51 +34,32 @@
                     <option value="cinema">Cinéma</option>
                     <option value="fullscreen">Plein écran</option>
                 </select>
-                <button type="button" id="miniPlayerBtn" class="mode-action" aria-pressed="false">
-                    <i class="fas fa-clone"></i> Mini lecteur
-                </button>
-                <button type="button" id="nightModeBtn" class="mode-action" aria-pressed="false">
-                    <i class="fas fa-moon"></i> Mode nuit
-                </button>
+                <button type="button" id="miniPlayerBtn" class="mode-action" aria-pressed="false"><i class="fas fa-clone"></i> Mini lecteur</button>
+                <button type="button" id="nightModeBtn" class="mode-action" aria-pressed="false"><i class="fas fa-moon"></i> Mode nuit</button>
             </div>
 
             <div class="video-container" id="videoContainer">
                 <video id="videoPlayer" controls playsinline preload="metadata">
                     Votre navigateur ne supporte pas la lecture vidéo.
                 </video>
-                <div id="videoError" class="video-error">
-                    <i class="fas fa-circle-exclamation"></i>
-                    <p>Impossible de charger cette vidéo.</p>
-                </div>
-                <button type="button" id="closeMiniPlayer" class="close-mini-player" aria-label="Fermer le mini lecteur">
-                    <i class="fas fa-xmark"></i>
-                </button>
+                <div id="videoError" class="video-error"><i class="fas fa-circle-exclamation"></i><p>Impossible de charger cette vidéo.</p></div>
+                <button type="button" id="closeMiniPlayer" class="close-mini-player" aria-label="Fermer le mini lecteur"><i class="fas fa-xmark"></i></button>
             </div>
 
             <div class="episode-controls">
-                <button id="previousBtn" class="control-btn">
-                    <i class="fas fa-arrow-left"></i>
-                    Épisode précédent
-                </button>
-                <button id="nextBtn" class="control-btn next">
-                    Épisode suivant
-                    <i class="fas fa-arrow-right"></i>
-                </button>
+                <button id="previousBtn" class="control-btn"><i class="fas fa-arrow-left"></i> Épisode précédent</button>
+                <button id="nextBtn" class="control-btn next">Épisode suivant <i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
 
         <aside class="episodes-panel">
-            <div class="episodes-header">
-                <h2><i class="fas fa-list"></i> Épisodes</h2>
-                <span id="episodeCount">0 épisodes</span>
-            </div>
-            <div id="episodesList" class="episodes-list">
-                <!-- Les épisodes sont ajoutés par joueur-script.js -->
-            </div>
+            <div class="episodes-header"><h2><i class="fas fa-list"></i> Épisodes</h2><span id="episodeCount">0 épisodes</span></div>
+            <div id="episodesList" class="episodes-list"></div>
         </aside>
     </section>
 </main>
 
+<script src="resume-watching.js"></script>
 <script src="joueur-script.js"></script>
 <script src="player-modes.js"></script>
 </body>

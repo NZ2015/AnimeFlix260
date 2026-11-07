@@ -54,35 +54,48 @@
     </div>
 </section>
 
-<main id="catalogue">
-    <h2 class="section-title" id="catalogueTitle">À découvrir</h2>
+<main>
+    <section class="resume-section" id="resumeSection" aria-labelledby="resumeTitle" hidden>
+        <div class="resume-heading">
+            <div>
+                <p class="resume-kicker">Votre séance reprend ici</p>
+                <h2 class="section-title" id="resumeTitle">Continuer à regarder</h2>
+            </div>
+            <button class="resume-clear" id="clearResumeButton" type="button">Effacer l’historique</button>
+        </div>
+        <div id="resumeList" class="resume-grid" aria-live="polite"></div>
+    </section>
 
-    <div class="anime-toolbar">
-        <div class="duration-filters" aria-label="Filtrer par durée">
-            <button class="duration-btn active" data-duration="Tous" type="button">Tous</button>
-            <button class="duration-btn" data-duration="1h" type="button">1h</button>
-            <button class="duration-btn" data-duration="2h" type="button">2h</button>
-            <button class="duration-btn" data-duration="3h" type="button">3h</button>
+    <section id="catalogue" aria-labelledby="catalogueTitle">
+        <h2 class="section-title" id="catalogueTitle">À découvrir</h2>
+
+        <div class="anime-toolbar">
+            <div class="duration-filters" aria-label="Filtrer par durée">
+                <button class="duration-btn active" data-duration="Tous" type="button">Tous</button>
+                <button class="duration-btn" data-duration="1h" type="button">1h</button>
+                <button class="duration-btn" data-duration="2h" type="button">2h</button>
+                <button class="duration-btn" data-duration="3h" type="button">3h</button>
+            </div>
+
+            <div class="sort-box">
+                <label for="sortSelect">Trier :</label>
+                <select id="sortSelect">
+                    <option value="default">Par défaut</option>
+                    <option value="duration-asc">Plus courts</option>
+                    <option value="duration-desc">Plus longs</option>
+                    <option value="rating-desc">Mieux notés</option>
+                </select>
+            </div>
         </div>
 
-        <div class="sort-box">
-            <label for="sortSelect">Trier :</label>
-            <select id="sortSelect">
-                <option value="default">Par défaut</option>
-                <option value="duration-asc">Plus courts</option>
-                <option value="duration-desc">Plus longs</option>
-                <option value="rating-desc">Mieux notés</option>
-            </select>
+        <div id="animeList" class="anime-grid" aria-live="polite"></div>
+
+        <div class="pagination" aria-label="Pagination du catalogue">
+            <button id="previousPage" aria-label="Page précédente" type="button">⏮</button>
+            <span id="pageInfo" aria-live="polite"></span>
+            <button id="nextPage" aria-label="Page suivante" type="button">⏭</button>
         </div>
-    </div>
-
-    <div id="animeList" class="anime-grid" aria-live="polite"></div>
-
-    <div class="pagination" aria-label="Pagination du catalogue">
-        <button id="previousPage" aria-label="Page précédente" type="button">⏮</button>
-        <span id="pageInfo" aria-live="polite"></span>
-        <button id="nextPage" aria-label="Page suivante" type="button">⏭</button>
-    </div>
+    </section>
 </main>
 
 <footer class="footer">
