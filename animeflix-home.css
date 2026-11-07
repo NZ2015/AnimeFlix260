@@ -1,0 +1,229 @@
+/* AnimeFlix home-page skin — streaming look, black and signature red */
+:root {
+    --bg: #090909;
+    --bg-soft: #141414;
+    --card: rgba(25, 25, 25, 0.96);
+    --card-hover: #242424;
+    --line: rgba(255, 255, 255, 0.12);
+    --text: #f5f5f5;
+    --muted: #b3b3b3;
+    --pink: #e50914;
+    --purple: #b20710;
+    --blue: #e50914;
+    --gold: #f5c518;
+    --shadow: rgba(0, 0, 0, 0.65);
+}
+
+body {
+    background: #090909;
+    color: #f5f5f5;
+}
+
+.header {
+    background: rgba(9, 9, 9, 0.92);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.logo {
+    background: none;
+    color: #e50914;
+    -webkit-text-fill-color: #e50914;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
+.logo img {
+    border-radius: 8px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: transparent;
+    box-shadow: none;
+    color: #fff;
+}
+
+.nav-link.active {
+    border-bottom: 2px solid #e50914;
+    border-radius: 0;
+}
+
+.btn-primary,
+.search-btn,
+.play-btn,
+.duration-btn.active,
+.duration-btn:hover,
+.pagination button:hover {
+    background: #e50914;
+    box-shadow: 0 8px 22px rgba(229, 9, 20, 0.25);
+}
+
+.btn-primary:hover,
+.search-btn:hover,
+.play-btn:hover {
+    background: #f6121d;
+}
+
+.hero {
+    min-height: 570px;
+    background-image:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.94) 0%, rgba(0, 0, 0, 0.7) 46%, rgba(0, 0, 0, 0.18) 100%),
+        url('images/banner.jpg');
+    background-position: center;
+}
+
+.hero-overlay {
+    background: linear-gradient(0deg, #090909 0%, transparent 36%, rgba(0, 0, 0, 0.14) 100%);
+}
+
+.hero-badge {
+    border-color: rgba(229, 9, 20, 0.55);
+    background: rgba(229, 9, 20, 0.14);
+    color: #fff;
+}
+
+.hero h1 {
+    max-width: 700px;
+    letter-spacing: -0.055em;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+}
+
+.hero p {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.search-container {
+    background: rgba(20, 20, 20, 0.9);
+    border-color: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+}
+
+.search-btn {
+    border-radius: 8px;
+}
+
+main {
+    padding-top: 20px;
+}
+
+.section-title {
+    margin-top: 22px;
+    margin-bottom: 22px;
+    font-size: clamp(1.7rem, 3vw, 2.25rem);
+    letter-spacing: -0.04em;
+}
+
+.duration-btn {
+    background: #171717;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ddd;
+}
+
+.duration-btn.active,
+.duration-btn:hover {
+    border-color: #e50914;
+    color: #fff;
+    transform: none;
+}
+
+.sort-box select {
+    background: #171717;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.sort-box select option {
+    background: #171717;
+    color: #fff;
+}
+
+.anime-grid {
+    gap: 20px;
+}
+
+.anime-card {
+    position: relative;
+    background: #181818;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+}
+
+.anime-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(229, 9, 20, 0.65);
+    box-shadow: 0 18px 34px rgba(0, 0, 0, 0.5);
+}
+
+.anime-card img {
+    height: 290px;
+    background: #222;
+}
+
+.anime-info {
+    background: #181818;
+}
+
+.anime-info h3 {
+    font-size: 1.08rem;
+}
+
+.anime-card .duration-tag,
+.anime-duration {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 4px 9px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 4px;
+    background: #292929;
+    color: #eee;
+    font-size: 0.75rem;
+}
+
+.rating {
+    color: #f5c518;
+}
+
+.play-btn {
+    border-radius: 6px;
+}
+
+.favorite-btn {
+    border-radius: 6px;
+    background: #292929;
+}
+
+.pagination button {
+    border-radius: 8px;
+    background: #202020;
+}
+
+.footer {
+    background: #080808;
+}
+
+.footer-section a:hover {
+    color: #fff;
+}
+
+#topBtn {
+    border: 0;
+    border-radius: 50%;
+    background: #e50914;
+    color: #fff;
+}
+
+@media (max-width: 640px) {
+    .hero {
+        min-height: 470px;
+        background-position: 58% center;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.4rem, 12vw, 3.2rem);
+    }
+
+    .anime-card img {
+        height: 240px;
+    }
+}
