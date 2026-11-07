@@ -1,6 +1,5 @@
-/* Modes d’affichage du lecteur */
+/* Modes d’affichage et fonctions complémentaires du lecteur */
 
-/* Donne plus de largeur au lecteur en mode standard et garde une seule colonne. */
 .player-container {
     width: min(96%, 1600px);
     max-width: 1600px;
@@ -25,6 +24,7 @@
 }
 
 #videoPlayer {
+    width: 100%;
     height: 100%;
 }
 
@@ -32,7 +32,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
     margin: 0 0 12px;
     color: #aab6c8;
     font-size: 14px;
@@ -48,18 +49,39 @@
     color: #00d9ff;
 }
 
-#displayMode {
+#displayMode,
+.mode-action {
     min-height: 40px;
-    padding: 8px 34px 8px 12px;
+    padding: 8px 12px;
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 9px;
     background: #101c2a;
     color: #fff;
     font: inherit;
+}
+
+#displayMode,
+.mode-action {
     cursor: pointer;
 }
 
-#displayMode:focus-visible {
+.mode-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.mode-action:hover,
+.mode-action[aria-pressed="true"] {
+    background: rgba(0, 217, 255, 0.16);
+    border-color: #00d9ff;
+}
+
+#displayMode:focus-visible,
+.mode-action:focus-visible,
+.close-mini-player:focus-visible {
     outline: 2px solid #00d9ff;
     outline-offset: 3px;
 }
@@ -93,9 +115,9 @@
     font-size: 14px;
 }
 
-/* Le mode cinéma libère la largeur de la page pour agrandir la vidéo. */
+/* Le mode cinéma donne au lecteur presque toute la largeur disponible. */
 .player-container.cinema-mode {
-    width: calc(100% - 40px);
+    width: calc(100% - 32px);
     max-width: none;
     margin-top: 24px;
 }
@@ -103,6 +125,63 @@
 .cinema-mode .video-container {
     border-radius: 10px;
     box-shadow: 0 18px 70px rgba(0, 0, 0, 0.6);
+}
+
+.close-mini-player {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    cursor: pointer;
+}
+
+.video-container.mini-player-mode {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 2000;
+    width: min(380px, calc(100vw - 32px));
+    aspect-ratio: 16 / 9;
+    border: 1px solid rgba(0, 217, 255, 0.55);
+    border-radius: 12px;
+    box-shadow: 0 12px 45px rgba(0, 0, 0, 0.75);
+}
+
+.video-container.mini-player-mode .close-mini-player {
+    display: block;
+}
+
+/* Le mode nuit réduit les distractions autour de la vidéo. */
+body.night-mode {
+    background: #030609;
+}
+
+body.night-mode .player-header {
+    background: #020406;
+    border-color: rgba(255, 255, 255, 0.04);
+}
+
+body.night-mode .anime-info p,
+body.night-mode .episodes-header span,
+body.night-mode .player-toolbar {
+    color: #77808c;
+}
+
+body.night-mode .episodes-panel {
+    background: rgba(3, 7, 11, 0.9);
+    border-color: rgba(255, 255, 255, 0.04);
+}
+
+body.night-mode .episode-card {
+    background: rgba(255, 255, 255, 0.025);
+    border-color: rgba(255, 255, 255, 0.04);
 }
 
 @media (min-width: 1100px) {
@@ -127,21 +206,34 @@
     }
 
     .player-toolbar {
-        justify-content: space-between;
+        justify-content: flex-start;
     }
 
     .episodes-panel {
         padding: 15px;
     }
+
+    .video-container.mini-player-mode {
+        right: 12px;
+        bottom: 12px;
+    }
 }
 
 @media (max-width: 480px) {
-    .player-toolbar {
-        align-items: flex-start;
-        flex-direction: column;
+    .player-container {
+        width: 96%;
     }
 
-    #displayMode {
+    .player-toolbar {
+        align-items: stretch;
+    }
+
+    .player-toolbar label {
         width: 100%;
+    }
+
+    #displayMode,
+    .mode-action {
+        flex: 1 1 auto;
     }
 }
