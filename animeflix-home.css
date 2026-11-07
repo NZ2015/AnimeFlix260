@@ -1,4 +1,4 @@
-/* AnimeFlix home-page skin — streaming look, black and signature red */
+/* IrAnimeX home-page skin — streaming look, black and signature red */
 :root {
     --bg: #090909;
     --bg-soft: #141414;
@@ -29,7 +29,7 @@ body {
     color: #e50914;
     -webkit-text-fill-color: #e50914;
     letter-spacing: -0.04em;
-    text-transform: uppercase;
+    text-transform: none;
 }
 
 .logo img {
