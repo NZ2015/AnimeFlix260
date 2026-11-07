@@ -55,9 +55,19 @@
 </section>
 
 <main>
+    <section class="resume-section" id="resumeSection" aria-labelledby="resumeTitle" hidden>
+        <div class="resume-heading">
+            <div>
+                <p class="resume-kicker">Votre séance reprend ici</p>
+                <h2 class="section-title" id="resumeTitle">Continuer à regarder</h2>
+            </div>
+            <button class="resume-clear" id="clearResumeButton" type="button">Effacer l’historique</button>
+        </div>
+        <div id="resumeList" class="resume-grid" aria-live="polite"></div>
+    </section>
+
     <section id="catalogue" aria-labelledby="catalogueTitle">
         <h2 class="section-title" id="catalogueTitle">Nos animes</h2>
-
         <div class="anime-toolbar">
             <div class="duration-filters" aria-label="Filtrer par durée">
                 <button class="duration-btn active" data-duration="Tous" type="button">Tous</button>
@@ -65,7 +75,6 @@
                 <button class="duration-btn" data-duration="2h" type="button">2h</button>
                 <button class="duration-btn" data-duration="3h" type="button">3h</button>
             </div>
-
             <div class="sort-box">
                 <label for="sortSelect">Trier :</label>
                 <select id="sortSelect">
@@ -76,9 +85,7 @@
                 </select>
             </div>
         </div>
-
         <div id="animeList" class="anime-grid" aria-live="polite"></div>
-
         <div class="pagination" aria-label="Pagination du catalogue">
             <button id="previousPage" aria-label="Page précédente" type="button">⏮</button>
             <span id="pageInfo" aria-live="polite"></span>
@@ -89,31 +96,20 @@
 
 <footer class="footer">
     <div class="footer-content">
-        <div class="footer-section">
-            <h4>À propos</h4>
-            <ul><li><a href="#">Qui sommes-nous ?</a></li><li><a href="#">Blog</a></li></ul>
-        </div>
-        <div class="footer-section">
-            <h4>Support</h4>
-            <ul><li><a href="#">Centre d'aide</a></li><li><a href="#">Contact</a></li><li><a href="#">FAQ</a></li></ul>
-        </div>
-        <div class="footer-section">
-            <h4>Légal</h4>
-            <ul><li><a href="#">Conditions</a></li><li><a href="#">Confidentialité</a></li><li><a href="#">Cookies</a></li></ul>
-        </div>
-        <div class="footer-section">
-            <h4>Réseaux</h4>
-            <div class="social-links">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            </div>
-        </div>
+        <div class="footer-section"><h4>À propos</h4><ul><li><a href="#">Qui sommes-nous ?</a></li><li><a href="#">Blog</a></li></ul></div>
+        <div class="footer-section"><h4>Support</h4><ul><li><a href="#">Centre d'aide</a></li><li><a href="#">Contact</a></li><li><a href="#">FAQ</a></li></ul></div>
+        <div class="footer-section"><h4>Légal</h4><ul><li><a href="#">Conditions</a></li><li><a href="#">Confidentialité</a></li><li><a href="#">Cookies</a></li></ul></div>
+        <div class="footer-section"><h4>Réseaux</h4><div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div></div>
     </div>
     <div class="footer-bottom"><p>© 2026 IrAnimeX. Tous droits réservés.</p></div>
 </footer>
 
 <script src="script.js"></script>
+<script src="catalogue-all.js"></script>
 </body>
 </html>
