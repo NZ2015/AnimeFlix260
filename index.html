@@ -19,10 +19,10 @@
         </a>
 
         <nav class="nav" aria-label="Navigation principale">
-            <a href="#accueil" class="nav-link active">Accueil</a>
-            <a href="#catalogue" class="nav-link">Catalogue</a>
-            <a href="#catalogue" class="nav-link">Top Rated</a>
-            <a href="favorites.html" class="nav-link">Favoris</a>
+            <a href="#accueil" class="nav-link active" data-view="home">Accueil</a>
+            <a href="#catalogue" class="nav-link" data-view="catalogue">Catalogue</a>
+            <a href="#catalogue" class="nav-link" data-view="top-rated">Top Rated</a>
+            <a href="#catalogue" class="nav-link" data-view="favorites">Favoris</a>
         </nav>
 
         <div class="auth-buttons">
@@ -43,14 +43,14 @@
             <div class="search-container">
                 <i class="fas fa-search" aria-hidden="true"></i>
                 <input id="searchInput" type="search" placeholder="Rechercher un anime..." aria-label="Rechercher un anime">
-                <button class="search-btn" type="button">Rechercher</button>
+                <button class="search-btn" type="button" id="searchButton">Rechercher</button>
             </div>
         </div>
     </div>
 </section>
 
 <main id="catalogue">
-    <h2 class="section-title">À découvrir</h2>
+    <h2 class="section-title" id="catalogueTitle">À découvrir</h2>
 
     <div class="anime-toolbar">
         <div class="duration-filters" aria-label="Filtrer par durée">
@@ -71,11 +71,12 @@
         </div>
     </div>
 
-    <div id="animeList" class="anime-grid"></div>
+    <div id="animeList" class="anime-grid" aria-live="polite"></div>
 
     <div class="pagination" aria-label="Pagination du catalogue">
-        <button onclick="prevPage()" aria-label="Page précédente">⏮</button>
-        <button onclick="nextPage()" aria-label="Page suivante">⏭</button>
+        <button id="previousPage" aria-label="Page précédente" type="button">⏮</button>
+        <span id="pageInfo" aria-live="polite"></span>
+        <button id="nextPage" aria-label="Page suivante" type="button">⏭</button>
     </div>
 </main>
 
@@ -83,26 +84,15 @@
     <div class="footer-content">
         <div class="footer-section">
             <h4>À propos</h4>
-            <ul>
-                <li><a href="#">Qui sommes-nous ?</a></li>
-                <li><a href="#">Blog</a></li>
-            </ul>
+            <ul><li><a href="#">Qui sommes-nous ?</a></li><li><a href="#">Blog</a></li></ul>
         </div>
         <div class="footer-section">
             <h4>Support</h4>
-            <ul>
-                <li><a href="#">Centre d'aide</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">FAQ</a></li>
-            </ul>
+            <ul><li><a href="#">Centre d'aide</a></li><li><a href="#">Contact</a></li><li><a href="#">FAQ</a></li></ul>
         </div>
         <div class="footer-section">
             <h4>Légal</h4>
-            <ul>
-                <li><a href="#">Conditions</a></li>
-                <li><a href="#">Confidentialité</a></li>
-                <li><a href="#">Cookies</a></li>
-            </ul>
+            <ul><li><a href="#">Conditions</a></li><li><a href="#">Confidentialité</a></li><li><a href="#">Cookies</a></li></ul>
         </div>
         <div class="footer-section">
             <h4>Réseaux</h4>
@@ -114,9 +104,7 @@
             </div>
         </div>
     </div>
-    <div class="footer-bottom">
-        <p>© 2026 AnimeFlix. Tous droits réservés.</p>
-    </div>
+    <div class="footer-bottom"><p>© 2026 AnimeFlix. Tous droits réservés.</p></div>
 </footer>
 
 <script src="script.js"></script>
