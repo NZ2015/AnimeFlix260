@@ -18,7 +18,12 @@
             <span>IrAnimeX</span>
         </a>
 
-        <nav class="nav" aria-label="Navigation principale">
+        <button class="menu-toggle" id="menuToggle" type="button"
+                aria-label="Ouvrir le menu" aria-controls="mainNavigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav" id="mainNavigation" aria-label="Navigation principale">
             <a href="#accueil" class="nav-link active" data-view="home">Accueil</a>
             <a href="#catalogue" class="nav-link" data-view="catalogue">Catalogue</a>
             <a href="#catalogue" class="nav-link" data-view="top-rated">Top Rated</a>
