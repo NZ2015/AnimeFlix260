@@ -1,26 +1,51 @@
-/* IrAnimeX : overrides de marque limitées au bleu, au rose et au vert. */
-:root {
-    --blue: #2678f3;
-    --pink: #ff5c9a;
-    --green: #27d9a3;
-    --blue-deep: #071b43;
-    --blue-panel: #0b2a5a;
-    --blue-soft: rgba(38,120,243,.16);
-    --pink-soft: rgba(255,92,154,.14);
-    --green-soft: rgba(39,217,163,.14);
+/* Réduction des cartes anime pour afficher davantage d’affiches par ligne. */
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr));
+    gap: 14px;
 }
-body { background: var(--blue-deep); color: var(--blue); }
-.header, .footer { background: var(--blue-deep); }
-.logo span { color: var(--green); }
-.nav-link:hover, .nav-link.active { color: var(--green); background: var(--blue-soft); }
-.nav-link.active { border-bottom-color: var(--green); }
-.btn-primary, .search-btn, .play-btn { color: var(--blue-deep); background: var(--green); }
-.hero { background-image: linear-gradient(90deg, rgba(7,27,67,.98), rgba(7,27,67,.78), rgba(7,27,67,.35)), url('images/banner.jpg'); }
-.hero-overlay { background: radial-gradient(ellipse at 75% 38%, var(--pink-soft), transparent 30rem); }
-.hero-badge, .duration-tag { color: var(--green); border-color: var(--green); background: var(--green-soft); }
-.duration-btn { color: var(--pink); border-color: var(--pink); background: var(--pink-soft); }
-.duration-btn:hover, .duration-btn.active { color: var(--blue-deep); background: var(--green); }
-.anime-card { background: var(--blue-panel); border-color: var(--blue); }
-.anime-card:hover { border-color: var(--green); }
-.anime-info h3, .anime-score i { color: var(--green); }
-.anime-score, .favorite-btn { color: var(--pink); border-color: var(--pink); background: var(--blue-deep); }
+
+.anime-card {
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.anime-card img {
+    width: 100%;
+    height: 225px;
+    object-fit: cover;
+}
+
+.anime-info {
+    padding: 12px;
+}
+
+.anime-info h3 {
+    font-size: 0.96rem;
+}
+
+.card-buttons {
+    gap: 7px;
+    margin-top: 11px;
+}
+
+.play-btn,
+.favorite-btn {
+    padding: 8px 10px;
+}
+
+@media (max-width: 480px) {
+    .anime-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .anime-card img {
+        height: 190px;
+    }
+
+    .anime-info {
+        padding: 10px;
+    }
+}
