@@ -1,41 +1,26 @@
-/* IrAnimeX signature accents: cyan, jade and sakura over midnight ink. */
+/* IrAnimeX : overrides de marque limitées au bleu, au rose et au vert. */
 :root {
-    --bg: #080d18;
-    --bg-soft: #101a2b;
-    --card: #121d2c;
-    --card-hover: #192b3b;
-    --line: rgba(130, 219, 231, 0.14);
-    --text: #f3f7fa;
-    --muted: #9cabbc;
-    --pink: #ff6f9f;
-    --green: #39d6ad;
-    --blue: #45c8ed;
-    --purple: #8e82ff;
-    --gold: #ffd27a;
-    --shadow: rgba(0, 0, 0, 0.48);
+    --blue: #2678f3;
+    --pink: #ff5c9a;
+    --green: #27d9a3;
+    --blue-deep: #071b43;
+    --blue-panel: #0b2a5a;
+    --blue-soft: rgba(38,120,243,.16);
+    --pink-soft: rgba(255,92,154,.14);
+    --green-soft: rgba(39,217,163,.14);
 }
-
-body { background: transparent; color: var(--text); }
-.header { background: rgba(8, 13, 24, 0.88); border-bottom-color: var(--line); }
-.logo { background: none; color: var(--text); -webkit-text-fill-color: initial; }
-.logo span { background: linear-gradient(100deg, var(--blue), var(--green), var(--pink)); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.nav-link:hover, .nav-link.active { color: #fff; background: rgba(69, 200, 237, 0.09); box-shadow: inset 0 0 0 1px rgba(69, 200, 237, 0.18); }
+body { background: var(--blue-deep); color: var(--blue); }
+.header, .footer { background: var(--blue-deep); }
+.logo span { color: var(--green); }
+.nav-link:hover, .nav-link.active { color: var(--green); background: var(--blue-soft); }
 .nav-link.active { border-bottom-color: var(--green); }
-.btn-primary, .search-btn, .play-btn, .duration-btn.active, .duration-btn:hover, .pagination button:hover:not(:disabled) { background: linear-gradient(110deg, var(--blue), var(--green)); box-shadow: 0 8px 22px rgba(57, 214, 173, 0.16); }
-.btn-primary:hover, .search-btn:hover, .play-btn:hover { filter: brightness(1.1); }
-.hero { background-image: linear-gradient(90deg, rgba(8,13,24,.97) 0%, rgba(8,13,24,.78) 44%, rgba(8,13,24,.28) 100%), url('images/banner.jpg'); }
-.hero-overlay { background: radial-gradient(ellipse at 75% 38%, rgba(255,111,159,.14), transparent 30rem), linear-gradient(0deg, #080d18 0%, transparent 36%); }
-.hero-badge { border-color: rgba(57,214,173,.35); background: rgba(16,26,43,.72); color: #b7f4df; }
-.search-container { background: rgba(12,21,35,.88); border-color: rgba(69,200,237,.25); }
-.search-container:focus-within { border-color: var(--blue); }
-.duration-btn { background: rgba(255,111,159,.07); border-color: rgba(255,111,159,.3); color: #ffc0d3; }
-.duration-btn.active, .duration-btn:hover { border-color: transparent; }
-.sort-box select, .sort-box select option { background-color: #101a2a; color: #f3f7fa; }
-.anime-card { background: linear-gradient(155deg, rgba(20,32,48,.98), rgba(11,19,32,.98)); border-color: rgba(130,219,231,.12); }
-.anime-card:hover { border-color: rgba(57,214,173,.48); box-shadow: 0 20px 38px rgba(0,0,0,.34), 0 0 24px rgba(57,214,173,.08); }
-.anime-poster-wrap { background: linear-gradient(135deg, #173b51, #174b42); }
-.duration-tag { border-color: rgba(57,214,173,.28); color: #a4f0d7; background: rgba(57,214,173,.08); }
-.favorite-btn { color: #ff91b6; background: rgba(255,111,159,.08); border-color: rgba(255,111,159,.24); }
-.footer { background: rgba(7,12,22,.92); }
-.footer-section a:hover { color: var(--green); }
-#topBtn { background: linear-gradient(130deg,var(--blue),var(--green)); color: #07131d; }
+.btn-primary, .search-btn, .play-btn { color: var(--blue-deep); background: var(--green); }
+.hero { background-image: linear-gradient(90deg, rgba(7,27,67,.98), rgba(7,27,67,.78), rgba(7,27,67,.35)), url('images/banner.jpg'); }
+.hero-overlay { background: radial-gradient(ellipse at 75% 38%, var(--pink-soft), transparent 30rem); }
+.hero-badge, .duration-tag { color: var(--green); border-color: var(--green); background: var(--green-soft); }
+.duration-btn { color: var(--pink); border-color: var(--pink); background: var(--pink-soft); }
+.duration-btn:hover, .duration-btn.active { color: var(--blue-deep); background: var(--green); }
+.anime-card { background: var(--blue-panel); border-color: var(--blue); }
+.anime-card:hover { border-color: var(--green); }
+.anime-info h3, .anime-score i { color: var(--green); }
+.anime-score, .favorite-btn { color: var(--pink); border-color: var(--pink); background: var(--blue-deep); }
