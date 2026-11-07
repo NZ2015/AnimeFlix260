@@ -1,4 +1,3 @@
-```css
 /* =========================================
    IrAnimeX - STYLE DU LECTEUR
 ========================================= */
@@ -16,7 +15,7 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #07111f, #0b1729, #10152c);
+    background: radial-gradient(circle at top, #112239 0%, #091421 35%, #050b14 100%);
     color: white;
     min-height: 100vh;
 }
@@ -36,9 +35,10 @@ body {
 
     padding: 0 5%;
 
-    background: rgba(5, 10, 20, 0.95);
+    background: rgba(7, 14, 22, 0.96);
 
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
 
     position: sticky;
     top: 0;
@@ -52,7 +52,7 @@ body {
 
 /* ================================
    LOGO IrAnimeX
-================================ */
+================ */
 
 .logo {
     display: flex;
@@ -90,7 +90,7 @@ body {
 
     border-radius: 10px;
 
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.06);
 
     color: white;
 
@@ -99,11 +99,13 @@ body {
     font-weight: bold;
 
     transition: 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .back-btn:hover {
-    background: #00d9ff;
+    background: linear-gradient(135deg, #00d9ff, #7cf7ff);
     color: #06111d;
+    border-color: transparent;
 
     transform: translateX(-3px);
 }
@@ -131,10 +133,11 @@ body {
     align-items: center;
 
     margin-bottom: 20px;
+    gap: 20px;
 }
 
 .anime-info h1 {
-    font-size: 30px;
+    font-size: clamp(1.5rem, 2vw, 2.2rem);
 
     background: linear-gradient(
         90deg,
@@ -145,6 +148,7 @@ body {
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    letter-spacing: 0.03em;
 }
 
 .anime-info p {
@@ -172,8 +176,18 @@ body {
     overflow: hidden;
 
     box-shadow:
-        0 15px 50px rgba(0, 0, 0, 0.5),
+        0 15px 50px rgba(0, 0, 0, 0.45),
         0 0 35px rgba(0, 217, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.video-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), transparent 12%, transparent 88%, rgba(255,255,255,0.04));
+    pointer-events: none;
+    z-index: 1;
 }
 
 #videoPlayer {
@@ -186,6 +200,8 @@ body {
     background: #000;
 
     object-fit: contain;
+    position: relative;
+    z-index: 0;
 }
 
 
@@ -244,7 +260,7 @@ body {
 
     border-radius: 10px;
 
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.06);
 
     color: white;
 
@@ -255,10 +271,11 @@ body {
     font-weight: bold;
 
     transition: 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .control-btn:hover:not(:disabled) {
-    background: #00d9ff;
+    background: linear-gradient(135deg, #00d9ff, #7cf7ff);
 
     color: #06111d;
 
@@ -266,7 +283,7 @@ body {
 }
 
 .control-btn.next:hover:not(:disabled) {
-    background: #ff3b9d;
+    background: linear-gradient(135deg, #ff3b9d, #ff6bb4);
 
     color: white;
 }
@@ -324,6 +341,7 @@ body {
         repeat(auto-fill, minmax(180px, 1fr));
 
     gap: 12px;
+    align-items: stretch;
 }
 
 
@@ -338,9 +356,9 @@ body {
 
     padding: 15px;
 
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.05);
 
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 
     border-radius: 10px;
 
@@ -352,11 +370,12 @@ body {
 }
 
 .episode-card:hover {
-    background: rgba(0, 217, 255, 0.12);
+    background: rgba(0, 217, 255, 0.1);
 
-    border-color: #00d9ff;
+    border-color: rgba(0, 217, 255, 0.6);
 
     transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 217, 255, 0.08);
 }
 
 
@@ -365,14 +384,14 @@ body {
 .episode-card.active {
     background: linear-gradient(
         135deg,
-        rgba(0, 217, 255, 0.2),
-        rgba(255, 59, 157, 0.15)
+        rgba(0, 217, 255, 0.18),
+        rgba(255, 59, 157, 0.12)
     );
 
-    border-color: #00d9ff;
+    border-color: rgba(0, 217, 255, 0.8);
 
     box-shadow:
-        0 0 15px rgba(0, 217, 255, 0.15);
+        0 0 15px rgba(0, 217, 255, 0.12);
 }
 
 
@@ -466,6 +485,11 @@ body {
         margin-top: 25px;
     }
 
+    .anime-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
     .anime-info h1 {
         font-size: 24px;
     }
@@ -517,4 +541,3 @@ body {
     }
 
 }
-```
