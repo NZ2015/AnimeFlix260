@@ -8,6 +8,7 @@
 
     <!-- CSS du lecteur -->
     <link rel="stylesheet" href="joueur-style.css">
+    <link rel="stylesheet" href="player-modes.css">
 
     <!-- Font Awesome -->
     <link rel="stylesheet"
@@ -16,168 +17,76 @@
 
 <body>
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <header class="player-header">
-
-    <!-- LOGO -->
     <a href="index.html" class="logo">
         <img src="images/logo.png" alt="IrAnimeX">
     </a>
 
-    <!-- RETOUR -->
     <a href="index.html" class="back-btn">
         <i class="fas fa-arrow-left"></i>
         <span>Retour</span>
     </a>
-
 </header>
 
-
-<!-- =====================================================
-     CONTENU
-===================================================== -->
-
-<main class="player-container">
-
-
-    <!-- =================================================
-         INFORMATIONS ANIME
-    ================================================== -->
-
+<main class="player-container" id="playerContainer">
     <section class="anime-info">
-
         <div>
             <h1 id="animeTitle">Chargement...</h1>
-
-            <p id="episodeInfo">
-                Saison 1 • Épisode 1
-            </p>
+            <p id="episodeInfo">Saison 1 • Épisode 1</p>
         </div>
-
     </section>
 
-
-
-    <!-- =================================================
-         ZONE LECTEUR + EPISODES
-    ================================================== -->
-
     <section class="watch-area">
-
-
-        <!-- =========================
-             LECTEUR VIDEO
-        ========================== -->
-
         <div class="video-column">
+            <div class="player-toolbar">
+                <label for="displayMode"><i class="fas fa-sliders"></i> Mode d’affichage</label>
+                <select id="displayMode" aria-label="Choisir le mode d’affichage du lecteur">
+                    <option value="standard">Standard</option>
+                    <option value="cinema">Cinéma</option>
+                    <option value="fullscreen">Plein écran</option>
+                </select>
+            </div>
 
-            <div class="video-container">
-
+            <div class="video-container" id="videoContainer">
                 <video
                     id="videoPlayer"
                     controls
                     playsinline
                     preload="metadata">
-
                     Votre navigateur ne supporte pas la lecture vidéo.
-
                 </video>
 
-
-                <!-- Message erreur -->
                 <div id="videoError" class="video-error">
-
                     <i class="fas fa-circle-exclamation"></i>
-
-                    <p>
-                        Impossible de charger cette vidéo.
-                    </p>
-
+                    <p>Impossible de charger cette vidéo.</p>
                 </div>
-
             </div>
-
-
-            <!-- =========================
-                 BOUTONS PRECEDENT / SUIVANT
-            ========================== -->
 
             <div class="episode-controls">
-
-                <button
-                    id="previousBtn"
-                    class="control-btn">
-
+                <button id="previousBtn" class="control-btn">
                     <i class="fas fa-arrow-left"></i>
-
                     Épisode précédent
-
                 </button>
-
-
-                <button
-                    id="nextBtn"
-                    class="control-btn next">
-
+                <button id="nextBtn" class="control-btn next">
                     Épisode suivant
-
                     <i class="fas fa-arrow-right"></i>
-
                 </button>
-
             </div>
-
         </div>
 
-
-
-        <!-- =========================
-             LISTE DES EPISODES
-        ========================== -->
-
         <aside class="episodes-panel">
-
             <div class="episodes-header">
-
-                <h2>
-                    <i class="fas fa-list"></i>
-                    Épisodes
-                </h2>
-
-                <span id="episodeCount">
-                    0 épisodes
-                </span>
-
+                <h2><i class="fas fa-list"></i> Épisodes</h2>
+                <span id="episodeCount">0 épisodes</span>
             </div>
-
-
-            <div
-                id="episodesList"
-                class="episodes-list">
-
-                <!--
-                    Les épisodes seront ajoutés
-                    automatiquement par joueur-script.js
-                -->
-
+            <div id="episodesList" class="episodes-list">
+                <!-- Les épisodes sont ajoutés par joueur-script.js -->
             </div>
-
         </aside>
-
-
     </section>
-
 </main>
 
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
 <script src="joueur-script.js"></script>
-
+<script src="player-modes.js"></script>
 </body>
 </html>

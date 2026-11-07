@@ -1,0 +1,147 @@
+/* Modes d’affichage du lecteur */
+
+/* Donne plus de largeur au lecteur en mode standard et garde une seule colonne. */
+.player-container {
+    width: min(96%, 1600px);
+    max-width: 1600px;
+}
+
+.watch-area {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+}
+
+.video-column,
+.episodes-panel {
+    min-width: 0;
+    width: 100%;
+}
+
+.video-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+#videoPlayer {
+    height: 100%;
+}
+
+.player-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin: 0 0 12px;
+    color: #aab6c8;
+    font-size: 14px;
+}
+
+.player-toolbar label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.player-toolbar label i {
+    color: #00d9ff;
+}
+
+#displayMode {
+    min-height: 40px;
+    padding: 8px 34px 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 9px;
+    background: #101c2a;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+}
+
+#displayMode:focus-visible {
+    outline: 2px solid #00d9ff;
+    outline-offset: 3px;
+}
+
+.episodes-panel {
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    background: rgba(8, 17, 29, 0.72);
+}
+
+.episodes-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.episodes-header h2 {
+    font-size: 20px;
+}
+
+.episodes-header h2 i {
+    margin-right: 8px;
+    color: #00d9ff;
+}
+
+.episodes-header span {
+    color: #8e9bad;
+    font-size: 14px;
+}
+
+/* Le mode cinéma libère la largeur de la page pour agrandir la vidéo. */
+.player-container.cinema-mode {
+    width: calc(100% - 40px);
+    max-width: none;
+    margin-top: 24px;
+}
+
+.cinema-mode .video-container {
+    border-radius: 10px;
+    box-shadow: 0 18px 70px rgba(0, 0, 0, 0.6);
+}
+
+@media (min-width: 1100px) {
+    .player-container:not(.cinema-mode) .watch-area {
+        grid-template-columns: minmax(0, 1fr) 300px;
+    }
+
+    .player-container:not(.cinema-mode) .episodes-panel {
+        max-height: min(70vw, 540px);
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .player-container.cinema-mode {
+        width: 100%;
+        margin-top: 16px;
+    }
+
+    .player-container.cinema-mode .video-container {
+        border-radius: 0;
+    }
+
+    .player-toolbar {
+        justify-content: space-between;
+    }
+
+    .episodes-panel {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .player-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    #displayMode {
+        width: 100%;
+    }
+}
