@@ -8,14 +8,17 @@
     <link rel="stylesheet" href="animeflix-home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="home-page">
 <header class="header" id="accueil">
     <div class="header-container">
         <a class="logo" href="#accueil" aria-label="IrAnimeX - Accueil">
             <img src="images/logo.png" alt="">
             <span>IrAnimeX</span>
         </a>
-        <nav class="nav" aria-label="Navigation principale">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Ouvrir le menu" aria-controls="mainNavigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="nav" id="mainNavigation" aria-label="Navigation principale">
             <a href="#accueil" class="nav-link active">Accueil</a>
             <a href="#catalogue" class="nav-link">Catalogue</a>
             <a href="#catalogue" class="nav-link">Top Rated</a>
@@ -29,9 +32,7 @@
 </header>
 
 <section class="home-hero" aria-label="Animes à la une">
-    <div class="home-hero-image">
-        <img id="heroAnimeImage" src="images/banner.jpg" alt="">
-    </div>
+    <div class="home-hero-image"><img id="heroAnimeImage" src="images/banner.jpg" alt=""></div>
     <div class="home-hero-shade" aria-hidden="true"></div>
     <div class="home-hero-content">
         <p class="home-hero-kicker" id="heroAnimeMeta">IRANIMEX · À LA UNE</p>
@@ -48,7 +49,10 @@
         <div id="continueList" class="continue-list"></div>
     </section>
     <section id="catalogue" aria-labelledby="catalogueTitle">
-        <h2 class="section-title" id="catalogueTitle">Tous les animes</h2>
+        <div class="catalogue-heading">
+            <div><p class="home-eyebrow">Choisissez votre prochaine histoire</p><h2 class="section-title" id="catalogueTitle">Tous les animes</h2></div>
+            <span class="catalogue-mark" aria-hidden="true">IRX <i>✦</i></span>
+        </div>
         <div class="anime-toolbar">
             <div class="duration-filters" aria-label="Filtrer par durée">
                 <button class="duration-btn active" data-duration="Tous" type="button">Tous</button>

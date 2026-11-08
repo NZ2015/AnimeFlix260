@@ -1,4 +1,4 @@
-// Hero carousel and resume shelf for the homepage.
+// Homepage carousel, resume shelf and responsive navigation.
 (() => {
   const image = document.getElementById('heroAnimeImage');
   const title = document.getElementById('heroAnimeTitle');
@@ -8,6 +8,28 @@
   const dots = document.getElementById('heroDots');
   const continueSection = document.getElementById('continueSection');
   const continueList = document.getElementById('continueList');
+  const menuToggle = document.getElementById('menuToggle');
+  const navigation = document.getElementById('mainNavigation');
+
+  function setMenuOpen(open) {
+    if (!menuToggle || !navigation) return;
+    navigation.classList.toggle('is-open', open);
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+  }
+  menuToggle?.addEventListener('click', () => {
+    setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
+  });
+  navigation?.addEventListener('click', (event) => {
+    const link = event.target.closest('.nav-link');
+    if (!link) return;
+    setMenuOpen(false);
+    navigation.querySelectorAll('.nav-link').forEach((item) => item.classList.toggle('active', item === link));
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setMenuOpen(false);
+  });
+
   if (!image || !title || !dots) return;
 
   const HISTORY_KEY = 'iranimeX_resume_v1';
@@ -53,10 +75,7 @@
       const button = event.target.closest('button');
       if (!button) return;
       const index = [...dots.children].indexOf(button);
-      if (index >= 0) {
-        setSlide(index);
-        startTimer();
-      }
+      if (index >= 0) { setSlide(index); startTimer(); }
     });
     setSlide(0);
     startTimer();
@@ -107,11 +126,14 @@
   }).catch((error) => console.warn('Chargement du contenu d’accueil impossible.', error));
 
   window.addEventListener('storage', (event) => {
-    if (event.key === HISTORY_KEY) {
-      Promise.all([
-        fetch('anime.json').then((response) => response.json()),
-        fetch('anime-extra.json').then((response) => response.json()).catch(() => ({ animes: [] }))
-      ]).then(([main, extra]) => renderContinue([...(main.animes || main), ...(extra.animes || extra)]));
-    }
+    if (event.key !== HISTORY_KEY) return;
+    Promise.all([
+      fetch('anime.json').then((response) => response.json()),
+      fetch('anime-extra.json').then((response) => response.json()).catch(() => ({ animes: [] }))
+    ]).then(([main, extra]) => {
+      const mainList = Array.isArray(main) ? main : main.animes || [];
+      const extraList = Array.isArray(extra) ? extra : extra.animes || [];
+      renderContinue([...mainList, ...extraList]);
+    });
   });
 })();
