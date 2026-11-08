@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IrAnimeX</title>
+    <title>IrAnimeX — Animes en streaming</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="animeflix-home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-<header class="header">
+<header class="header" id="accueil">
     <div class="header-container">
         <a class="logo" href="#accueil" aria-label="IrAnimeX - Accueil">
             <img src="images/logo.png" alt="">
@@ -28,41 +28,46 @@
     </div>
 </header>
 
-<section class="hero" id="accueil">
-    <div class="hero-overlay" aria-hidden="true"></div>
-    <div class="hero-content">
-        <h1>Bienvenue sur IrAnimeX</h1>
-        <p>Découvrez vos animes préférés et trouvez votre prochaine aventure.</p>
-        <div class="search-bar">
-            <div class="search-container">
-                <i class="fas fa-search" aria-hidden="true"></i>
-                <input id="searchInput" type="search" placeholder="Rechercher un anime..." aria-label="Rechercher un anime">
-                <button class="search-btn" type="button">Rechercher</button>
-            </div>
-        </div>
+<section class="home-hero" aria-label="Animes à la une">
+    <div class="home-hero-image">
+        <img id="heroAnimeImage" src="images/banner.jpg" alt="">
     </div>
+    <div class="home-hero-shade" aria-hidden="true"></div>
+    <div class="home-hero-content">
+        <p class="home-hero-kicker" id="heroAnimeMeta">IRANIMEX · À LA UNE</p>
+        <h1 id="heroAnimeTitle">Bienvenue sur IrAnimeX</h1>
+        <p id="heroAnimeDescription">Découvrez vos animes préférés et trouvez votre prochaine aventure.</p>
+        <a id="heroWatchLink" class="home-hero-watch" href="#catalogue"><i class="fas fa-play" aria-hidden="true"></i> Découvrir le catalogue</a>
+    </div>
+    <div class="hero-dots" id="heroDots" aria-label="Choisir un anime à la une"></div>
 </section>
 
-<main id="catalogue">
-    <h2 class="section-title">Nos animes</h2>
-    <div class="anime-toolbar">
-        <div class="duration-filters" aria-label="Filtrer par durée">
-            <button class="duration-btn active" data-duration="Tous" type="button">Tous</button>
-            <button class="duration-btn" data-duration="1h" type="button">1h</button>
-            <button class="duration-btn" data-duration="2h" type="button">2h</button>
-            <button class="duration-btn" data-duration="3h" type="button">3h</button>
+<main>
+    <section class="continue-section" id="continueSection" hidden aria-labelledby="continueTitle">
+        <h2 class="home-section-heading" id="continueTitle"><i class="fas fa-clock" aria-hidden="true"></i> Reprenez votre visionnage</h2>
+        <div id="continueList" class="continue-list"></div>
+    </section>
+    <section id="catalogue" aria-labelledby="catalogueTitle">
+        <h2 class="section-title" id="catalogueTitle">Tous les animes</h2>
+        <div class="anime-toolbar">
+            <div class="duration-filters" aria-label="Filtrer par durée">
+                <button class="duration-btn active" data-duration="Tous" type="button">Tous</button>
+                <button class="duration-btn" data-duration="1h" type="button">1h</button>
+                <button class="duration-btn" data-duration="2h" type="button">2h</button>
+                <button class="duration-btn" data-duration="3h" type="button">3h</button>
+            </div>
+            <div class="sort-box">
+                <label for="sortSelect">Trier :</label>
+                <select id="sortSelect">
+                    <option value="default">Par défaut</option>
+                    <option value="duration-asc">Plus courts</option>
+                    <option value="duration-desc">Plus longs</option>
+                    <option value="rating-desc">Mieux notés</option>
+                </select>
+            </div>
         </div>
-        <div class="sort-box">
-            <label for="sortSelect">Trier :</label>
-            <select id="sortSelect">
-                <option value="default">Par défaut</option>
-                <option value="duration-asc">Plus courts</option>
-                <option value="duration-desc">Plus longs</option>
-                <option value="rating-desc">Mieux notés</option>
-            </select>
-        </div>
-    </div>
-    <div id="animeList" class="anime-grid" aria-live="polite"></div>
+        <div id="animeList" class="anime-grid" aria-live="polite"></div>
+    </section>
 </main>
 
 <footer class="footer">
@@ -79,7 +84,7 @@
     </div>
     <div class="footer-bottom"><p>© 2026 IrAnimeX. Tous droits réservés.</p></div>
 </footer>
-
 <script src="script.js"></script>
+<script src="home-experience.js"></script>
 </body>
 </html>

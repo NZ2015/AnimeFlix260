@@ -19,7 +19,7 @@ function readFavorites() {
     try {
       const stored = JSON.parse(localStorage.getItem(key) || '[]');
       if (Array.isArray(stored)) stored.forEach((id) => ids.add(String(id)));
-    } catch (error) { /* Ignore les anciennes données de favoris invalides. */ }
+    } catch (error) { /* Ignore les favoris locaux invalides. */ }
   });
   return ids;
 }
@@ -84,11 +84,9 @@ function getVisibleAnimes() {
 function render() {
   if (!animeList) return;
   visibleAnimes = getVisibleAnimes();
-
   if (!visibleAnimes.length) {
     animeList.innerHTML = `<p class="empty-message">${currentView === 'favorites' ? 'Aucun favori pour le moment. Utilisez le bouton cœur pour en ajouter.' : 'Aucun anime ne correspond à votre recherche.'}</p>`;
   } else {
-    // Important : aucun découpage en pages, le catalogue complet reste visible ensemble.
     animeList.innerHTML = visibleAnimes.map((anime) => {
       const id = String(anime.id);
       const title = escapeHtml(anime.title || 'Anime sans titre');
@@ -97,6 +95,9 @@ function render() {
       const genres = escapeHtml((anime.genres || []).join(' • '));
       const rating = Number(anime.rating || 0);
       const favorite = favorites.has(id);
+      const watchControl = anime.available === false
+        ? '<button class="play-btn" type="button" disabled title="Les épisodes vidéo ne sont pas encore ajoutés">Bientôt</button>'
+        : `<a href="joueur.html?animeId=${encodeURIComponent(id)}&season=1&episode=1" class="play-btn"><i class="fas fa-play" aria-hidden="true"></i> Regarder</a>`;
       return `<article class="anime-card">
         <div class="anime-poster-wrap">
           <img src="${poster}" alt="Affiche de ${title}" loading="lazy" onerror="this.onerror=null;this.src='images/logo.png';">
@@ -107,15 +108,13 @@ function render() {
           <span class="duration-tag">${formatDuration(averageDuration(anime))}</span>
           <p class="anime-description">${description}</p>
           <p class="genre">${genres}</p>
-          <div class="card-buttons">
-            <a href="joueur.html?animeId=${encodeURIComponent(id)}&season=1&episode=1" class="play-btn"><i class="fas fa-play" aria-hidden="true"></i> Regarder</a>
+          <div class="card-buttons">${watchControl}
             <button class="favorite-btn" type="button" data-favorite-id="${escapeHtml(id)}" aria-label="${favorite ? 'Retirer' : 'Ajouter'} ${title} ${favorite ? 'des' : 'aux'} favoris" aria-pressed="${favorite}">${favorite ? '♥' : '♡'}</button>
           </div>
         </div>
       </article>`;
     }).join('');
   }
-
   const title = document.querySelector('#catalogue .section-title');
   if (title) title.textContent = currentView === 'favorites' ? 'Mes favoris' : currentView === 'top-rated' ? 'Les mieux notés' : 'Nos animes';
 }
@@ -131,21 +130,13 @@ document.querySelectorAll('.nav-link').forEach((link) => {
     event.preventDefault();
     document.querySelectorAll('.nav-link').forEach((item) => item.classList.toggle('active', item === link));
     currentView = label === 'favoris' ? 'favorites' : label === 'top rated' ? 'top-rated' : 'catalogue';
-    if (label === 'accueil') {
-      currentQuery = '';
-      if (searchInput) searchInput.value = '';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      scrollToCatalogue();
-    }
+    if (label === 'accueil') window.scrollTo({ top: 0, behavior: 'smooth' });
+    else scrollToCatalogue();
     render();
   });
 });
 
-searchInput?.addEventListener('input', () => {
-  currentQuery = searchInput.value;
-  render();
-});
+searchInput?.addEventListener('input', () => { currentQuery = searchInput.value; render(); });
 document.querySelector('.search-btn')?.addEventListener('click', () => {
   currentQuery = searchInput?.value || '';
   render();
@@ -154,7 +145,6 @@ document.querySelector('.search-btn')?.addEventListener('click', () => {
 searchInput?.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') document.querySelector('.search-btn')?.click();
 });
-
 document.querySelectorAll('.duration-btn').forEach((button) => {
   button.addEventListener('click', () => {
     currentDuration = button.dataset.duration || 'Tous';
@@ -162,10 +152,7 @@ document.querySelectorAll('.duration-btn').forEach((button) => {
     render();
   });
 });
-sortSelect?.addEventListener('change', () => {
-  currentSort = sortSelect.value;
-  render();
-});
+sortSelect?.addEventListener('change', () => { currentSort = sortSelect.value; render(); });
 animeList?.addEventListener('click', (event) => {
   const button = event.target.closest('[data-favorite-id]');
   if (!button) return;
@@ -179,11 +166,20 @@ async function loadAnimes() {
   if (!animeList) return;
   animeList.innerHTML = '<p class="empty-message">Chargement du catalogue…</p>';
   try {
-    const response = await fetch('anime.json', { cache: 'no-store' });
-    if (!response.ok) throw new Error(`Erreur HTTP ${response.status}`);
-    const data = await response.json();
-    animes = Array.isArray(data) ? data : data.animes;
-    if (!Array.isArray(animes) || !animes.length) throw new Error('Aucun anime trouvé.');
+    const [mainResponse, extraResponse] = await Promise.all([
+      fetch('anime.json', { cache: 'no-store' }),
+      fetch('anime-extra.json', { cache: 'no-store' }).catch(() => null)
+    ]);
+    if (!mainResponse.ok) throw new Error(`Erreur HTTP ${mainResponse.status}`);
+    const mainData = await mainResponse.json();
+    const mainAnimes = Array.isArray(mainData) ? mainData : mainData.animes;
+    let additionalAnimes = [];
+    if (extraResponse?.ok) {
+      const extraData = await extraResponse.json();
+      additionalAnimes = Array.isArray(extraData) ? extraData : extraData.animes || [];
+    }
+    animes = [...(Array.isArray(mainAnimes) ? mainAnimes : []), ...additionalAnimes];
+    if (!animes.length) throw new Error('Aucun anime trouvé.');
     render();
   } catch (error) {
     console.error('Erreur de chargement du catalogue :', error);
