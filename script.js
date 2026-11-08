@@ -1,4 +1,4 @@
-// IrAnimeX — catalogue complet, filtres, favoris et liens vers le lecteur.
+// IrAnimeX — catalogue complet sur une seule page, filtres et favoris.
 const FAVORITES_KEY = 'animeFlix_favorites';
 const LEGACY_FAVORITES_KEY = 'favoris';
 let animes = [];
@@ -95,7 +95,9 @@ function render() {
       const genres = escapeHtml((anime.genres || []).join(' • '));
       const rating = Number(anime.rating || 0);
       const favorite = favorites.has(id);
-      const watchControl = `<a href="joueur.html?animeId=${encodeURIComponent(id)}&season=1&episode=1" class="play-btn"><i class="fas fa-play" aria-hidden="true"></i> Regarder</a>`;
+      const watchControl = anime.available === false
+        ? '<button class="play-btn" type="button" disabled title="Les épisodes vidéo ne sont pas encore ajoutés">Bientôt</button>'
+        : `<a href="joueur.html?animeId=${encodeURIComponent(id)}&season=1&episode=1" class="play-btn"><i class="fas fa-play" aria-hidden="true"></i> Regarder</a>`;
       return `<article class="anime-card">
         <div class="anime-poster-wrap">
           <img src="${poster}" alt="Affiche de ${title}" loading="lazy" onerror="this.onerror=null;this.src='images/logo.png';">
@@ -160,34 +162,23 @@ animeList?.addEventListener('click', (event) => {
   render();
 });
 
-async function loadCollection(path) {
-  try {
-    const response = await fetch(path, { cache: 'no-store' });
-    if (!response.ok) return [];
-    const data = await response.json();
-    const list = Array.isArray(data) ? data : data.animes;
-    return Array.isArray(list) ? list : [];
-  } catch (error) {
-    return [];
-  }
-}
-
 async function loadAnimes() {
   if (!animeList) return;
   animeList.innerHTML = '<p class="empty-message">Chargement du catalogue…</p>';
   try {
-    const [mainResponse, extraAnimes, moreAnimes] = await Promise.all([
+    const [mainResponse, extraResponse] = await Promise.all([
       fetch('anime.json', { cache: 'no-store' }),
-      loadCollection('anime-extra.json'),
-      loadCollection('anime-more.json')
+      fetch('anime-extra.json', { cache: 'no-store' }).catch(() => null)
     ]);
     if (!mainResponse.ok) throw new Error(`Erreur HTTP ${mainResponse.status}`);
     const mainData = await mainResponse.json();
     const mainAnimes = Array.isArray(mainData) ? mainData : mainData.animes;
-    if (!Array.isArray(mainAnimes)) throw new Error('Format anime.json invalide.');
-    const unique = new Map();
-    [...mainAnimes, ...extraAnimes, ...moreAnimes].forEach((anime) => unique.set(String(anime.id), anime));
-    animes = [...unique.values()];
+    let additionalAnimes = [];
+    if (extraResponse?.ok) {
+      const extraData = await extraResponse.json();
+      additionalAnimes = Array.isArray(extraData) ? extraData : extraData.animes || [];
+    }
+    animes = [...(Array.isArray(mainAnimes) ? mainAnimes : []), ...additionalAnimes];
     if (!animes.length) throw new Error('Aucun anime trouvé.');
     render();
   } catch (error) {
