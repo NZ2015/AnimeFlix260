@@ -1,71 +1,146 @@
-/* Palette du site : nuances de bleu, rose et violet uniquement. */
-:root {
-    --black: #07142f;
-    --black-soft: #0b1d3d;
-    --black-card: #10254a;
-    --black-raised: #183361;
-    --pink: #ff5c9a;
-    --pink-soft: rgba(255, 92, 154, .14);
-    --green: #a855f7; /* Alias conservé pour les règles existantes : violet. */
-    --green-soft: rgba(168, 85, 247, .14);
-    --line: rgba(88, 125, 255, .3);
-    --blue: #2879f4;
-    --blue-deep: #07142f;
-    --blue-panel: #10254a;
+
+/* ==========================================
+   IrAnimeX — DESIGN NETFLIX + COMPACT
+   ========================================== */
+
+/* Grille des animes */
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+    gap: 20px;
+    align-items: start;
 }
 
-body {
-    color: var(--blue);
+/* Carte */
+.anime-card {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--black-card);
+    transition: transform .3s ease, border-color .3s ease,
+                box-shadow .3s ease;
+}
+
+.anime-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--pink);
+    box-shadow: 0 10px 25px rgba(40, 121, 244, .2);
+}
+
+/* Affiche verticale */
+.anime-poster-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
     background: var(--blue-deep);
 }
-.header, .footer { background: var(--blue-deep); }
-.header { border-bottom-color: var(--line); }
-.logo, .logo img { color: var(--green); border-color: var(--green); }
-.nav-link { color: var(--blue); }
-.nav-link:hover, .nav-link.active { color: var(--pink); background: rgba(40, 121, 244, .14); }
-.btn-secondary { color: var(--blue); background: var(--blue-panel); }
-.btn-primary, .search-btn, .play-btn { color: var(--blue-deep); background: var(--green); }
 
-.hero {
-    background-image: linear-gradient(90deg, rgba(7,20,47,.97), rgba(7,20,47,.78), rgba(7,20,47,.42)), url("images/banner.jpg");
+.anime-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .45s ease;
 }
-.hero::after { background: linear-gradient(transparent, var(--blue-deep)); }
-.hero-overlay { background: radial-gradient(ellipse at 75% 38%, var(--pink-soft), transparent 30rem); }
-.hero h1, .section-title { color: var(--pink); }
-.hero p, .sort-box, .anime-info h3, .resume-copy h3, .resume-time { color: var(--blue); }
-.hero-badge, .duration-tag { color: var(--green); border-color: var(--green); background: var(--green-soft); }
-.search-container { border-color: var(--blue); background: var(--blue-deep); }
-.search-container:focus-within { border-color: var(--pink); }
-.search-container input { color: var(--blue); }
 
-.duration-btn { color: var(--pink); border-color: var(--pink); background: var(--pink-soft); }
-.duration-btn:hover, .duration-btn.active { color: var(--blue-deep); border-color: var(--green); background: var(--green); }
-.sort-box select, .sort-box option { color: var(--blue); background: var(--blue-panel); }
-.anime-card, .resume-card { border-color: var(--line); background: var(--blue-panel); }
-.anime-card:hover { border-color: var(--green); }
-.anime-poster-wrap, .anime-card img, .resume-poster { background: var(--blue-deep); }
-.anime-score, .favorite-btn { color: var(--pink); border-color: var(--pink); background: var(--blue-deep); }
-.anime-score i { color: var(--green); }
-.anime-description, .resume-kicker { color: var(--blue); }
-.genre, .empty-message { color: var(--pink); }
-.play-btn { border-color: var(--green); }
-.favorite-btn { background: var(--pink-soft); }
-.pagination { color: var(--blue); }
-.pagination button { color: var(--blue); border-color: var(--line); background: var(--blue-panel); }
-.pagination button:hover:not(:disabled) { color: var(--blue-deep); background: var(--green); }
-.resume-play { color: var(--green); background: rgba(7,20,47,.72); }
-.resume-progress, .resume-progress span { background-color: var(--blue-deep); }
-.resume-progress span { background: linear-gradient(90deg, var(--blue), var(--pink), var(--green)); }
-.resume-button { color: var(--blue-deep); border-color: var(--green); background: var(--green); }
-.resume-clear { color: var(--pink); border-color: var(--pink); background: var(--pink-soft); }
-.footer { border-top-color: var(--line); }
-.footer-section h4 { color: var(--pink); }
-.footer-section a, .footer-bottom { color: var(--blue); }
-.footer-section a:hover, .social-links a { color: var(--green); }
-.social-links a { border-color: var(--line); background: var(--blue-panel); }
+.anime-card:hover img {
+    transform: scale(1.07);
+}
 
+/* Informations */
+.anime-info {
+    padding: 10px;
+}
+
+.anime-info h3 {
+    margin: 0 0 7px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Note */
+.anime-score {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 7px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* Description */
+.anime-description {
+    font-size: 11px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.anime-card:hover .anime-description {
+    -webkit-line-clamp: 4;
+}
+
+/* Genres */
+.genre {
+    display: inline-block;
+    margin: 4px 3px 0 0;
+    padding: 3px 6px;
+    border-radius: 4px;
+    background: var(--pink-soft);
+    font-size: 10px;
+}
+
+/* Boutons */
+.play-btn,
+.favorite-btn {
+    cursor: pointer;
+    transition: .25s ease;
+}
+
+.play-btn:hover,
+.favorite-btn:hover {
+    transform: scale(1.08);
+}
+
+/* Adaptation mobile */
 @media (max-width: 700px) {
-    .menu-toggle { border-color: var(--line); background: var(--blue-panel); }
-    .menu-toggle span { background: linear-gradient(90deg, var(--blue), var(--pink), var(--green)); }
-    .nav { border-bottom-color: var(--line); background: var(--blue-deep); }
+    .anime-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .anime-info {
+        padding: 8px;
+    }
+
+    .anime-info h3 {
+        font-size: 13px;
+    }
 }
+
+/* Grands écrans */
+@media (min-width: 1200px) {
+    .anime-grid {
+        grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+        gap: 22px;
+    }
+}
+
+/* Accessibilité clavier */
+.anime-card:focus-within {
+    outline: 2px solid var(--pink);
+    outline-offset: 3px;
+}
+
