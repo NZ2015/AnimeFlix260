@@ -1077,3 +1077,88 @@
 }
 
 /* FIN — IRANIMEX PREMIUM HERO */
+
+/* =====================================================
+   IrAnimeX — FIX IMAGE HERO PREMIUM
+   Affichage correct des images des animes
+   ===================================================== */
+
+.home-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: #07142f;
+}
+
+/* IMAGE : premier niveau visible */
+.home-hero .home-hero-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.home-hero .home-hero-image img,
+.home-hero #heroAnimeImage {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    opacity: 1;
+    visibility: visible;
+    filter: none;
+}
+
+/* VOILE : assombrissement léger */
+.home-hero .home-hero-shade {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(7, 20, 47, .62) 0%,
+            rgba(7, 20, 47, .28) 48%,
+            rgba(7, 20, 47, .04) 100%
+        ),
+        linear-gradient(
+            0deg,
+            rgba(7, 20, 47, .55),
+            transparent 60%
+        );
+}
+
+/* PANNEAU PREMIUM */
+.home-hero .home-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* POINTS DU CARROUSEL */
+.home-hero .hero-dots {
+    position: absolute;
+    z-index: 3;
+}
+
+/* SUR PETITS ÉCRANS */
+@media (max-width: 600px) {
+    .home-hero .home-hero-image img {
+        object-position: 60% center;
+    }
+
+    .home-hero .home-hero-shade {
+        background: linear-gradient(
+            90deg,
+            rgba(7, 20, 47, .65),
+            rgba(7, 20, 47, .18)
+        );
+    }
+}
