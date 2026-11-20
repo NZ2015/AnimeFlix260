@@ -406,3 +406,357 @@
 
 /* FIN DU DESIGN ULTIMATE IRANIMEX */
 
+/* ==========================================================
+   IrAnimeX — PREMIUM ANIME CARDS
+   Style 4 : Glassmorphism + Neon
+   ========================================================== */
+
+#animeList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+    gap: 22px;
+    align-items: stretch;
+}
+
+/* CARTE PREMIUM */
+#animeList > .anime-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid transparent;
+    border-radius: 16px;
+
+    background:
+        linear-gradient(145deg, #10254a, #091832) padding-box,
+        linear-gradient(135deg, #2879f4, #a855f7, #ff5c9a) border-box;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .20);
+    transition: transform .35s ease,
+                box-shadow .35s ease,
+                border-color .35s ease;
+}
+
+#animeList > .anime-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 12px 30px rgba(40, 121, 244, .18),
+        0 0 18px rgba(168, 85, 247, .18),
+        0 0 25px rgba(255, 92, 154, .10);
+}
+
+/* AFFICHE */
+#animeList .anime-poster-wrap {
+    position: relative;
+    flex: 0 0 auto;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    background: #07142f;
+}
+
+#animeList .anime-poster-wrap img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s ease,
+                filter .4s ease;
+}
+
+#animeList .anime-card:hover .anime-poster-wrap img {
+    transform: scale(1.08);
+    filter: brightness(1.08);
+}
+
+/* VOILE LUMINEUX SUR L'AFFICHE */
+#animeList .anime-poster-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        to top,
+        rgba(7, 20, 47, .42),
+        transparent 45%
+    );
+}
+
+/* NOTE */
+#animeList .anime-score {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 7px 10px;
+    border: 1px solid rgba(255, 92, 154, .65);
+    border-radius: 9px;
+
+    color: #fff;
+    background: rgba(7, 20, 47, .78);
+
+    font-size: 11px;
+    font-weight: 800;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+#animeList .anime-score i {
+    color: #ff5c9a;
+}
+
+/* INFORMATIONS */
+#animeList .anime-info {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+
+    min-width: 0;
+    padding: 12px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(24, 51, 97, .65),
+        rgba(7, 20, 47, .85)
+    );
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* TITRE */
+#animeList .anime-info h3 {
+    display: -webkit-box;
+    width: 100%;
+    min-height: 2.7em;
+    margin: 0;
+    overflow: hidden;
+
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.35;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+/* DURÉE */
+#animeList .duration-tag {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 9px;
+    border: 1px solid rgba(168, 85, 247, .5);
+    border-radius: 7px;
+
+    color: #d8b4fe;
+    background: rgba(168, 85, 247, .13);
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+/* DESCRIPTION */
+#animeList .anime-description {
+    display: -webkit-box;
+    width: 100%;
+    min-height: 3em;
+    margin: 0;
+    overflow: hidden;
+
+    color: rgba(230, 238, 255, .78);
+    font-size: 11px;
+    line-height: 1.55;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+/* GENRES */
+#animeList .genre {
+    display: -webkit-box;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+
+    color: #ff9dc2;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.5;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+/* BOUTONS */
+#animeList .card-buttons {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    width: 100%;
+    margin-top: auto;
+    padding-top: 5px;
+}
+
+/* BOUTON REGARDER */
+#animeList .play-btn {
+    display: inline-flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    min-width: 0;
+    min-height: 37px;
+    padding: 8px;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    color: #fff;
+    background: linear-gradient(110deg, #2879f4, #a855f7, #ff5c9a);
+
+    font-size: 11px;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: transform .25s ease,
+                filter .25s ease,
+                box-shadow .25s ease;
+}
+
+#animeList .play-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    filter: brightness(1.15);
+
+    box-shadow: 0 5px 16px rgba(168, 85, 247, .35);
+}
+
+#animeList .play-btn:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+/* BOUTON FAVORIS */
+#animeList .favorite-btn {
+    display: inline-flex;
+    flex: 0 0 37px;
+    align-items: center;
+    justify-content: center;
+
+    width: 37px;
+    min-width: 37px;
+    height: 37px;
+    padding: 0;
+
+    border: 1px solid rgba(255, 92, 154, .7);
+    border-radius: 9px;
+
+    color: #ff5c9a;
+    background: rgba(255, 92, 154, .12);
+
+    font-size: 20px;
+    cursor: pointer;
+    transition: .25s ease;
+}
+
+#animeList .favorite-btn:hover {
+    color: #fff;
+    background: #ff5c9a;
+    transform: scale(1.08);
+    box-shadow: 0 0 15px rgba(255, 92, 154, .35);
+}
+
+/* MESSAGE VIDE */
+#animeList > .empty-message {
+    grid-column: 1 / -1;
+    padding: 25px;
+    border: 1px solid rgba(168, 85, 247, .35);
+    border-radius: 12px;
+    color: #d8b4fe;
+    background: rgba(16, 37, 74, .8);
+    text-align: center;
+}
+
+/* ACCESSIBILITÉ */
+#animeList .anime-card:focus-within {
+    outline: 2px solid #ff5c9a;
+    outline-offset: 3px;
+}
+
+/* TABLETTES */
+@media (max-width: 900px) {
+    #animeList {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 15px;
+    }
+}
+
+/* TÉLÉPHONES */
+@media (max-width: 600px) {
+    #animeList {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    #animeList .anime-info {
+        padding: 9px;
+        gap: 7px;
+    }
+
+    #animeList .anime-info h3 {
+        font-size: 12px;
+    }
+
+    #animeList .anime-description {
+        font-size: 10px;
+    }
+}
+
+/* PETITS ÉCRANS */
+@media (max-width: 340px) {
+    #animeList {
+        gap: 8px;
+    }
+
+    #animeList .anime-info {
+        padding: 7px;
+    }
+
+    #animeList .play-btn {
+        font-size: 10px;
+    }
+}
+
+/* RÉDUCTION DES ANIMATIONS */
+@media (prefers-reduced-motion: reduce) {
+    #animeList > .anime-card,
+    #animeList img,
+    #animeList .play-btn,
+    #animeList .favorite-btn {
+        transition: none !important;
+    }
+
+    #animeList > .anime-card:hover,
+    #animeList .anime-card:hover img {
+        transform: none;
+    }
+}
+
